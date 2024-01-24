@@ -80,12 +80,7 @@ netology-deployment-b98d74c7f-rdjbl   1/1     Running   0          21s
 
 4. Создать Service, который обеспечит доступ до реплик приложений из п.1.
 
-~~~
-admin@ubuntu-hw:~/startk8s$ kubectl get svc
-NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
-kubernetes   ClusterIP   10.152.183.1     <none>        443/TCP   4h42m
-nginx-svc    ClusterIP   10.152.183.212   <none>        80/TCP    6m23s
-~~~
+
 
 Проверил.
 
