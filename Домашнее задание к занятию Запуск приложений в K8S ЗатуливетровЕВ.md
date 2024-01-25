@@ -26,15 +26,22 @@
 
 1. Создать Deployment приложения, состоящего из двух контейнеров — nginx и multitool. Решить возникшую ошибку.
 
-Создал [deploy](https://github.com/zatulik2606/Microservices/blob/main/Startsoftk8s/my-deployments.yaml)
+Создал   [deploy](https://github.com/zatulik2606/Microservices/blob/main/startk8snewversion/nginx-multitool.yaml)
+
 
 Проверяю.
 
 ~~~
-admin@ubuntu-hw:~/startk8s$ kubectl get deploy
+
+admin@ubuntu-hw:~/Microservices/startk8snewversion$ kubectl get deploy
 NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
-netology-deployment   1/1     1            1           43s
-multitool             1/1     1            1           43s
+dpl-nginx-multitool   1/1     1            1           91s
+
+admin@ubuntu-hw:~/Microservices/startk8snewversion$ kubectl get po
+NAME                                   READY   STATUS    RESTARTS   AGE
+dpl-nginx-multitool-645c8c8575-7r7vn   2/2     Running   0          103s
+
+
 
 ~~~
 
@@ -44,10 +51,12 @@ multitool             1/1     1            1           43s
 Увеличил.
 
 ~~~
-admin@ubuntu-hw:~/startk8s$ kubectl get deploy
+admin@ubuntu-hw:~/Microservices/startk8snewversion$ kubectl get deploy
 NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
-multitool             1/1     1            1           75s
-netology-deployment   2/2     2            2           75s
+dpl-nginx-multitool   2/2     2            2           4m2s
+admin@ubuntu-hw:~/Microservices/startk8snewversion$ kubectl get rs
+NAME                             DESIRED   CURRENT   READY   AGE
+dpl-nginx-multitool-645c8c8575   2         2         2       4m11s
 
 ~~~
 
@@ -57,10 +66,10 @@ netology-deployment   2/2     2            2           75s
 До.
 
 ~~~
-admin@ubuntu-hw:~/startk8s$ kubectl get po
-NAME                                  READY   STATUS    RESTARTS   AGE
-netology-deployment-b98d74c7f-shgcv   1/1     Running   0          12s
-multitool-676d784fd9-j66fw            1/1     Running   0          12s
+admin@ubuntu-hw:~/Microservices/startk8snewversion$ kubectl get po
+NAME                                   READY   STATUS    RESTARTS   AGE
+dpl-nginx-multitool-645c8c8575-7r7vn   2/2     Running   0          103s
+
 
 
 ~~~
@@ -68,39 +77,43 @@ multitool-676d784fd9-j66fw            1/1     Running   0          12s
 После
 
 ~~~
-admin@ubuntu-hw:~/startk8s$ kubectl get po
-NAME                                  READY   STATUS    RESTARTS   AGE
-netology-deployment-b98d74c7f-shgcv   1/1     Running   0          93s
-multitool-676d784fd9-j66fw            1/1     Running   0          93s
-netology-deployment-b98d74c7f-rdjbl   1/1     Running   0          21s
 
+admin@ubuntu-hw:~/Microservices/startk8snewversion$ kubectl get po
+NAME                                   READY   STATUS    RESTARTS   AGE
+dpl-nginx-multitool-645c8c8575-7r7vn   2/2     Running   0          4m37s
+dpl-nginx-multitool-645c8c8575-zj2bl   2/2     Running   0          42s
 
 ~~~
 
 
 4. Создать Service, который обеспечит доступ до реплик приложений из п.1.
 
-
+Создал [svc-nginx-multitool.yaml](https://github.com/zatulik2606/Microservices/blob/main/startk8snewversion/svc-nginx-multitool.yaml)
 
 Проверил.
 
 ~~~
-admin@ubuntu-hw:~/startk8s$ kubectl get svc
-NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
-kubernetes   ClusterIP   10.152.183.1     <none>        443/TCP   4h10m
-myservice    ClusterIP   10.152.183.25    <none>        80/TCP    64m
+admin@ubuntu-hw:~/Microservices/startk8snewversion$ kubectl get svc
+NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                    AGE
+kubernetes                ClusterIP   10.152.183.1    <none>        443/TCP                    23h
+svc-nginx-multitool-dz3   ClusterIP   10.152.183.93   <none>        80/TCP,443/TCP,31080/TCP   64s
+
 
 ~~~
 
 5. Создать отдельный Pod с приложением multitool и убедиться с помощью `curl`, что из пода есть доступ до приложений из п.1.
 
+Создал [deploy-multitool.yaml](https://github.com/zatulik2606/Microservices/blob/main/startk8snewversion/deploy-multitool.yaml)
+
+
+Проверяю.
 
 ~~~
 
-admin@ubuntu-hw:~/startk8s$ kubectl exec multitool-676d784fd9-j66fw -- curl 10.152.183.212
+admin@ubuntu-hw:~/Microservices/startk8snewversion$ kubectl exec test-multitool -- curl svc-nginx-multitool-dz3:80
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<!DOCTYPE html>
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0<!DOCTYPE html>
 <html>
 <head>
 <title>Welcome to nginx!</title>
@@ -125,7 +138,9 @@ Commercial support is available at
 <p><em>Thank you for using nginx.</em></p>
 </body>
 </html>
-100   612  100   612    0     0   709k      0 --:--:-- --:--:-- --:--:--  597k
+100   612  100   612    0     0    277      0  0:00:02  0:00:02 --:--:--   277
+
+
 
 ~~~
 ------
@@ -134,23 +149,16 @@ Commercial support is available at
 
 1. Создать Deployment приложения nginx и обеспечить старт контейнера только после того, как будет запущен сервис этого приложения.
 
-Создал [deploy-nginx](https://github.com/zatulik2606/Microservices/blob/main/Startsoftk8s/nginx.yaml)
+Создал [deploy-nginx-init.yaml](https://github.com/zatulik2606/Microservices/blob/main/startk8snewversion/deploy-nginx-init.yaml)
 
 2. Убедиться, что nginx не стартует. В качестве Init-контейнера взять busybox.
 
+
 ~~~
-admin@ubuntu-hw:~/startk8s$ kubectl logs myapp-pod-5c98f46689-j574f 
-Defaulted container "nginx" out of: nginx, init-myservice (init)
-Error from server (BadRequest): container "nginx" in pod "myapp-pod-5c98f46689-j574f" is waiting to start: PodInitializing
 
 
 
-admin@ubuntu-hw:~/startk8s$ kubectl get po
-NAME                                  READY   STATUS     RESTARTS   AGE
-netology-deployment-b98d74c7f-shgcv   1/1     Running    0          10m
-multitool-676d784fd9-j66fw            1/1     Running    0          10m
-netology-deployment-b98d74c7f-rdjbl   1/1     Running    0          9m17s
-myapp-pod-5c98f46689-j574f            0/1     Init:0/1   0          90s
+
 
 ~~~
 
@@ -158,17 +166,11 @@ myapp-pod-5c98f46689-j574f            0/1     Init:0/1   0          90s
 3. Создать и запустить Service. Убедиться, что Init запустился.
 
 
-Создал [service](https://github.com/zatulik2606/Microservices/blob/main/Startsoftk8s/service.yaml)
+Создал [service]()
 
 Запустил и проверил.( pod поднялся)
 
 ~~~
-admin@ubuntu-hw:~/startk8s$ kubectl get po
-NAME                                  READY   STATUS    RESTARTS   AGE
-netology-deployment-b98d74c7f-shgcv   1/1     Running   0          12m
-multitool-676d784fd9-j66fw            1/1     Running   0          12m
-netology-deployment-b98d74c7f-rdjbl   1/1     Running   0          11m
-myapp-pod-5c98f46689-j574f            1/1     Running   0          3m28s
 
 ~~~
 
@@ -176,15 +178,6 @@ myapp-pod-5c98f46689-j574f            1/1     Running   0          3m28s
 
 
 ~~~
-admin@ubuntu-hw:~/startk8s$ kubectl logs myapp-pod-5c98f46689-j574f 
-Defaulted container "nginx" out of: nginx, init-myservice (init)
-/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
-/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
-/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
-10-listen-on-ipv6-by-default.sh: Getting the checksum of /etc/nginx/conf.d/default.conf
-10-listen-on-ipv6-by-default.sh: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
-/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
-/docker-entrypoint.sh: Configuration complete; ready for start up
 
 ~~~
 
