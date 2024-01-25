@@ -19,4 +19,4 @@ spec:
       initContainers:
       - name: init-busybox
         image: busybox
-        command: ['sleep', '30']
+        command: ['sh', '-c', "until nslookup myservice.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for myservice; sleep 2; done"]
