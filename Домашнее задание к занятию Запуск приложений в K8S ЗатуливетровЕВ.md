@@ -155,6 +155,9 @@ Commercial support is available at
 
 
 ~~~
+admin@ubuntu-hw:~/Microservices/startk8snewversion$ kubectl logs dpl-nginx-init-78794459dc-98cz5
+Defaulted container "nginx" out of: nginx, init-busybox (init)
+Error from server (BadRequest): container "nginx" in pod "dpl-nginx-init-78794459dc-98cz5" is waiting to start: PodInitializing
 
 
 
@@ -166,11 +169,19 @@ Commercial support is available at
 3. Создать и запустить Service. Убедиться, что Init запустился.
 
 
-Создал [service]()
+Создал [service](https://github.com/zatulik2606/Microservices/blob/main/startk8snewversion/service.yaml)
 
 Запустил и проверил.( pod поднялся)
 
 ~~~
+admin@ubuntu-hw:~/Microservices/startk8snewversion$ kubectl get po
+NAME                                   READY   STATUS    RESTARTS   AGE
+dpl-nginx-multitool-645c8c8575-7r7vn   2/2     Running   0          34m
+dpl-nginx-multitool-645c8c8575-zj2bl   2/2     Running   0          31m
+test-multitool                         1/1     Running   0          23m
+dpl-nginx-init-78794459dc-98cz5        1/1     Running   0          5m5s
+
+
 
 ~~~
 
@@ -178,6 +189,16 @@ Commercial support is available at
 
 
 ~~~
+
+admin@ubuntu-hw:~/Microservices/startk8snewversion$ kubectl logs dpl-nginx-init-78794459dc-98cz5
+Defaulted container "nginx" out of: nginx, init-busybox (init)
+/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+10-listen-on-ipv6-by-default.sh: Getting the checksum of /etc/nginx/conf.d/default.conf
+10-listen-on-ipv6-by-default.sh: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up
 
 ~~~
 
