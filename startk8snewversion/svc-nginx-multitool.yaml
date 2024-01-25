@@ -1,0 +1,21 @@
+apiVersion: v1 # 
+kind: Service # 
+metadata:
+  name: svc-nginx-multitool-dz3 
+  
+spec:
+  ports:
+    - name: http-app
+      port: 80 
+      protocol: TCP
+      targetPort: 80
+    - name: https-app
+      port: 443 
+      protocol: TCP
+      targetPort: 443
+    - name: http-app-unst
+      port: 31080 
+      protocol: TCP
+      targetPort: 31080
+  selector:
+    app: web # 
