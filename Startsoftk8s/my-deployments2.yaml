@@ -19,37 +19,18 @@ spec:
         image: nginx:1.19.1
         ports:
         - containerPort: 80
+      - name: network-multitool  
+      - image: wbitt/network-multitool
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+          cpu: 200m
+          memory: 512Mi
+        requests:
+          cpu: 100m
+          memory: 256Mi
 ---
 
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: multitool
-  labels:
-    app: multitool
-  namespace: default
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: multitool
-  template:
-    metadata:
-      labels:
-        app: multitool
-    spec:
-      containers:
-        - image: wbitt/network-multitool
-          imagePullPolicy: IfNotPresent
-          name: network-multitool
-          resources:
-            limits:
-              cpu: 200m
-              memory: 512Mi
-            requests:
-              cpu: 100m
-              memory: 256Mi
----
 
 apiVersion: v1
 kind: Service
