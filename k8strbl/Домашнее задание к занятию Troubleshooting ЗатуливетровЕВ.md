@@ -65,22 +65,23 @@ service/auth-db created
 ~~~
 admin@ubuntu-hw:~/k8strbl$ kubectl get pod -n web
 NAME                            READY   STATUS    RESTARTS   AGE
-web-consumer-5f87765478-8llh4   1/1     Running   0          3m27s
-web-consumer-5f87765478-c7ccs   1/1     Running   0          3m28s
+web-consumer-5f87765478-mpz4k   1/1     Running   0          10s
+web-consumer-5f87765478-t2j82   1/1     Running   0          10s
+
 
 
 admin@ubuntu-hw:~/k8strbl$ kubectl get all -n data
 NAME                           READY   STATUS    RESTARTS   AGE
-pod/auth-db-7b5cdbdc77-xlt29   1/1     Running   0          4m18s
+pod/auth-db-7b5cdbdc77-8t42d   1/1     Running   0          58s
 
 NAME              TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
-service/auth-db   ClusterIP   10.152.183.152   <none>        80/TCP    4m20s
+service/auth-db   ClusterIP   10.152.183.192   <none>        80/TCP    58s
 
 NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/auth-db   1/1     1            1           4m21s
+deployment.apps/auth-db   1/1     1            1           58s
 
 NAME                                 DESIRED   CURRENT   READY   AGE
-replicaset.apps/auth-db-7b5cdbdc77   1         1         1       4m20s
+replicaset.apps/auth-db-7b5cdbdc77   1         1         1       58s
 
 
 
@@ -89,23 +90,24 @@ replicaset.apps/auth-db-7b5cdbdc77   1         1         1       4m20s
 Контейнер внутри не находит auth-db.
 
 ~~~
-admin@ubuntu-hw:~/k8strbl$ kubectl logs pod/web-consumer-5f87765478-c7ccs -n web
+
+admin@ubuntu-hw:~/k8strbl$ kubectl logs pod/web-consumer-5f87765478-t2j82 -n web
 curl: (6) Couldn't resolve host 'auth-db'
 curl: (6) Couldn't resolve host 'auth-db'
 curl: (6) Couldn't resolve host 'auth-db'
 curl: (6) Couldn't resolve host 'auth-db'
 curl: (6) Couldn't resolve host 'auth-db'
 curl: (6) Couldn't resolve host 'auth-db'
+
 
 ~~~
 
 Захожу в контейнер.
 
 ~~~
-admin@ubuntu-hw:~/k8strbl$ kubectl exec -it pod/web-consumer-5f87765478-c7ccs -n web -c busybox -- bin/sh
+ admin@ubuntu-hw:~/k8strbl$ kubectl exec -it pod/web-consumer-5f87765478-t2j82 -n web -c busybox -- bin/sh
 bin/sh: shopt: not found
-[ root@web-consumer-5f87765478-c7ccs:/ ]$ 
-[ root@web-consumer-5f87765478-c7ccs:/ ]$ curl 10.152.183.152
+[ root@web-consumer-5f87765478-t2j82:/ ]$ curl 10.152.183.192
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,10 +133,10 @@ Commercial support is available at
 <p><em>Thank you for using nginx.</em></p>
 </body>
 </html>
-
+   
 ~~~
 
-Видим что проблема заключается конкретно, что контейнер не знает имя auth-db
+Видим что проблема в том, что контейнер не знает имя auth-db
 
 
 
