@@ -9,7 +9,7 @@ function create_vm {
     yc compute instance create \
       --name $NAME \
       --hostname $NAME \
-      --zone ru-central1-c \
+      --zone ru-central1-a\
       --network-interface subnet-name=my-subnet,nat-ip-version=ipv4 \
       --memory 2 \
       --cores 2 \
