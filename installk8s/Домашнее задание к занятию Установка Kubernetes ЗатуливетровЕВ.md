@@ -213,6 +213,56 @@ DEBUG: adding host node3 to group kube_node
 DEBUG: adding host node4 to group kube_node
 DEBUG: adding host node5 to group kube_node
 
+yc-user@masterk8s:~/kubespray$ sudo vim inventory/mycluster/hosts.yaml
+yc-user@masterk8s:~/kubespray$ sudo cat inventory/mycluster/hosts.yaml
+all:
+  hosts:
+    node1:
+      ansible_host: 158.160.112.81
+      ip: 158.160.112.81
+      access_ip: 158.160.112.81
+      ansible-user: yc-user
+    node2:
+      ansible_host: 158.160.123.120
+      ip: 158.160.123.120
+      access_ip: 158.160.123.120
+      ansible-user: yc-user
+    node3:
+      ansible_host: 158.160.102.62
+      ip: 158.160.102.62
+      access_ip: 158.160.102.62
+      ansible-user: yc-user
+    node4:
+      ansible_host: 158.160.127.245
+      ip: 158.160.127.245
+      access_ip: 158.160.127.245
+      ansible-user: yc-user
+    node5:
+      ansible_host: 158.160.119.24
+      ip: 158.160.119.24
+      access_ip: 158.160.119.24
+      ansible-user: yc-user
+  children:
+    kube_control_plane:
+      hosts:
+        masterk8s:
+    kube_node:
+      hosts:
+        worker1:
+        worker2:
+        worker3:
+        worker4:
+    etcd:
+      hosts:
+        masterk8s:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}
+
+
 ~~~
 
 
