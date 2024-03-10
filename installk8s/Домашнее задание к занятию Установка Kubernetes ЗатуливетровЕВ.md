@@ -60,8 +60,7 @@ v4_cidr_blocks:
 
 Создал скрипт по установке в yc.
 
-<details><summary>Подробнее</summary>
-```
+~~~
 root@debianz:~/vms_yc# bash create-vms.sh
 done (29s)
 id: fhmuh55k74omq5mdbts2
@@ -263,8 +262,11 @@ network_settings:
   type: STANDARD
 placement_policy: {}
 
-```
-</details>
+~~~
+
+VM создались в YC.
+
+![vms](https://github.com/zatulik2606/Microservices/blob/main/installk8s/vms%20new.jpg)
 
 
 ## Дополнительные задания (со звёздочкой)
