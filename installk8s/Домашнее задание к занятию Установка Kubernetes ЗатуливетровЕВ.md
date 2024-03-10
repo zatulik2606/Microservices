@@ -60,7 +60,8 @@ v4_cidr_blocks:
 
 Создал скрипт по установке в yc.
 
-~~~
+<details><summary>Подробнее</summary>
+```
 root@debianz:~/vms_yc# bash create-vms.sh
 done (29s)
 id: fhmuh55k74omq5mdbts2
@@ -262,7 +263,8 @@ network_settings:
   type: STANDARD
 placement_policy: {}
 
-~~~
+```
+</details>
 
 
 ## Дополнительные задания (со звёздочкой)
