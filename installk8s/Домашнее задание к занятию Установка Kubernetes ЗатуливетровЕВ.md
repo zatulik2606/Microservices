@@ -189,6 +189,30 @@ Successfully installed MarkupSafe-2.1.3 ansible-6.6.0 ansible-core-2.13.13 cffi-
 
 ~~~
 
+yc-user@masterk8s:~/kubespray$ declare -a IPS=(158.160.112.81 158.160.123.120 158.160.102.62 158.160.127.245 158.160.119.24)
+yc-user@masterk8s:~/kubespray$ sudo CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+DEBUG: Adding group all
+DEBUG: Adding group kube_control_plane
+DEBUG: Adding group kube_node
+DEBUG: Adding group etcd
+DEBUG: Adding group k8s_cluster
+DEBUG: Adding group calico_rr
+DEBUG: adding host node1 to group all
+DEBUG: adding host node2 to group all
+DEBUG: adding host node3 to group all
+DEBUG: adding host node4 to group all
+DEBUG: adding host node5 to group all
+DEBUG: adding host node1 to group etcd
+DEBUG: adding host node2 to group etcd
+DEBUG: adding host node3 to group etcd
+DEBUG: adding host node1 to group kube_control_plane
+DEBUG: adding host node2 to group kube_control_plane
+DEBUG: adding host node1 to group kube_node
+DEBUG: adding host node2 to group kube_node
+DEBUG: adding host node3 to group kube_node
+DEBUG: adding host node4 to group kube_node
+DEBUG: adding host node5 to group kube_node
+
 ~~~
 
 
