@@ -66,7 +66,7 @@ v4_cidr_blocks:
 
 VM создались в YC.
 
-![vms](https://github.com/zatulik2606/Microservices/blob/main/installk8s/vms%20new2.jpg)
+![vms]()
 
 
 Скачиваю kubespray из репозитория
