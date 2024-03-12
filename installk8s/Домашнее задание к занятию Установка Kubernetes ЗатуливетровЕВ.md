@@ -132,6 +132,70 @@ Resolving deltas: 100% (41348/41348), done.
 Устанавливаю зависимости.
 
 ~~~
+yc-user@masterk8s:~/kubespray$ pip3 install -r requirements.txt
+Defaulting to user installation because normal site-packages is not writeable
+Collecting ansible==8.5.0 (from -r requirements.txt (line 1))
+  Downloading ansible-8.5.0-py3-none-any.whl.metadata (7.9 kB)
+Collecting cryptography==41.0.4 (from -r requirements.txt (line 2))
+  Downloading cryptography-41.0.4-cp37-abi3-manylinux_2_28_x86_64.whl.metadata (5.2 kB)
+Collecting jinja2==3.1.2 (from -r requirements.txt (line 3))
+  Downloading Jinja2-3.1.2-py3-none-any.whl.metadata (3.5 kB)
+Collecting jmespath==1.0.1 (from -r requirements.txt (line 4))
+  Downloading jmespath-1.0.1-py3-none-any.whl.metadata (7.6 kB)
+Collecting MarkupSafe==2.1.3 (from -r requirements.txt (line 5))
+  Downloading MarkupSafe-2.1.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.0 kB)
+Collecting netaddr==0.9.0 (from -r requirements.txt (line 6))
+  Downloading netaddr-0.9.0-py3-none-any.whl.metadata (5.1 kB)
+Collecting pbr==5.11.1 (from -r requirements.txt (line 7))
+  Downloading pbr-5.11.1-py2.py3-none-any.whl.metadata (1.3 kB)
+Collecting ruamel.yaml==0.17.35 (from -r requirements.txt (line 8))
+  Downloading ruamel.yaml-0.17.35-py3-none-any.whl.metadata (18 kB)
+Collecting ruamel.yaml.clib==0.2.8 (from -r requirements.txt (line 9))
+  Downloading ruamel.yaml.clib-0.2.8-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.whl.metadata (2.2 kB)
+Collecting ansible-core~=2.15.5 (from ansible==8.5.0->-r requirements.txt (line 1))
+  Downloading ansible_core-2.15.9-py3-none-any.whl.metadata (7.0 kB)
+Collecting cffi>=1.12 (from cryptography==41.0.4->-r requirements.txt (line 2))
+  Downloading cffi-1.16.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting PyYAML>=5.1 (from ansible-core~=2.15.5->ansible==8.5.0->-r requirements.txt (line 1))
+  Downloading PyYAML-6.0.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+Collecting packaging (from ansible-core~=2.15.5->ansible==8.5.0->-r requirements.txt (line 1))
+  Downloading packaging-24.0-py3-none-any.whl.metadata (3.2 kB)
+Collecting resolvelib<1.1.0,>=0.5.3 (from ansible-core~=2.15.5->ansible==8.5.0->-r requirements.txt (line 1))
+  Downloading resolvelib-1.0.1-py2.py3-none-any.whl.metadata (4.0 kB)
+Collecting importlib-resources<5.1,>=5.0 (from ansible-core~=2.15.5->ansible==8.5.0->-r requirements.txt (line 1))
+  Downloading importlib_resources-5.0.7-py3-none-any.whl.metadata (2.8 kB)
+Collecting pycparser (from cffi>=1.12->cryptography==41.0.4->-r requirements.txt (line 2))
+  Downloading pycparser-2.21-py2.py3-none-any.whl.metadata (1.1 kB)
+Downloading ansible-8.5.0-py3-none-any.whl (47.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 47.5/47.5 MB 4.6 MB/s eta 0:00:00
+Downloading cryptography-41.0.4-cp37-abi3-manylinux_2_28_x86_64.whl (4.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 16.5 MB/s eta 0:00:00
+Downloading Jinja2-3.1.2-py3-none-any.whl (133 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.1/133.1 kB 6.8 MB/s eta 0:00:00
+Downloading jmespath-1.0.1-py3-none-any.whl (20 kB)
+Downloading MarkupSafe-2.1.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+Downloading netaddr-0.9.0-py3-none-any.whl (2.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 60.9 MB/s eta 0:00:00
+Downloading pbr-5.11.1-py2.py3-none-any.whl (112 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 112.7/112.7 kB 7.7 MB/s eta 0:00:00
+Downloading ruamel.yaml-0.17.35-py3-none-any.whl (112 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 112.9/112.9 kB 13.2 MB/s eta 0:00:00
+Downloading ruamel.yaml.clib-0.2.8-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.whl (562 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 562.1/562.1 kB 41.9 MB/s eta 0:00:00
+Downloading ansible_core-2.15.9-py3-none-any.whl (2.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 29.7 MB/s eta 0:00:00
+Downloading cffi-1.16.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (443 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 443.4/443.4 kB 35.1 MB/s eta 0:00:00
+Downloading importlib_resources-5.0.7-py3-none-any.whl (24 kB)
+Downloading PyYAML-6.0.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (738 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 738.9/738.9 kB 42.5 MB/s eta 0:00:00
+Downloading resolvelib-1.0.1-py2.py3-none-any.whl (17 kB)
+Downloading packaging-24.0-py3-none-any.whl (53 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 53.5/53.5 kB 1.4 MB/s eta 0:00:00
+Downloading pycparser-2.21-py2.py3-none-any.whl (118 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.7/118.7 kB 4.2 MB/s eta 0:00:00
+Installing collected packages: resolvelib, netaddr, ruamel.yaml.clib, PyYAML, pycparser, pbr, packaging, MarkupSafe, jmespath, importlib-resources, ruamel.yaml, jinja2, cffi, cryptography, ansible-core, ansible
+Successfully installed MarkupSafe-2.1.3 PyYAML-6.0.1 ansible-8.5.0 ansible-core-2.15.9 cffi-1.16.0 cryptography-41.0.4 importlib-resources-5.0.7 jinja2-3.1.2 jmespath-1.0.1 netaddr-0.9.0 packaging-24.0 pbr-5.11.1 pycparser-2.21 resolvelib-1.0.1 ruamel.yaml-0.17.35 ruamel.yaml.clib-0.2.8
 
 
 ~~~
