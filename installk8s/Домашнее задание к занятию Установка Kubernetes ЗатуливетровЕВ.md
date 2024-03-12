@@ -224,6 +224,7 @@ yc-user@masterk8s:~/kubespray$ sudo cp -rfp inventory/sample inventory/myclaster
 
 ~~~
 
+yc-user@masterk8s:~/kubespray$ declare -a IPS=(158.160.100.171 158.160.118.2 158.160.52.9 158.160.122.32 178.154.203.94)
 
 
 ~~~
