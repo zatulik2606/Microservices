@@ -204,7 +204,7 @@ WARNING: Running pip as the 'root' user can result in broken permissions and con
 Скачиваем инвенторку.
 
 ~~~
-yc-user@masterk8s:~/kubespray$ sudo cp -rfp inventory/sample inventory/myclaster
+yc-user@masterk8s:~/kubespray$ sudo cp -rfp inventory/sample inventory/mycluster
 
 
 ~~~
