@@ -214,7 +214,7 @@ yc-user@masterk8s:~/kubespray$ sudo cp -rfp inventory/sample inventory/myclaster
 
 ~~~
 declare -a IPS=(158.160.117.149 51.250.65.195 158.160.56.10 158.160.57.13 158.160.36.239)
-yc-user@masterk8s:~/kubespray$ sudo CONFIG_FILE=inventory/myclaster/hosts.yaml python3.9 contrib/inventory_builder/inventory.py ${IPS[@]}
+yc-user@masterk8s:~/kubespray$ sudo CONFIG_FILE=inventory/mycluster/hosts.yaml python3.9 contrib/inventory_builder/inventory.py ${IPS[@]}
 DEBUG: Adding group all
 DEBUG: Adding group kube_control_plane
 DEBUG: Adding group kube_node
@@ -246,7 +246,7 @@ DEBUG: adding host node5 to group kube_node
 Смотри м файл.
 
 ~~~
-yc-user@masterk8s:~/kubespray$ cat inventory/myclaster/hosts.yaml
+yc-user@masterk8s:~/kubespray$ cat inventory/mycluster/hosts.yaml
 all:
   hosts:
     masterk8s:
@@ -257,6 +257,10 @@ all:
       ansible_host: 51.250.65.195
       ip: 51.250.65.195
       access_ip: 51.250.65.195
+    worker4:
+      ansible_host: 158.160.36.239
+      ip: 158.160.36.239
+      access_ip: 158.160.36.239
     worker2:
       ansible_host: 158.160.56.10
       ip: 158.160.56.10
@@ -265,10 +269,6 @@ all:
       ansible_host: 158.160.57.13
       ip: 158.160.57.13
       access_ip: 158.160.57.13
-    worker4:
-      ansible_host: 158.160.36.239
-      ip: 158.160.36.239
-      access_ip: 158.160.36.239
   children:
     kube_control_plane:
       hosts:
@@ -276,9 +276,9 @@ all:
     kube_node:
       hosts:
         worker1:
+        worker4:
         worker2:
         worker3:
-        worker4:
     etcd:
       hosts:
         masterk8s:
