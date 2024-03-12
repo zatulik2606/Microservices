@@ -219,6 +219,84 @@ yc-user@masterk8s:~/kubespray$ declare -a IPS=(158.160.117.149 51.250.65.195 158
 
 CONFIG_FILE=inventory/mycluster/hosts.yaml python3.9 contrib/inventory_builder/inventory.py ${IPS[@]}
 
+
+yc-user@masterk8s:~/kubespray$ CONFIG_FILE=inventory/mycluster/hosts.yaml python3.9 contrib/inventory_builder/inventory.py ${IPS[@]}
+DEBUG: Adding group all
+DEBUG: Adding group kube_control_plane
+DEBUG: Adding group kube_node
+DEBUG: Adding group etcd
+DEBUG: Adding group k8s_cluster
+DEBUG: Adding group calico_rr
+DEBUG: adding host node1 to group all
+DEBUG: adding host node2 to group all
+DEBUG: adding host node3 to group all
+DEBUG: adding host node4 to group all
+DEBUG: adding host node5 to group all
+DEBUG: adding host node1 to group etcd
+DEBUG: adding host node2 to group etcd
+DEBUG: adding host node3 to group etcd
+DEBUG: adding host node1 to group kube_control_plane
+DEBUG: adding host node2 to group kube_control_plane
+DEBUG: adding host node1 to group kube_node
+DEBUG: adding host node2 to group kube_node
+DEBUG: adding host node3 to group kube_node
+DEBUG: adding host node4 to group kube_node
+DEBUG: adding host node5 to group kube_node
+
+
+~~~
+
+Смотри м файл.
+
+~~~
+yc-user@masterk8s:~/kubespray/inventory/myclaster$ cat hosts.yaml
+all:
+  hosts:
+    masterk8s:
+      ansible_host: 158.160.117.149
+      ip: 158.160.117.149
+      access_ip: 158.160.117.149
+      ansible_user: yc-user
+    worker1:
+      ansible_host: 51.250.65.195
+      ip: 51.250.65.195
+      access_ip: 51.250.65.195
+      ansible_user: yc-user
+    worker2:
+      ansible_host: 158.160.56.10
+      ip: 158.160.56.10
+      access_ip: 158.160.56.10
+      ansible_user: yc-user
+    worker3:
+      ansible_host: 158.160.57.13
+      ip: 158.160.57.13
+      access_ip: 158.160.57.13
+      ansible_user: yc-user
+    worker4:
+      ansible_host: 158.160.36.239
+      ip: 158.160.36.239
+      access_ip: 158.160.36.239
+      ansible_user: yc-user
+  children:
+    kube_control_plane:
+      hosts:
+        masterk8s:
+    kube_node:
+      hosts:
+        worker1:
+        worker2:
+        worker3:
+        worker4:
+    etcd:
+      hosts:
+        masterk8s:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}
+
 ~~~
 
 
