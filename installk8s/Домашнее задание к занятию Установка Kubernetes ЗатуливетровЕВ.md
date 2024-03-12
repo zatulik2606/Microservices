@@ -214,7 +214,8 @@ yc-user@masterk8s:~/kubespray$ sudo cp -rfp inventory/sample inventory/myclaster
 
 ~~~
 
-yc-user@masterk8s:~/kubespray$ declare -a IPS=()
+yc-user@masterk8s:~/kubespray$ declare -a IPS=(158.160.117.149 51.250.65.195 158.160.36.239 158.160.56.10 158.160.57.13)
+
 
 CONFIG_FILE=inventory/mycluster/hosts.yaml python3.9 contrib/inventory_builder/inventory.py ${IPS[@]}
 
