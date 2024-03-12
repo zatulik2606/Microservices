@@ -81,6 +81,12 @@ yc-user@masterk8s:~$ sudo git clone https://github.com/kubernetes-sigs/kubespray
 
 ~~~
 
+Скачиваю нужную версию python.
+
+~~~
+sudo curl https://bootstrap.pypa.io/get-pip.py -o  get-pip.py
+~~~
+
 
 Устанавливаю зависимости.
 
