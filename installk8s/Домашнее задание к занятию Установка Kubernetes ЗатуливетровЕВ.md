@@ -117,6 +117,14 @@ VM создались в YC.
 
 ~~~
 yc-user@masterk8s:~$ sudo git clone https://github.com/kubernetes-sigs/kubespray
+Cloning into 'kubespray'...
+remote: Enumerating objects: 73402, done.
+remote: Counting objects: 100% (30/30), done.
+remote: Compressing objects: 100% (26/26), done.
+remote: Total 73402 (delta 8), reused 16 (delta 3), pack-reused 73372
+Receiving objects: 100% (73402/73402), 23.26 MiB | 20.01 MiB/s, done.
+Resolving deltas: 100% (41356/41356), done.
+
 
 
 ~~~
