@@ -246,6 +246,48 @@ DEBUG: adding host node5 to group kube_node
 Смотри м файл.
 
 ~~~
+yc-user@masterk8s:~/kubespray$ cat inventory/myclaster/hosts.yaml
+all:
+  hosts:
+    masterk8s:
+      ansible_host: 158.160.117.149
+      ip: 158.160.117.149
+      access_ip: 158.160.117.149
+    worker1:
+      ansible_host: 51.250.65.195
+      ip: 51.250.65.195
+      access_ip: 51.250.65.195
+    worker2:
+      ansible_host: 158.160.56.10
+      ip: 158.160.56.10
+      access_ip: 158.160.56.10
+    worker3:
+      ansible_host: 158.160.57.13
+      ip: 158.160.57.13
+      access_ip: 158.160.57.13
+    worker4:
+      ansible_host: 158.160.36.239
+      ip: 158.160.36.239
+      access_ip: 158.160.36.239
+  children:
+    kube_control_plane:
+      hosts:
+        masterk8s:
+    kube_node:
+      hosts:
+        worker1:
+        worker2:
+        worker3:
+        worker4:
+    etcd:
+      hosts:
+        masterk8s:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}
 
 ~~~
 
