@@ -87,6 +87,36 @@ yc-user@masterk8s:~$ sudo git clone https://github.com/kubernetes-sigs/kubespray
 sudo curl https://bootstrap.pypa.io/get-pip.py -o  get-pip.py
 ~~~
 
+Запустили python 
+
+~~~
+c-user@masterk8s:~/kubespray$ python3.9 get-pip.py
+Defaulting to user installation because normal site-packages is not writeable
+Collecting pip
+  Downloading pip-24.0-py3-none-any.whl.metadata (3.6 kB)
+Downloading pip-24.0-py3-none-any.whl (2.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 8.6 MB/s eta 0:00:00
+Installing collected packages: pip
+  WARNING: The scripts pip, pip3 and pip3.9 are installed in '/home/yc-user/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location
+
+
+
+yc-user@masterk8s:~/kubespray$ python3.9 get-pip.py --user
+Collecting pip
+  Using cached pip-24.0-py3-none-any.whl.metadata (3.6 kB)
+Using cached pip-24.0-py3-none-any.whl (2.1 MB)
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 24.0
+    Uninstalling pip-24.0:
+      Successfully uninstalled pip-24.0
+  WARNING: The scripts pip, pip3 and pip3.9 are installed in '/home/yc-user/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+
+
+~~~
+
 
 Устанавливаю зависимости.
 
