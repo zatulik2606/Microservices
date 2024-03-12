@@ -133,7 +133,55 @@ Resolving deltas: 100% (41356/41356), done.
 Устанавливаю зависимости.
 
 ~~~
-yc-user@masterk8s:~/kubespray$ sudo pip3.9 install -r requirements.txt
+yc-user@masterk8s:~/kubespray$ sudo pip3 install -r requirements.txt
+Collecting ansible==6.7.0
+  Downloading ansible-6.7.0-py3-none-any.whl (42.8 MB)
+     |████████████████████████████████| 42.8 MB 23 kB/s 
+Collecting cryptography==41.0.4
+  Using cached cryptography-41.0.4-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.4 MB)
+Collecting jinja2==3.1.2
+  Using cached Jinja2-3.1.2-py3-none-any.whl (133 kB)
+Collecting jmespath==1.0.1
+  Using cached jmespath-1.0.1-py3-none-any.whl (20 kB)
+Collecting MarkupSafe==2.1.3
+  Using cached MarkupSafe-2.1.3-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+Collecting netaddr==0.9.0
+  Using cached netaddr-0.9.0-py3-none-any.whl (2.2 MB)
+Collecting pbr==5.11.1
+  Using cached pbr-5.11.1-py2.py3-none-any.whl (112 kB)
+Collecting ruamel.yaml==0.17.35
+  Using cached ruamel.yaml-0.17.35-py3-none-any.whl (112 kB)
+Collecting ruamel.yaml.clib==0.2.8
+  Using cached ruamel.yaml.clib-0.2.8-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.whl (596 kB)
+Collecting ansible-core~=2.13.7
+  Downloading ansible_core-2.13.13-py3-none-any.whl (2.1 MB)
+     |████████████████████████████████| 2.1 MB 43 kB/s 
+Collecting cffi>=1.12
+  Downloading cffi-1.16.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (444 kB)
+     |████████████████████████████████| 444 kB 47.8 MB/s 
+Collecting packaging
+  Downloading packaging-24.0-py3-none-any.whl (53 kB)
+     |████████████████████████████████| 53 kB 22 kB/s 
+Requirement already satisfied: PyYAML>=5.1 in /usr/lib/python3/dist-packages (from ansible-core~=2.13.7->ansible==6.7.0->-r requirements.txt (line 1)) (5.3.1)
+Collecting resolvelib<0.9.0,>=0.5.3
+  Downloading resolvelib-0.8.1-py2.py3-none-any.whl (16 kB)
+Collecting pycparser
+  Downloading pycparser-2.21-py2.py3-none-any.whl (118 kB)
+     |████████████████████████████████| 118 kB 48 kB/s 
+Installing collected packages: packaging, MarkupSafe, jinja2, pycparser, cffi, cryptography, resolvelib, ansible-core, ansible, jmespath, netaddr, pbr, ruamel.yaml.clib, ruamel.yaml
+  Attempting uninstall: MarkupSafe
+    Found existing installation: MarkupSafe 1.1.0
+    Not uninstalling markupsafe at /usr/lib/python3/dist-packages, outside environment /usr
+    Can't uninstall 'MarkupSafe'. No files were found to uninstall.
+  Attempting uninstall: jinja2
+    Found existing installation: Jinja2 2.10.1
+    Not uninstalling jinja2 at /usr/lib/python3/dist-packages, outside environment /usr
+    Can't uninstall 'Jinja2'. No files were found to uninstall.
+  Attempting uninstall: cryptography
+    Found existing installation: cryptography 2.8
+    Not uninstalling cryptography at /usr/lib/python3/dist-packages, outside environment /usr
+    Can't uninstall 'cryptography'. No files were found to uninstall.
+Successfully installed MarkupSafe-2.1.3 ansible-6.7.0 ansible-core-2.13.13 cffi-1.16.0 cryptography-41.0.4 jinja2-3.1.2 jmespath-1.0.1 netaddr-0.9.0 packaging-24.0 pbr-5.11.1 pycparser-2.21 resolvelib-0.8.1 ruamel.yaml-0.17.35 ruamel.yaml.clib-0.2.8
 
 
 ~~~
