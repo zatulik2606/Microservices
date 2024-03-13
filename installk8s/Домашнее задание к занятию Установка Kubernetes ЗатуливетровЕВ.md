@@ -62,10 +62,10 @@ v4_cidr_blocks:
 
 ~~~
 root@debianz:~/vms_yc# bash create-vms.sh
-done (33s)
-id: fhmvnbd04p71cetgkobk
+done (39s)
+id: fhm0u6krlomcno6qglam
 folder_id: b1gleu995pjjtd5eficp
-created_at: "2024-03-13T07:32:34Z"
+created_at: "2024-03-13T07:45:55Z"
 name: masterk8s
 zone_id: ru-central1-a
 platform_id: standard-v2
@@ -81,17 +81,17 @@ metadata_options:
   aws_v1_http_token: DISABLED
 boot_disk:
   mode: READ_WRITE
-  device_name: fhmd3bcpvg041ihu9rpj
+  device_name: fhmckepqtjumhl29id7q
   auto_delete: true
-  disk_id: fhmd3bcpvg041ihu9rpj
+  disk_id: fhmckepqtjumhl29id7q
 network_interfaces:
   - index: "0"
-    mac_address: d0:0d:1f:ba:da:02
+    mac_address: d0:0d:f1:a9:ba:e2
     subnet_id: e9bdt908isbi5glca2oj
     primary_v4_address:
-      address: 192.168.10.17
+      address: 192.168.10.12
       one_to_one_nat:
-        address: 84.201.174.85
+        address: 62.84.114.157
         ip_version: IPV4
 serial_port_settings:
   ssh_authorization: INSTANCE_METADATA
@@ -102,7 +102,7 @@ network_settings:
   type: STANDARD
 placement_policy: {}
 
-done (39s)
+done (36s)
 
 ...
 ~~~
