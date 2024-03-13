@@ -58,17 +58,13 @@ v4_cidr_blocks:
 
 
 
-Создал и запустил скрипт по установке в yc.
-
-~~~
-
-
-...
-~~~
-
 VM создались в YC.
 
-![vms]()
+~~~
+root@debianz:~# yc compute instance list
+
+
+~~~
 
 
 Скачиваю kubespray из репозитория
