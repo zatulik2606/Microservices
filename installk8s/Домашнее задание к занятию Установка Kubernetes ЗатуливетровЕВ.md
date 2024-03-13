@@ -28,98 +28,42 @@
 ## Решение
 
 
-Сделал предварительные действия по установке
-
-~~~
-root@debianz:~/vms_yc# yc vpc network create  --name net --labels my-label=netology --description "net yc"
-id: enptlcvr948j76d45r8p
-folder_id: b1gleu995pjjtd5eficp
-created_at: "2024-03-10T08:14:28Z"
-name: net
-description: net yc
-labels:
-  my-label: netology
-default_security_group_id: enpfaoahbef1mrldpp7e
-
-root@debianz:~/vms_yc# yc vpc subnet create  --name my-subnet --zone ru-central1-a --range 192.168.10.0/24 --network-name net --description "subnet yc"
-id: e9bdt908isbi5glca2oj
-folder_id: b1gleu995pjjtd5eficp
-created_at: "2024-03-10T08:15:53Z"
-name: my-subnet
-description: subnet yc
-network_id: enptlcvr948j76d45r8p
-zone_id: ru-central1-a
-v4_cidr_blocks:
-  - 192.168.10.0/24
-
-
-~~~
-
-
-
 
 VM создались в YC.
 
 ~~~
-root@debianz:~/.ssh# yc compute instance list
+
+root@debian:~# yc compute i\nstance list
 +----------------------+-----------+---------------+---------+-----------------+---------------+
 |          ID          |   NAME    |    ZONE ID    | STATUS  |   EXTERNAL IP   |  INTERNAL IP  |
 +----------------------+-----------+---------------+---------+-----------------+---------------+
+| fhm4179dp06tsc1ifngj | worker2   | ru-central1-a | RUNNING | 84.201.135.38   | 192.168.10.28 |
 | fhm5b5mo85fvntmk5rrg | ubuntu-hw | ru-central1-a | RUNNING | 158.160.38.134  | 192.168.10.7  |
-| fhmdkpobefte18fl4fud | worker2   | ru-central1-a | RUNNING | 178.154.223.238 | 192.168.10.31 |
-| fhmfb1lmdvg9nfftpbl2 | worker4   | ru-central1-a | RUNNING | 158.160.116.233 | 192.168.10.7  |
-| fhmlfvdnv47blgkuedie | worker3   | ru-central1-a | RUNNING | 178.154.223.195 | 192.168.10.8  |
-| fhmqp0skk2f22q6886lg | worker1   | ru-central1-a | RUNNING | 178.154.221.189 | 192.168.10.22 |
-| fhmturslvorai3psjlnn | masterk8s | ru-central1-a | RUNNING | 84.201.174.48   | 192.168.10.4  |
+| fhmarrcdnd1aas2ven5k | worker3   | ru-central1-a | RUNNING | 178.154.204.250 | 192.168.10.31 |
+| fhmeg55n7s5j1do95q0r | worker4   | ru-central1-a | RUNNING | 178.154.222.12  | 192.168.10.19 |
+| fhmjqmea3tb063adea1k | masterk8s | ru-central1-a | RUNNING | 51.250.2.16     | 192.168.10.16 |
+| fhmo6cm30ghe5or90ra8 | worker1   | ru-central1-a | RUNNING | 158.160.117.143 | 192.168.10.25 |
 +----------------------+-----------+---------------+---------+-----------------+---------------+
 
-
-~~~
+~~~ 
 
 
 Скачиваю kubespray из репозитория
 
 
 ~~~
-yc-user@masterk8s:~$ sudo git clone https://github.com/kubernetes-sigs/kubespray
+root@debian:~# git clone https://github.com/kubernetes-sigs/kubespray
+Клонирование в «kubespray»...
+remote: Enumerating objects: 73402, done.
+remote: Counting objects: 100% (30/30), done.
+remote: Compressing objects: 100% (26/26), done.
+remote: Total 73402 (delta 8), reused 16 (delta 3), pack-reused 73372
+Получение объектов: 100% (73402/73402), 23.26 МиБ | 3.35 МиБ/с, готово.
+Определение изменений: 100% (41356/41356), готово.
+root@debian:~# cd kubespray
+root@debian:~/kubespray# 
 
 
-
-
-~~~
-
-Скачиваю нужную версию python.
-
-~~~
-sudo curl https://bootstrap.pypa.io/get-pip.py -o  get-pip.py
-~~~
-
-Запустили python 
-
-~~~
-c-user@masterk8s:~/kubespray$ python3.9 get-pip.py
-Defaulting to user installation because normal site-packages is not writeable
-Collecting pip
-  Downloading pip-24.0-py3-none-any.whl.metadata (3.6 kB)
-Downloading pip-24.0-py3-none-any.whl (2.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 8.6 MB/s eta 0:00:00
-Installing collected packages: pip
-  WARNING: The scripts pip, pip3 and pip3.9 are installed in '/home/yc-user/.local/bin' which is not on PATH.
-  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location
-
-
-
-yc-user@masterk8s:~/kubespray$ python3.9 get-pip.py --user
-Collecting pip
-  Using cached pip-24.0-py3-none-any.whl.metadata (3.6 kB)
-Using cached pip-24.0-py3-none-any.whl (2.1 MB)
-Installing collected packages: pip
-  Attempting uninstall: pip
-    Found existing installation: pip 24.0
-    Uninstalling pip-24.0:
-      Successfully uninstalled pip-24.0
-  WARNING: The scripts pip, pip3 and pip3.9 are installed in '/home/yc-user/.local/bin' which is not on PATH.
-  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
 
 
 ~~~
@@ -129,8 +73,67 @@ Installing collected packages: pip
 
 ~~~
 
+root@debian:~/kubespray# pip3 --version
+pip 23.0.1 from /usr/lib/python3/dist-packages/pip (python 3.11)
+root@debian:~/kubespray# 
+root@debian:~/kubespray#  pip3.11 install -r requirements.txt
+Requirement already satisfied: ansible==8.5.0 in /usr/local/lib/python3.11/dist-packages (from -r requirements.txt (line 1)) (8.5.0)
+Collecting cryptography==41.0.4
+  Using cached cryptography-41.0.4-cp37-abi3-manylinux_2_28_x86_64.whl (4.4 MB)
+Requirement already satisfied: jinja2==3.1.2 in /usr/lib/python3/dist-packages (from -r requirements.txt (line 3)) (3.1.2)
+Requirement already satisfied: jmespath==1.0.1 in /usr/lib/python3/dist-packages (from -r requirements.txt (line 4)) (1.0.1)
+Collecting MarkupSafe==2.1.3
+  Using cached MarkupSafe-2.1.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (28 kB)
+Collecting netaddr==0.9.0
+  Downloading netaddr-0.9.0-py3-none-any.whl (2.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 3.6 MB/s eta 0:00:00
+Collecting pbr==5.11.1
+  Downloading pbr-5.11.1-py2.py3-none-any.whl (112 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 112.7/112.7 kB 5.3 MB/s eta 0:00:00
+Collecting ruamel.yaml==0.17.35
+  Downloading ruamel.yaml-0.17.35-py3-none-any.whl (112 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 112.9/112.9 kB 7.7 MB/s eta 0:00:00
+Collecting ruamel.yaml.clib==0.2.8
+  Downloading ruamel.yaml.clib-0.2.8-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl (544 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 544.0/544.0 kB 4.6 MB/s eta 0:00:00
+Requirement already satisfied: ansible-core~=2.15.5 in /usr/local/lib/python3.11/dist-packages (from ansible==8.5.0->-r requirements.txt (line 1)) (2.15.5)
+Collecting cffi>=1.12
+  Using cached cffi-1.16.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (464 kB)
+Requirement already satisfied: PyYAML>=5.1 in /usr/lib/python3/dist-packages (from ansible-core~=2.15.5->ansible==8.5.0->-r requirements.txt (line 1)) (6.0)
+Requirement already satisfied: packaging in /usr/lib/python3/dist-packages (from ansible-core~=2.15.5->ansible==8.5.0->-r requirements.txt (line 1)) (23.0)
+Requirement already satisfied: resolvelib<1.1.0,>=0.5.3 in /usr/lib/python3/dist-packages (from ansible-core~=2.15.5->ansible==8.5.0->-r requirements.txt (line 1)) (0.9.0)
+Collecting pycparser
+  Using cached pycparser-2.21-py2.py3-none-any.whl (118 kB)
+Installing collected packages: netaddr, ruamel.yaml.clib, pycparser, pbr, MarkupSafe, ruamel.yaml, cffi, cryptography
+  Attempting uninstall: netaddr
+    Found existing installation: netaddr 0.8.0
+    Not uninstalling netaddr at /usr/lib/python3/dist-packages, outside environment /usr
+    Can't uninstall 'netaddr'. No files were found to uninstall.
+  Attempting uninstall: ruamel.yaml.clib
+    Found existing installation: ruamel.yaml.clib 0.2.7
+    Not uninstalling ruamel-yaml-clib at /usr/lib/python3/dist-packages, outside environment /usr
+    Can't uninstall 'ruamel.yaml.clib'. No files were found to uninstall.
+  Attempting uninstall: pbr
+    Found existing installation: pbr 5.10.0
+    Not uninstalling pbr at /usr/lib/python3/dist-packages, outside environment /usr
+    Can't uninstall 'pbr'. No files were found to uninstall.
+  Attempting uninstall: MarkupSafe
+    Found existing installation: MarkupSafe 2.1.2
+    Not uninstalling markupsafe at /usr/lib/python3/dist-packages, outside environment /usr
+    Can't uninstall 'MarkupSafe'. No files were found to uninstall.
+  Attempting uninstall: ruamel.yaml
+    Found existing installation: ruamel.yaml 0.17.21
+    Not uninstalling ruamel-yaml at /usr/lib/python3/dist-packages, outside environment /usr
+    Can't uninstall 'ruamel.yaml'. No files were found to uninstall.
+  Attempting uninstall: cryptography
+    Found existing installation: cryptography 38.0.4
+    Not uninstalling cryptography at /usr/lib/python3/dist-packages, outside environment /usr
+    Can't uninstall 'cryptography'. No files were found to uninstall.
+Successfully installed MarkupSafe-2.1.3 cffi-1.16.0 cryptography-41.0.4 netaddr-0.9.0 pbr-5.11.1 pycparser-2.21 ruamel.yaml-0.17.35 ruamel.yaml.clib-0.2.8
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+root@debian:~/kubespray# pip3 --version
+pip 23.0.1 from /usr/lib/python3/dist-packages/pip (python 3.11)
 
-yc-user@masterk8s:~/kubespray$ sudo pip3.9 install -r requirements.txt
 
 
 
@@ -151,14 +154,9 @@ yc-user@masterk8s:~/kubespray$ sudo cp -rfp inventory/sample inventory/mycluster
 Сделал конфиги hosts
 
 ~~~
-root@debianz:~/kubespray# declare -a IPS=(84.201.174.48 178.154.221.189 178.154.223.238 178.154.223.195 158.160.116.233)
-root@debianz:~/kubespray# CONFIG_FILE=inventory/mycluster/hosts.yaml python3.9 contrib/inventory_builder/inventory.py ${IPS[@]}
-
-
-
-
-
-
+root@debian:~/kubespray# cp -rfp inventory/sample inventory/mycluster
+root@debian:~/kubespray# declare -a IPS=(51.250.2.16 158.160.117.143 84.201.135.38 178.154.204.250 178.154.222.12)
+root@debian:~/kubespray# CONFIG_FILE=inventory/mycluster/hosts.yaml python3.11 contrib/inventory_builder/inventory.py ${IPS[@]}
 DEBUG: Adding group all
 DEBUG: Adding group kube_control_plane
 DEBUG: Adding group kube_node
@@ -192,33 +190,33 @@ DEBUG: adding host node5 to group kube_node
 Смотри м файл.
 
 ~~~
-root@debianz:~/kubespray# cat inventory/mycluster/hosts.yaml
+root@debian:~/kubespray# cat inventory/mycluster/hosts.yaml
 all:
   hosts:
     masterk8s:
-      ansible_host: 84.201.174.48
-      ip: 84.201.174.48
-      access_ip: 84.201.174.48
+      ansible_host: 51.250.2.16
+      ip: 51.250.2.16
+      access_ip: 51.250.2.16
       ansible_user: yc-user  
     worker1:
-      ansible_host: 178.154.221.189
-      ip: 178.154.221.189
-      access_ip: 178.154.221.189
+      ansible_host: 158.160.117.143
+      ip: 158.160.117.143
+      access_ip: 158.160.117.143
       ansible_user: yc-user  
     worker2:
-      ansible_host: 178.154.223.238
-      ip: 178.154.223.238
-      access_ip: 178.154.223.238
+      ansible_host: 84.201.135.38
+      ip: 84.201.135.38
+      access_ip: 84.201.135.38
       ansible_user: yc-user  
     worker3:
-      ansible_host: 178.154.223.195
-      ip: 178.154.223.195
-      access_ip: 178.154.223.195
-      ansible_user: yc-user
+      ansible_host: 178.154.204.250
+      ip: 178.154.204.250
+      access_ip: 178.154.204.250
+      ansible_user: yc-user  
     worker4:
-      ansible_host: 158.160.116.233
-      ip: 158.160.116.233
-      access_ip: 158.160.116.233
+      ansible_host: 178.154.222.12
+      ip: 178.154.222.12
+      access_ip: 178.154.222.12
       ansible_user: yc-user  
   children:
     kube_control_plane:
@@ -239,6 +237,7 @@ all:
         kube_node:
     calico_rr:
       hosts: {}
+
 
 
 ~~~
