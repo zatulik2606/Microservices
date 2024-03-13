@@ -61,7 +61,17 @@ v4_cidr_blocks:
 VM создались в YC.
 
 ~~~
-root@debianz:~# yc compute instance list
+root@debianz:~/.ssh# yc compute instance list
++----------------------+-----------+---------------+---------+-----------------+---------------+
+|          ID          |   NAME    |    ZONE ID    | STATUS  |   EXTERNAL IP   |  INTERNAL IP  |
++----------------------+-----------+---------------+---------+-----------------+---------------+
+| fhm5b5mo85fvntmk5rrg | ubuntu-hw | ru-central1-a | RUNNING | 158.160.38.134  | 192.168.10.7  |
+| fhmdkpobefte18fl4fud | worker2   | ru-central1-a | RUNNING | 178.154.223.238 | 192.168.10.31 |
+| fhmfb1lmdvg9nfftpbl2 | worker4   | ru-central1-a | RUNNING | 158.160.116.233 | 192.168.10.7  |
+| fhmlfvdnv47blgkuedie | worker3   | ru-central1-a | RUNNING | 178.154.223.195 | 192.168.10.8  |
+| fhmqp0skk2f22q6886lg | worker1   | ru-central1-a | RUNNING | 178.154.221.189 | 192.168.10.22 |
+| fhmturslvorai3psjlnn | masterk8s | ru-central1-a | RUNNING | 84.201.174.48   | 192.168.10.4  |
++----------------------+-----------+---------------+---------+-----------------+---------------+
 
 
 ~~~
