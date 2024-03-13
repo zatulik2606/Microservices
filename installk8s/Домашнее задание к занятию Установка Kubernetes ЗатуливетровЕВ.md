@@ -109,7 +109,7 @@ done (36s)
 
 VM создались в YC.
 
-![vms]()
+![vms](https://github.com/zatulik2606/Microservices/blob/main/installk8s/vms%20new6.jpg)
 
 
 Скачиваю kubespray из репозитория
