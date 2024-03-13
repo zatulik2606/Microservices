@@ -144,33 +144,34 @@ DEBUG: adding host node5 to group kube_node
 Смотри м файл.
 
 ~~~
+
 root@debian:~/kubespray# cat inventory/mycluster/hosts.yaml
 all:
   hosts:
     masterk8s:
-      ansible_host: 51.250.2.16
-      ip: 51.250.2.16
-      access_ip: 51.250.2.16
+      ansible_host: 51.250.88.222
+      ip: 51.250.88.222
+      access_ip: 51.250.88.222
       ansible_user: yc-user  
     worker1:
-      ansible_host: 158.160.117.143
-      ip: 158.160.117.143
-      access_ip: 158.160.117.143
+      ansible_host: 158.160.32.65
+      ip: 158.160.32.65
+      access_ip: 158.160.32.65
       ansible_user: yc-user  
     worker2:
-      ansible_host: 84.201.135.38
-      ip: 84.201.135.38
-      access_ip: 84.201.135.38
+      ansible_host: 178.154.221.7
+      ip: 178.154.221.7
+      access_ip: 178.154.221.7
       ansible_user: yc-user  
     worker3:
-      ansible_host: 178.154.204.250
-      ip: 178.154.204.250
-      access_ip: 178.154.204.250
+      ansible_host: 78.154.202.134
+      ip: 78.154.202.134
+      access_ip: 78.154.202.134
       ansible_user: yc-user  
     worker4:
-      ansible_host: 178.154.222.12
-      ip: 178.154.222.12
-      access_ip: 178.154.222.12
+      ansible_host: 158.160.46.59
+      ip: 158.160.46.59
+      access_ip: 158.160.46.59
       ansible_user: yc-user  
   children:
     kube_control_plane:
