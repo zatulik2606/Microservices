@@ -151,8 +151,36 @@ yc-user@masterk8s:~/kubespray$ sudo cp -rfp inventory/sample inventory/mycluster
 Сделал конфиги hosts
 
 ~~~
-yc-user@masterk8s:~/kubespray$ declare -a IPS=(62.84.114.157 158.160.43.220 158.160.51.18 158.160.55.79 130.193.39.53)
-yc-user@masterk8s:~/kubespray$ sudo CONFIG_FILE=inventory/mycluster/hosts.yaml python3.9 contrib/inventory_builder/inventory.py ${IPS[@]}
+root@debianz:~/kubespray# declare -a IPS=(84.201.174.48 178.154.221.189 178.154.223.238 178.154.223.195 158.160.116.233)
+root@debianz:~/kubespray# CONFIG_FILE=inventory/mycluster/hosts.yaml python3.9 contrib/inventory_builder/inventory.py ${IPS[@]}
+
+
+
+
+
+
+DEBUG: Adding group all
+DEBUG: Adding group kube_control_plane
+DEBUG: Adding group kube_node
+DEBUG: Adding group etcd
+DEBUG: Adding group k8s_cluster
+DEBUG: Adding group calico_rr
+DEBUG: adding host node1 to group all
+DEBUG: adding host node2 to group all
+DEBUG: adding host node3 to group all
+DEBUG: adding host node4 to group all
+DEBUG: adding host node5 to group all
+DEBUG: adding host node1 to group etcd
+DEBUG: adding host node2 to group etcd
+DEBUG: adding host node3 to group etcd
+DEBUG: adding host node1 to group kube_control_plane
+DEBUG: adding host node2 to group kube_control_plane
+DEBUG: adding host node1 to group kube_node
+DEBUG: adding host node2 to group kube_node
+DEBUG: adding host node3 to group kube_node
+DEBUG: adding host node4 to group kube_node
+DEBUG: adding host node5 to group kube_node
+
 
 
 
@@ -164,34 +192,34 @@ yc-user@masterk8s:~/kubespray$ sudo CONFIG_FILE=inventory/mycluster/hosts.yaml p
 Смотри м файл.
 
 ~~~
-yc-user@masterk8s:~/kubespray$ cat inventory/mycluster/hosts.yaml
+root@debianz:~/kubespray# cat inventory/mycluster/hosts.yaml
 all:
   hosts:
     masterk8s:
-      ansible_host: 62.84.114.157
-      ip: 62.84.114.157
-      access_ip: 62.84.114.157
-      ansible_user: yc-user
+      ansible_host: 84.201.174.48
+      ip: 84.201.174.48
+      access_ip: 84.201.174.48
+      ansible_user: yc-user  
     worker1:
-      ansible_host: 158.160.43.220
-      ip: 158.160.43.220
-      access_ip: 158.160.43.220
-      ansible_user: yc-user
+      ansible_host: 178.154.221.189
+      ip: 178.154.221.189
+      access_ip: 178.154.221.189
+      ansible_user: yc-user  
     worker2:
-      ansible_host: 158.160.51.18
-      ip: 158.160.51.18
-      access_ip: 158.160.51.18
-      ansible_user: yc-user
+      ansible_host: 178.154.223.238
+      ip: 178.154.223.238
+      access_ip: 178.154.223.238
+      ansible_user: yc-user  
     worker3:
-      ansible_host: 158.160.55.79
-      ip: 158.160.55.79
-      access_ip: 158.160.55.79
+      ansible_host: 178.154.223.195
+      ip: 178.154.223.195
+      access_ip: 178.154.223.195
       ansible_user: yc-user
     worker4:
-      ansible_host: 130.193.39.53
-      ip: 130.193.39.53
-      access_ip: 130.193.39.53
-      ansible_user: yc-user
+      ansible_host: 158.160.116.233
+      ip: 158.160.116.233
+      access_ip: 158.160.116.233
+      ansible_user: yc-user  
   children:
     kube_control_plane:
       hosts:
