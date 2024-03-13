@@ -61,6 +61,48 @@ v4_cidr_blocks:
 Создал и запустил скрипт по установке в yc.
 
 ~~~
+root@debianz:~/vms_yc# bash create-vms.sh
+done (33s)
+id: fhmvnbd04p71cetgkobk
+folder_id: b1gleu995pjjtd5eficp
+created_at: "2024-03-13T07:32:34Z"
+name: masterk8s
+zone_id: ru-central1-a
+platform_id: standard-v2
+resources:
+  memory: "2147483648"
+  cores: "2"
+  core_fraction: "100"
+status: RUNNING
+metadata_options:
+  gce_http_endpoint: ENABLED
+  aws_v1_http_endpoint: ENABLED
+  gce_http_token: ENABLED
+  aws_v1_http_token: DISABLED
+boot_disk:
+  mode: READ_WRITE
+  device_name: fhmd3bcpvg041ihu9rpj
+  auto_delete: true
+  disk_id: fhmd3bcpvg041ihu9rpj
+network_interfaces:
+  - index: "0"
+    mac_address: d0:0d:1f:ba:da:02
+    subnet_id: e9bdt908isbi5glca2oj
+    primary_v4_address:
+      address: 192.168.10.17
+      one_to_one_nat:
+        address: 84.201.174.85
+        ip_version: IPV4
+serial_port_settings:
+  ssh_authorization: INSTANCE_METADATA
+gpu_settings: {}
+fqdn: masterk8s.ru-central1.internal
+scheduling_policy: {}
+network_settings:
+  type: STANDARD
+placement_policy: {}
+
+done (39s)
 
 ...
 ~~~
