@@ -1,0 +1,742 @@
+root@debian:~/kubespray# ansible-playbook -i inventory/mycluster/hosts.yaml cluster.yml -b -v
+Using /root/kubespray/ansible.cfg as config file
+[WARNING]: Skipping callback plugin 'ara_default', unable to load
+
+PLAY [Check Ansible version] *********************************************************************************************************************************
+Четверг 14 марта 2024  17:41:01 +0300 (0:00:00.109)       0:00:00.109 ********* 
+
+TASK [Check 2.16.4 <= Ansible version < 2.17.0] **************************************************************************************************************
+ok: [masterk8s] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+Четверг 14 марта 2024  17:41:01 +0300 (0:00:00.093)       0:00:00.203 ********* 
+
+TASK [Check that python netaddr is installed] ****************************************************************************************************************
+ok: [masterk8s] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+Четверг 14 марта 2024  17:41:01 +0300 (0:00:00.138)       0:00:00.341 ********* 
+
+TASK [Check that jinja is not too old (install via pip)] *****************************************************************************************************
+ok: [masterk8s] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+[WARNING]: Could not match supplied host pattern, ignoring: kube-master
+
+PLAY [Add kube-master nodes to kube_control_plane] ***********************************************************************************************************
+skipping: no hosts matched
+[WARNING]: Could not match supplied host pattern, ignoring: kube-node
+
+PLAY [Add kube-node nodes to kube_node] **********************************************************************************************************************
+skipping: no hosts matched
+[WARNING]: Could not match supplied host pattern, ignoring: k8s-cluster
+
+PLAY [Add k8s-cluster nodes to k8s_cluster] ******************************************************************************************************************
+skipping: no hosts matched
+[WARNING]: Could not match supplied host pattern, ignoring: calico-rr
+
+PLAY [Add calico-rr nodes to calico_rr] **********************************************************************************************************************
+skipping: no hosts matched
+[WARNING]: Could not match supplied host pattern, ignoring: no-floating
+
+PLAY [Add no-floating nodes to no_floating] ******************************************************************************************************************
+skipping: no hosts matched
+[WARNING]: Could not match supplied host pattern, ignoring: bastion
+
+PLAY [Install bastion ssh config] ****************************************************************************************************************************
+skipping: no hosts matched
+
+PLAY [Bootstrap hosts for Ansible] ***************************************************************************************************************************
+Четверг 14 марта 2024  17:41:01 +0300 (0:00:00.153)       0:00:00.495 ********* 
+Четверг 14 марта 2024  17:41:01 +0300 (0:00:00.098)       0:00:00.594 ********* 
+Четверг 14 марта 2024  17:41:01 +0300 (0:00:00.068)       0:00:00.663 ********* 
+Четверг 14 марта 2024  17:41:02 +0300 (0:00:00.206)       0:00:00.870 ********* 
+Четверг 14 марта 2024  17:41:02 +0300 (0:00:00.056)       0:00:00.926 ********* 
+Четверг 14 марта 2024  17:41:02 +0300 (0:00:00.292)       0:00:01.219 ********* 
+Четверг 14 марта 2024  17:41:02 +0300 (0:00:00.185)       0:00:01.404 ********* 
+[WARNING]: raw module does not support the environment keyword
+
+TASK [bootstrap-os : Fetch /etc/os-release] ******************************************************************************************************************
+ok: [masterk8s] => {"changed": false, "rc": 0, "stderr": "Shared connection to 158.160.125.11 closed.\r\n", "stderr_lines": ["Shared connection to 158.160.125.11 closed."], "stdout": "NAME=\"Ubuntu\"\r\nVERSION=\"20.04.6 LTS (Focal Fossa)\"\r\nID=ubuntu\r\nID_LIKE=debian\r\nPRETTY_NAME=\"Ubuntu 20.04.6 LTS\"\r\nVERSION_ID=\"20.04\"\r\nHOME_URL=\"https://www.ubuntu.com/\"\r\nSUPPORT_URL=\"https://help.ubuntu.com/\"\r\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\r\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\r\nVERSION_CODENAME=focal\r\nUBUNTU_CODENAME=focal\r\n", "stdout_lines": ["NAME=\"Ubuntu\"", "VERSION=\"20.04.6 LTS (Focal Fossa)\"", "ID=ubuntu", "ID_LIKE=debian", "PRETTY_NAME=\"Ubuntu 20.04.6 LTS\"", "VERSION_ID=\"20.04\"", "HOME_URL=\"https://www.ubuntu.com/\"", "SUPPORT_URL=\"https://help.ubuntu.com/\"", "BUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"", "PRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"", "VERSION_CODENAME=focal", "UBUNTU_CODENAME=focal"]}
+ok: [worker1] => {"changed": false, "rc": 0, "stderr": "Shared connection to 158.160.52.54 closed.\r\n", "stderr_lines": ["Shared connection to 158.160.52.54 closed."], "stdout": "NAME=\"Ubuntu\"\r\nVERSION=\"20.04.6 LTS (Focal Fossa)\"\r\nID=ubuntu\r\nID_LIKE=debian\r\nPRETTY_NAME=\"Ubuntu 20.04.6 LTS\"\r\nVERSION_ID=\"20.04\"\r\nHOME_URL=\"https://www.ubuntu.com/\"\r\nSUPPORT_URL=\"https://help.ubuntu.com/\"\r\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\r\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\r\nVERSION_CODENAME=focal\r\nUBUNTU_CODENAME=focal\r\n", "stdout_lines": ["NAME=\"Ubuntu\"", "VERSION=\"20.04.6 LTS (Focal Fossa)\"", "ID=ubuntu", "ID_LIKE=debian", "PRETTY_NAME=\"Ubuntu 20.04.6 LTS\"", "VERSION_ID=\"20.04\"", "HOME_URL=\"https://www.ubuntu.com/\"", "SUPPORT_URL=\"https://help.ubuntu.com/\"", "BUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"", "PRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"", "VERSION_CODENAME=focal", "UBUNTU_CODENAME=focal"]}
+ok: [worker4] => {"changed": false, "rc": 0, "stderr": "Shared connection to 178.154.222.30 closed.\r\n", "stderr_lines": ["Shared connection to 178.154.222.30 closed."], "stdout": "NAME=\"Ubuntu\"\r\nVERSION=\"20.04.6 LTS (Focal Fossa)\"\r\nID=ubuntu\r\nID_LIKE=debian\r\nPRETTY_NAME=\"Ubuntu 20.04.6 LTS\"\r\nVERSION_ID=\"20.04\"\r\nHOME_URL=\"https://www.ubuntu.com/\"\r\nSUPPORT_URL=\"https://help.ubuntu.com/\"\r\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\r\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\r\nVERSION_CODENAME=focal\r\nUBUNTU_CODENAME=focal\r\n", "stdout_lines": ["NAME=\"Ubuntu\"", "VERSION=\"20.04.6 LTS (Focal Fossa)\"", "ID=ubuntu", "ID_LIKE=debian", "PRETTY_NAME=\"Ubuntu 20.04.6 LTS\"", "VERSION_ID=\"20.04\"", "HOME_URL=\"https://www.ubuntu.com/\"", "SUPPORT_URL=\"https://help.ubuntu.com/\"", "BUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"", "PRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"", "VERSION_CODENAME=focal", "UBUNTU_CODENAME=focal"]}
+ok: [worker2] => {"changed": false, "rc": 0, "stderr": "Shared connection to 178.154.202.182 closed.\r\n", "stderr_lines": ["Shared connection to 178.154.202.182 closed."], "stdout": "NAME=\"Ubuntu\"\r\nVERSION=\"20.04.6 LTS (Focal Fossa)\"\r\nID=ubuntu\r\nID_LIKE=debian\r\nPRETTY_NAME=\"Ubuntu 20.04.6 LTS\"\r\nVERSION_ID=\"20.04\"\r\nHOME_URL=\"https://www.ubuntu.com/\"\r\nSUPPORT_URL=\"https://help.ubuntu.com/\"\r\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\r\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\r\nVERSION_CODENAME=focal\r\nUBUNTU_CODENAME=focal\r\n", "stdout_lines": ["NAME=\"Ubuntu\"", "VERSION=\"20.04.6 LTS (Focal Fossa)\"", "ID=ubuntu", "ID_LIKE=debian", "PRETTY_NAME=\"Ubuntu 20.04.6 LTS\"", "VERSION_ID=\"20.04\"", "HOME_URL=\"https://www.ubuntu.com/\"", "SUPPORT_URL=\"https://help.ubuntu.com/\"", "BUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"", "PRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"", "VERSION_CODENAME=focal", "UBUNTU_CODENAME=focal"]}
+ok: [worker3] => {"changed": false, "rc": 0, "stderr": "Shared connection to 178.154.222.118 closed.\r\n", "stderr_lines": ["Shared connection to 178.154.222.118 closed."], "stdout": "NAME=\"Ubuntu\"\r\nVERSION=\"20.04.6 LTS (Focal Fossa)\"\r\nID=ubuntu\r\nID_LIKE=debian\r\nPRETTY_NAME=\"Ubuntu 20.04.6 LTS\"\r\nVERSION_ID=\"20.04\"\r\nHOME_URL=\"https://www.ubuntu.com/\"\r\nSUPPORT_URL=\"https://help.ubuntu.com/\"\r\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\r\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\r\nVERSION_CODENAME=focal\r\nUBUNTU_CODENAME=focal\r\n", "stdout_lines": ["NAME=\"Ubuntu\"", "VERSION=\"20.04.6 LTS (Focal Fossa)\"", "ID=ubuntu", "ID_LIKE=debian", "PRETTY_NAME=\"Ubuntu 20.04.6 LTS\"", "VERSION_ID=\"20.04\"", "HOME_URL=\"https://www.ubuntu.com/\"", "SUPPORT_URL=\"https://help.ubuntu.com/\"", "BUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"", "PRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"", "VERSION_CODENAME=focal", "UBUNTU_CODENAME=focal"]}
+Четверг 14 марта 2024  17:41:03 +0300 (0:00:00.514)       0:00:01.919 ********* 
+Четверг 14 марта 2024  17:41:03 +0300 (0:00:00.144)       0:00:02.063 ********* 
+Четверг 14 марта 2024  17:41:03 +0300 (0:00:00.131)       0:00:02.195 ********* 
+Четверг 14 марта 2024  17:41:03 +0300 (0:00:00.132)       0:00:02.327 ********* 
+Четверг 14 марта 2024  17:41:03 +0300 (0:00:00.130)       0:00:02.458 ********* 
+Четверг 14 марта 2024  17:41:03 +0300 (0:00:00.132)       0:00:02.590 ********* 
+Четверг 14 марта 2024  17:41:03 +0300 (0:00:00.226)       0:00:02.817 ********* 
+
+TASK [bootstrap-os : Bootstrap Debian] ***********************************************************************************************************************
+included: /root/kubespray/roles/bootstrap-os/tasks/bootstrap-debian.yml for masterk8s, worker1, worker2, worker3, worker4
+Четверг 14 марта 2024  17:41:04 +0300 (0:00:00.312)       0:00:03.129 ********* 
+
+TASK [bootstrap-os : Check if bootstrap is needed] ***********************************************************************************************************
+ok: [masterk8s] => {"changed": false, "failed_when_result": false, "rc": 0, "stderr": "Shared connection to 158.160.125.11 closed.\r\n", "stderr_lines": ["Shared connection to 158.160.125.11 closed."], "stdout": "/usr/bin/python3\r\n", "stdout_lines": ["/usr/bin/python3"]}
+ok: [worker1] => {"changed": false, "failed_when_result": false, "rc": 0, "stderr": "Shared connection to 158.160.52.54 closed.\r\n", "stderr_lines": ["Shared connection to 158.160.52.54 closed."], "stdout": "/usr/bin/python3\r\n", "stdout_lines": ["/usr/bin/python3"]}
+ok: [worker3] => {"changed": false, "failed_when_result": false, "rc": 0, "stderr": "Shared connection to 178.154.222.118 closed.\r\n", "stderr_lines": ["Shared connection to 178.154.222.118 closed."], "stdout": "/usr/bin/python3\r\n", "stdout_lines": ["/usr/bin/python3"]}
+ok: [worker2] => {"changed": false, "failed_when_result": false, "rc": 0, "stderr": "Shared connection to 178.154.202.182 closed.\r\n", "stderr_lines": ["Shared connection to 178.154.202.182 closed."], "stdout": "/usr/bin/python3\r\n", "stdout_lines": ["/usr/bin/python3"]}
+ok: [worker4] => {"changed": false, "failed_when_result": false, "rc": 0, "stderr": "Shared connection to 178.154.222.30 closed.\r\n", "stderr_lines": ["Shared connection to 178.154.222.30 closed."], "stdout": "/usr/bin/python3\r\n", "stdout_lines": ["/usr/bin/python3"]}
+Четверг 14 марта 2024  17:41:04 +0300 (0:00:00.448)       0:00:03.577 ********* 
+
+TASK [bootstrap-os : Check http::proxy in apt configuration files] *******************************************************************************************
+ok: [masterk8s] => {"changed": false, "failed_when_result": false, "msg": "non-zero return code", "rc": 1, "stderr": "Shared connection to 158.160.125.11 closed.\r\n", "stderr_lines": ["Shared connection to 158.160.125.11 closed."], "stdout": "", "stdout_lines": []}
+ok: [worker1] => {"changed": false, "failed_when_result": false, "msg": "non-zero return code", "rc": 1, "stderr": "Shared connection to 158.160.52.54 closed.\r\n", "stderr_lines": ["Shared connection to 158.160.52.54 closed."], "stdout": "", "stdout_lines": []}
+ok: [worker3] => {"changed": false, "failed_when_result": false, "msg": "non-zero return code", "rc": 1, "stderr": "Shared connection to 178.154.222.118 closed.\r\n", "stderr_lines": ["Shared connection to 178.154.222.118 closed."], "stdout": "", "stdout_lines": []}
+ok: [worker2] => {"changed": false, "failed_when_result": false, "msg": "non-zero return code", "rc": 1, "stderr": "Shared connection to 178.154.202.182 closed.\r\n", "stderr_lines": ["Shared connection to 178.154.202.182 closed."], "stdout": "", "stdout_lines": []}
+ok: [worker4] => {"changed": false, "failed_when_result": false, "msg": "non-zero return code", "rc": 1, "stderr": "Shared connection to 178.154.222.30 closed.\r\n", "stderr_lines": ["Shared connection to 178.154.222.30 closed."], "stdout": "", "stdout_lines": []}
+Четверг 14 марта 2024  17:41:05 +0300 (0:00:00.414)       0:00:03.992 ********* 
+Четверг 14 марта 2024  17:41:05 +0300 (0:00:00.309)       0:00:04.302 ********* 
+
+TASK [bootstrap-os : Check https::proxy in apt configuration files] ******************************************************************************************
+ok: [masterk8s] => {"changed": false, "failed_when_result": false, "msg": "non-zero return code", "rc": 1, "stderr": "Shared connection to 158.160.125.11 closed.\r\n", "stderr_lines": ["Shared connection to 158.160.125.11 closed."], "stdout": "", "stdout_lines": []}
+ok: [worker1] => {"changed": false, "failed_when_result": false, "msg": "non-zero return code", "rc": 1, "stderr": "Shared connection to 158.160.52.54 closed.\r\n", "stderr_lines": ["Shared connection to 158.160.52.54 closed."], "stdout": "", "stdout_lines": []}
+ok: [worker3] => {"changed": false, "failed_when_result": false, "msg": "non-zero return code", "rc": 1, "stderr": "Shared connection to 178.154.222.118 closed.\r\n", "stderr_lines": ["Shared connection to 178.154.222.118 closed."], "stdout": "", "stdout_lines": []}
+ok: [worker2] => {"changed": false, "failed_when_result": false, "msg": "non-zero return code", "rc": 1, "stderr": "Shared connection to 178.154.202.182 closed.\r\n", "stderr_lines": ["Shared connection to 178.154.202.182 closed."], "stdout": "", "stdout_lines": []}
+ok: [worker4] => {"changed": false, "failed_when_result": false, "msg": "non-zero return code", "rc": 1, "stderr": "Shared connection to 178.154.222.30 closed.\r\n", "stderr_lines": ["Shared connection to 178.154.222.30 closed."], "stdout": "", "stdout_lines": []}
+Четверг 14 марта 2024  17:41:05 +0300 (0:00:00.390)       0:00:04.693 ********* 
+Четверг 14 марта 2024  17:41:06 +0300 (0:00:00.138)       0:00:04.832 ********* 
+Четверг 14 марта 2024  17:41:06 +0300 (0:00:00.135)       0:00:04.968 ********* 
+Четверг 14 марта 2024  17:41:06 +0300 (0:00:00.223)       0:00:05.191 ********* 
+
+TASK [bootstrap-os : Set the ansible_python_interpreter fact] ************************************************************************************************
+ok: [masterk8s] => {"ansible_facts": {"ansible_python_interpreter": "/usr/bin/python3"}, "changed": false}
+ok: [worker1] => {"ansible_facts": {"ansible_python_interpreter": "/usr/bin/python3"}, "changed": false}
+ok: [worker2] => {"ansible_facts": {"ansible_python_interpreter": "/usr/bin/python3"}, "changed": false}
+ok: [worker3] => {"ansible_facts": {"ansible_python_interpreter": "/usr/bin/python3"}, "changed": false}
+ok: [worker4] => {"ansible_facts": {"ansible_python_interpreter": "/usr/bin/python3"}, "changed": false}
+Четверг 14 марта 2024  17:41:06 +0300 (0:00:00.460)       0:00:05.652 ********* 
+
+TASK [bootstrap-os : Install dbus for the hostname module] ***************************************************************************************************
+ok: [worker3] => {"cache_update_time": 1710421366, "cache_updated": false, "changed": false}
+ok: [masterk8s] => {"cache_update_time": 1710421251, "cache_updated": false, "changed": false}
+ok: [worker4] => {"cache_update_time": 1710421407, "cache_updated": false, "changed": false}
+ok: [worker2] => {"cache_update_time": 1710421326, "cache_updated": false, "changed": false}
+ok: [worker1] => {"cache_update_time": 1710421297, "cache_updated": false, "changed": false}
+Четверг 14 марта 2024  17:41:09 +0300 (0:00:02.679)       0:00:08.331 ********* 
+Четверг 14 марта 2024  17:41:09 +0300 (0:00:00.141)       0:00:08.473 ********* 
+Четверг 14 марта 2024  17:41:09 +0300 (0:00:00.137)       0:00:08.610 ********* 
+
+TASK [bootstrap-os : Create remote_tmp for it is used by another module] *************************************************************************************
+ok: [worker3] => {"changed": false, "gid": 0, "group": "root", "mode": "0700", "owner": "root", "path": "/root/.ansible/tmp", "size": 4096, "state": "directory", "uid": 0}
+ok: [worker4] => {"changed": false, "gid": 0, "group": "root", "mode": "0700", "owner": "root", "path": "/root/.ansible/tmp", "size": 4096, "state": "directory", "uid": 0}
+ok: [masterk8s] => {"changed": false, "gid": 0, "group": "root", "mode": "0700", "owner": "root", "path": "/root/.ansible/tmp", "size": 4096, "state": "directory", "uid": 0}
+ok: [worker1] => {"changed": false, "gid": 0, "group": "root", "mode": "0700", "owner": "root", "path": "/root/.ansible/tmp", "size": 4096, "state": "directory", "uid": 0}
+ok: [worker2] => {"changed": false, "gid": 0, "group": "root", "mode": "0700", "owner": "root", "path": "/root/.ansible/tmp", "size": 4096, "state": "directory", "uid": 0}
+Четверг 14 марта 2024  17:41:11 +0300 (0:00:02.061)       0:00:10.671 ********* 
+
+TASK [bootstrap-os : Gather host facts to get ansible_os_family] *********************************************************************************************
+ok: [worker3]
+ok: [masterk8s]
+ok: [worker4]
+ok: [worker1]
+ok: [worker2]
+Четверг 14 марта 2024  17:41:13 +0300 (0:00:02.064)       0:00:12.736 ********* 
+
+TASK [bootstrap-os : Assign inventory name to unconfigured hostnames (non-CoreOS, non-Flatcar, Suse and ClearLinux, non-Fedora)] *****************************
+ok: [worker3] => {"ansible_facts": {"ansible_domain": "ru-central1.internal", "ansible_fqdn": "worker3.ru-central1.internal", "ansible_hostname": "worker3", "ansible_nodename": "worker3"}, "changed": false, "name": "worker3"}
+ok: [worker4] => {"ansible_facts": {"ansible_domain": "ru-central1.internal", "ansible_fqdn": "worker4.ru-central1.internal", "ansible_hostname": "worker4", "ansible_nodename": "worker4"}, "changed": false, "name": "worker4"}
+ok: [masterk8s] => {"ansible_facts": {"ansible_domain": "ru-central1.internal", "ansible_fqdn": "masterk8s.ru-central1.internal", "ansible_hostname": "masterk8s", "ansible_nodename": "masterk8s"}, "changed": false, "name": "masterk8s"}
+ok: [worker1] => {"ansible_facts": {"ansible_domain": "ru-central1.internal", "ansible_fqdn": "worker1.ru-central1.internal", "ansible_hostname": "worker1", "ansible_nodename": "worker1"}, "changed": false, "name": "worker1"}
+ok: [worker2] => {"ansible_facts": {"ansible_domain": "ru-central1.internal", "ansible_fqdn": "worker2.ru-central1.internal", "ansible_hostname": "worker2", "ansible_nodename": "worker2"}, "changed": false, "name": "worker2"}
+Четверг 14 марта 2024  17:41:16 +0300 (0:00:02.261)       0:00:14.997 ********* 
+Четверг 14 марта 2024  17:41:16 +0300 (0:00:00.219)       0:00:15.216 ********* 
+Четверг 14 марта 2024  17:41:16 +0300 (0:00:00.141)       0:00:15.358 ********* 
+Четверг 14 марта 2024  17:41:16 +0300 (0:00:00.204)       0:00:15.563 ********* 
+
+TASK [bootstrap-os : Ensure bash_completion.d folder exists] *************************************************************************************************
+ok: [worker3] => {"changed": false, "gid": 0, "group": "root", "mode": "0755", "owner": "root", "path": "/etc/bash_completion.d/", "size": 4096, "state": "directory", "uid": 0}
+ok: [masterk8s] => {"changed": false, "gid": 0, "group": "root", "mode": "0755", "owner": "root", "path": "/etc/bash_completion.d/", "size": 4096, "state": "directory", "uid": 0}
+ok: [worker1] => {"changed": false, "gid": 0, "group": "root", "mode": "0755", "owner": "root", "path": "/etc/bash_completion.d/", "size": 4096, "state": "directory", "uid": 0}
+ok: [worker2] => {"changed": false, "gid": 0, "group": "root", "mode": "0755", "owner": "root", "path": "/etc/bash_completion.d/", "size": 4096, "state": "directory", "uid": 0}
+ok: [worker4] => {"changed": false, "gid": 0, "group": "root", "mode": "0755", "owner": "root", "path": "/etc/bash_completion.d/", "size": 4096, "state": "directory", "uid": 0}
+
+PLAY [Gather facts] ******************************************************************************************************************************************
+Четверг 14 марта 2024  17:41:18 +0300 (0:00:01.536)       0:00:17.099 ********* 
+
+TASK [Gather minimal facts] **********************************************************************************************************************************
+ok: [masterk8s]
+ok: [worker4]
+ok: [worker1]
+ok: [worker3]
+ok: [worker2]
+Четверг 14 марта 2024  17:41:19 +0300 (0:00:00.967)       0:00:18.067 ********* 
+
+TASK [Gather necessary facts (network)] **********************************************************************************************************************
+ok: [masterk8s]
+ok: [worker4]
+ok: [worker3]
+ok: [worker1]
+ok: [worker2]
+Четверг 14 марта 2024  17:41:20 +0300 (0:00:00.991)       0:00:19.059 ********* 
+
+TASK [Gather necessary facts (hardware)] *********************************************************************************************************************
+ok: [masterk8s]
+ok: [worker4]
+ok: [worker1]
+ok: [worker3]
+ok: [worker2]
+
+PLAY [Prepare for etcd install] ******************************************************************************************************************************
+Четверг 14 марта 2024  17:41:21 +0300 (0:00:01.589)       0:00:20.648 ********* 
+Четверг 14 марта 2024  17:41:21 +0300 (0:00:00.138)       0:00:20.787 ********* 
+
+TASK [kubespray-defaults : Create fallback_ips_base] *********************************************************************************************************
+ok: [masterk8s -> localhost] => {"ansible_facts": {"fallback_ips_base": "---\nmasterk8s: \"192.168.10.34\"\nworker1: \"192.168.10.23\"\nworker2: \"192.168.10.5\"\nworker3: \"192.168.10.25\"\nworker4: \"192.168.10.8\"\n"}, "changed": false}
+Четверг 14 марта 2024  17:41:22 +0300 (0:00:00.091)       0:00:20.878 ********* 
+
+TASK [kubespray-defaults : Set fallback_ips] *****************************************************************************************************************
+ok: [masterk8s] => {"ansible_facts": {"fallback_ips": {"masterk8s": "192.168.10.34", "worker1": "192.168.10.23", "worker2": "192.168.10.5", "worker3": "192.168.10.25", "worker4": "192.168.10.8"}}, "changed": false}
+ok: [worker1] => {"ansible_facts": {"fallback_ips": {"masterk8s": "192.168.10.34", "worker1": "192.168.10.23", "worker2": "192.168.10.5", "worker3": "192.168.10.25", "worker4": "192.168.10.8"}}, "changed": false}
+ok: [worker2] => {"ansible_facts": {"fallback_ips": {"masterk8s": "192.168.10.34", "worker1": "192.168.10.23", "worker2": "192.168.10.5", "worker3": "192.168.10.25", "worker4": "192.168.10.8"}}, "changed": false}
+ok: [worker3] => {"ansible_facts": {"fallback_ips": {"masterk8s": "192.168.10.34", "worker1": "192.168.10.23", "worker2": "192.168.10.5", "worker3": "192.168.10.25", "worker4": "192.168.10.8"}}, "changed": false}
+ok: [worker4] => {"ansible_facts": {"fallback_ips": {"masterk8s": "192.168.10.34", "worker1": "192.168.10.23", "worker2": "192.168.10.5", "worker3": "192.168.10.25", "worker4": "192.168.10.8"}}, "changed": false}
+Четверг 14 марта 2024  17:41:22 +0300 (0:00:00.408)       0:00:21.287 ********* 
+Четверг 14 марта 2024  17:41:22 +0300 (0:00:00.079)       0:00:21.366 ********* 
+Четверг 14 марта 2024  17:41:22 +0300 (0:00:00.260)       0:00:21.627 ********* 
+Четверг 14 марта 2024  17:41:23 +0300 (0:00:00.232)       0:00:21.859 ********* 
+
+TASK [adduser : User | Create User Group] ********************************************************************************************************************
+ok: [worker4] => {"changed": false, "gid": 998, "name": "kube-cert", "state": "present", "system": true}
+ok: [masterk8s] => {"changed": false, "gid": 998, "name": "kube-cert", "state": "present", "system": true}
+ok: [worker3] => {"changed": false, "gid": 998, "name": "kube-cert", "state": "present", "system": true}
+ok: [worker1] => {"changed": false, "gid": 998, "name": "kube-cert", "state": "present", "system": true}
+ok: [worker2] => {"changed": false, "gid": 998, "name": "kube-cert", "state": "present", "system": true}
+Четверг 14 марта 2024  17:41:24 +0300 (0:00:01.184)       0:00:23.044 ********* 
+
+TASK [adduser : User | Create User] **************************************************************************************************************************
+ok: [masterk8s] => {"append": false, "changed": false, "comment": "Kubernetes user", "group": 998, "home": "/home/kube", "move_home": false, "name": "kube", "shell": "/sbin/nologin", "state": "present", "uid": 998}
+ok: [worker4] => {"append": false, "changed": false, "comment": "Kubernetes user", "group": 998, "home": "/home/kube", "move_home": false, "name": "kube", "shell": "/sbin/nologin", "state": "present", "uid": 998}
+ok: [worker3] => {"append": false, "changed": false, "comment": "Kubernetes user", "group": 998, "home": "/home/kube", "move_home": false, "name": "kube", "shell": "/sbin/nologin", "state": "present", "uid": 998}
+ok: [worker1] => {"append": false, "changed": false, "comment": "Kubernetes user", "group": 998, "home": "/home/kube", "move_home": false, "name": "kube", "shell": "/sbin/nologin", "state": "present", "uid": 998}
+ok: [worker2] => {"append": false, "changed": false, "comment": "Kubernetes user", "group": 998, "home": "/home/kube", "move_home": false, "name": "kube", "shell": "/sbin/nologin", "state": "present", "uid": 998}
+Четверг 14 марта 2024  17:41:25 +0300 (0:00:01.191)       0:00:24.235 ********* 
+
+TASK [kubernetes/preinstall : Check if /etc/fstab exists] ****************************************************************************************************
+ok: [worker4] => {"changed": false, "stat": {"atime": 1710421401.6399999, "block_size": 4096, "blocks": 8, "ctime": 1671011749.673064, "dev": 64514, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 131074, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mode": "0644", "mtime": 1671011736.041064, "nlink": 1, "path": "/etc/fstab", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 458, "uid": 0, "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [masterk8s] => {"changed": false, "stat": {"atime": 1710421245.5839999, "block_size": 4096, "blocks": 8, "ctime": 1671011749.673064, "dev": 64514, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 131074, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mode": "0644", "mtime": 1671011736.041064, "nlink": 1, "path": "/etc/fstab", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 458, "uid": 0, "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [worker3] => {"changed": false, "stat": {"atime": 1710421360.8639998, "block_size": 4096, "blocks": 8, "ctime": 1671011749.673064, "dev": 64514, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 131074, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mode": "0644", "mtime": 1671011736.041064, "nlink": 1, "path": "/etc/fstab", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 458, "uid": 0, "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [worker1] => {"changed": false, "stat": {"atime": 1710421290.9519994, "block_size": 4096, "blocks": 8, "ctime": 1671011749.673064, "dev": 64514, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 131074, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mode": "0644", "mtime": 1671011736.041064, "nlink": 1, "path": "/etc/fstab", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 458, "uid": 0, "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [worker2] => {"changed": false, "stat": {"atime": 1710421319.4359994, "block_size": 4096, "blocks": 8, "ctime": 1671011749.673064, "dev": 64514, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 131074, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mode": "0644", "mtime": 1671011736.041064, "nlink": 1, "path": "/etc/fstab", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 458, "uid": 0, "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+Четверг 14 марта 2024  17:41:26 +0300 (0:00:01.155)       0:00:25.391 ********* 
+
+TASK [kubernetes/preinstall : Remove swapfile from /etc/fstab] ***********************************************************************************************
+ok: [worker4] => (item=swap) => {"ansible_loop_var": "item", "backup_file": "", "boot": "yes", "changed": false, "dump": "0", "fstab": "/etc/fstab", "fstype": "swap", "item": "swap", "name": "swap", "opts": "defaults", "passno": "0"}
+ok: [masterk8s] => (item=swap) => {"ansible_loop_var": "item", "backup_file": "", "boot": "yes", "changed": false, "dump": "0", "fstab": "/etc/fstab", "fstype": "swap", "item": "swap", "name": "swap", "opts": "defaults", "passno": "0"}
+ok: [worker3] => (item=swap) => {"ansible_loop_var": "item", "backup_file": "", "boot": "yes", "changed": false, "dump": "0", "fstab": "/etc/fstab", "fstype": "swap", "item": "swap", "name": "swap", "opts": "defaults", "passno": "0"}
+ok: [worker1] => (item=swap) => {"ansible_loop_var": "item", "backup_file": "", "boot": "yes", "changed": false, "dump": "0", "fstab": "/etc/fstab", "fstype": "swap", "item": "swap", "name": "swap", "opts": "defaults", "passno": "0"}
+ok: [worker2] => (item=swap) => {"ansible_loop_var": "item", "backup_file": "", "boot": "yes", "changed": false, "dump": "0", "fstab": "/etc/fstab", "fstype": "swap", "item": "swap", "name": "swap", "opts": "defaults", "passno": "0"}
+ok: [worker4] => (item=none) => {"ansible_loop_var": "item", "backup_file": "", "boot": "yes", "changed": false, "dump": "0", "fstab": "/etc/fstab", "fstype": "swap", "item": "none", "name": "none", "opts": "defaults", "passno": "0"}
+ok: [masterk8s] => (item=none) => {"ansible_loop_var": "item", "backup_file": "", "boot": "yes", "changed": false, "dump": "0", "fstab": "/etc/fstab", "fstype": "swap", "item": "none", "name": "none", "opts": "defaults", "passno": "0"}
+ok: [worker3] => (item=none) => {"ansible_loop_var": "item", "backup_file": "", "boot": "yes", "changed": false, "dump": "0", "fstab": "/etc/fstab", "fstype": "swap", "item": "none", "name": "none", "opts": "defaults", "passno": "0"}
+ok: [worker1] => (item=none) => {"ansible_loop_var": "item", "backup_file": "", "boot": "yes", "changed": false, "dump": "0", "fstab": "/etc/fstab", "fstype": "swap", "item": "none", "name": "none", "opts": "defaults", "passno": "0"}
+ok: [worker2] => (item=none) => {"ansible_loop_var": "item", "backup_file": "", "boot": "yes", "changed": false, "dump": "0", "fstab": "/etc/fstab", "fstype": "swap", "item": "none", "name": "none", "opts": "defaults", "passno": "0"}
+Четверг 14 марта 2024  17:41:28 +0300 (0:00:01.650)       0:00:27.041 ********* 
+
+TASK [kubernetes/preinstall : Mask swap.target (persist swapoff)] ********************************************************************************************
+ok: [masterk8s] => {"changed": false, "name": "swap.target", "status": {"ActiveEnterTimestamp": "Thu 2024-03-14 13:00:38 UTC", "ActiveEnterTimestampMonotonic": "4168250", "ActiveExitTimestampMonotonic": "0", "ActiveState": "active", "AllowIsolate": "no", "AssertResult": "yes", "AssertTimestamp": "Thu 2024-03-14 13:00:38 UTC", "AssertTimestampMonotonic": "4168248", "Before": "run-user-1000.mount sysinit.target", "CanIsolate": "no", "CanReload": "no", "CanStart": "no", "CanStop": "yes", "CollectMode": "inactive", "ConditionResult": "yes", "ConditionTimestamp": "Thu 2024-03-14 13:00:38 UTC", "ConditionTimestampMonotonic": "4168248", "DefaultDependencies": "yes", "Description": "swap.target", "FailureAction": "none", "FragmentPath": "/etc/systemd/system/swap.target", "Id": "swap.target", "IgnoreOnIsolate": "no", "InactiveEnterTimestampMonotonic": "0", "InactiveExitTimestamp": "Thu 2024-03-14 13:00:38 UTC", "InactiveExitTimestampMonotonic": "4168250", "InvocationID": "aee44d95e98e4722847c691e6d772d29", "JobRunningTimeoutUSec": "infinity", "JobTimeoutAction": "none", "JobTimeoutUSec": "infinity", "LoadError": "org.freedesktop.systemd1.UnitMasked \"Unit swap.target is masked.\"", "LoadState": "masked", "Names": "swap.target", "NeedDaemonReload": "no", "OnFailureJobMode": "replace", "Perpetual": "no", "RefuseManualStart": "no", "RefuseManualStop": "no", "StartLimitAction": "none", "StartLimitBurst": "5", "StartLimitIntervalUSec": "10s", "StateChangeTimestamp": "Thu 2024-03-14 13:00:38 UTC", "StateChangeTimestampMonotonic": "4168250", "StopWhenUnneeded": "no", "SubState": "active", "SuccessAction": "none", "Transient": "no", "UnitFilePreset": "enabled", "UnitFileState": "masked", "WantedBy": "sysinit.target"}}
+ok: [worker4] => {"changed": false, "name": "swap.target", "status": {"ActiveEnterTimestamp": "Thu 2024-03-14 13:03:14 UTC", "ActiveEnterTimestampMonotonic": "4431631", "ActiveExitTimestampMonotonic": "0", "ActiveState": "active", "AllowIsolate": "no", "AssertResult": "yes", "AssertTimestamp": "Thu 2024-03-14 13:03:14 UTC", "AssertTimestampMonotonic": "4431629", "Before": "run-user-1000.mount sysinit.target", "CanIsolate": "no", "CanReload": "no", "CanStart": "no", "CanStop": "yes", "CollectMode": "inactive", "ConditionResult": "yes", "ConditionTimestamp": "Thu 2024-03-14 13:03:14 UTC", "ConditionTimestampMonotonic": "4431629", "DefaultDependencies": "yes", "Description": "swap.target", "FailureAction": "none", "FragmentPath": "/etc/systemd/system/swap.target", "Id": "swap.target", "IgnoreOnIsolate": "no", "InactiveEnterTimestampMonotonic": "0", "InactiveExitTimestamp": "Thu 2024-03-14 13:03:14 UTC", "InactiveExitTimestampMonotonic": "4431631", "InvocationID": "f8e9cab694544ff19a46a80fe2db9dd3", "JobRunningTimeoutUSec": "infinity", "JobTimeoutAction": "none", "JobTimeoutUSec": "infinity", "LoadError": "org.freedesktop.systemd1.UnitMasked \"Unit swap.target is masked.\"", "LoadState": "masked", "Names": "swap.target", "NeedDaemonReload": "no", "OnFailureJobMode": "replace", "Perpetual": "no", "RefuseManualStart": "no", "RefuseManualStop": "no", "StartLimitAction": "none", "StartLimitBurst": "5", "StartLimitIntervalUSec": "10s", "StateChangeTimestamp": "Thu 2024-03-14 13:03:14 UTC", "StateChangeTimestampMonotonic": "4431631", "StopWhenUnneeded": "no", "SubState": "active", "SuccessAction": "none", "Transient": "no", "UnitFilePreset": "enabled", "UnitFileState": "masked", "WantedBy": "sysinit.target"}}
+ok: [worker3] => {"changed": false, "name": "swap.target", "status": {"ActiveEnterTimestamp": "Thu 2024-03-14 13:02:35 UTC", "ActiveEnterTimestampMonotonic": "5481032", "ActiveExitTimestampMonotonic": "0", "ActiveState": "active", "AllowIsolate": "no", "AssertResult": "yes", "AssertTimestamp": "Thu 2024-03-14 13:02:35 UTC", "AssertTimestampMonotonic": "5481030", "Before": "sysinit.target run-user-1000.mount", "CanIsolate": "no", "CanReload": "no", "CanStart": "no", "CanStop": "yes", "CollectMode": "inactive", "ConditionResult": "yes", "ConditionTimestamp": "Thu 2024-03-14 13:02:35 UTC", "ConditionTimestampMonotonic": "5481030", "DefaultDependencies": "yes", "Description": "swap.target", "FailureAction": "none", "FragmentPath": "/etc/systemd/system/swap.target", "Id": "swap.target", "IgnoreOnIsolate": "no", "InactiveEnterTimestampMonotonic": "0", "InactiveExitTimestamp": "Thu 2024-03-14 13:02:35 UTC", "InactiveExitTimestampMonotonic": "5481032", "InvocationID": "3eb9366585e44a6e8335e60e7e2a8283", "JobRunningTimeoutUSec": "infinity", "JobTimeoutAction": "none", "JobTimeoutUSec": "infinity", "LoadError": "org.freedesktop.systemd1.UnitMasked \"Unit swap.target is masked.\"", "LoadState": "masked", "Names": "swap.target", "NeedDaemonReload": "no", "OnFailureJobMode": "replace", "Perpetual": "no", "RefuseManualStart": "no", "RefuseManualStop": "no", "StartLimitAction": "none", "StartLimitBurst": "5", "StartLimitIntervalUSec": "10s", "StateChangeTimestamp": "Thu 2024-03-14 13:02:35 UTC", "StateChangeTimestampMonotonic": "5481032", "StopWhenUnneeded": "no", "SubState": "active", "SuccessAction": "none", "Transient": "no", "UnitFilePreset": "enabled", "UnitFileState": "masked", "WantedBy": "sysinit.target"}}
+ok: [worker1] => {"changed": false, "name": "swap.target", "status": {"ActiveEnterTimestamp": "Thu 2024-03-14 13:01:24 UTC", "ActiveEnterTimestampMonotonic": "4885737", "ActiveExitTimestampMonotonic": "0", "ActiveState": "active", "AllowIsolate": "no", "AssertResult": "yes", "AssertTimestamp": "Thu 2024-03-14 13:01:24 UTC", "AssertTimestampMonotonic": "4885736", "Before": "run-user-1000.mount sysinit.target", "CanIsolate": "no", "CanReload": "no", "CanStart": "no", "CanStop": "yes", "CollectMode": "inactive", "ConditionResult": "yes", "ConditionTimestamp": "Thu 2024-03-14 13:01:24 UTC", "ConditionTimestampMonotonic": "4885736", "DefaultDependencies": "yes", "Description": "swap.target", "FailureAction": "none", "FragmentPath": "/etc/systemd/system/swap.target", "Id": "swap.target", "IgnoreOnIsolate": "no", "InactiveEnterTimestampMonotonic": "0", "InactiveExitTimestamp": "Thu 2024-03-14 13:01:24 UTC", "InactiveExitTimestampMonotonic": "4885737", "InvocationID": "60549a9afa8f41fd9c6e8008df63286a", "JobRunningTimeoutUSec": "infinity", "JobTimeoutAction": "none", "JobTimeoutUSec": "infinity", "LoadError": "org.freedesktop.systemd1.UnitMasked \"Unit swap.target is masked.\"", "LoadState": "masked", "Names": "swap.target", "NeedDaemonReload": "no", "OnFailureJobMode": "replace", "Perpetual": "no", "RefuseManualStart": "no", "RefuseManualStop": "no", "StartLimitAction": "none", "StartLimitBurst": "5", "StartLimitIntervalUSec": "10s", "StateChangeTimestamp": "Thu 2024-03-14 13:01:24 UTC", "StateChangeTimestampMonotonic": "4885737", "StopWhenUnneeded": "no", "SubState": "active", "SuccessAction": "none", "Transient": "no", "UnitFilePreset": "enabled", "UnitFileState": "masked", "WantedBy": "sysinit.target"}}
+ok: [worker2] => {"changed": false, "name": "swap.target", "status": {"ActiveEnterTimestamp": "Thu 2024-03-14 13:01:53 UTC", "ActiveEnterTimestampMonotonic": "4715901", "ActiveExitTimestampMonotonic": "0", "ActiveState": "active", "AllowIsolate": "no", "AssertResult": "yes", "AssertTimestamp": "Thu 2024-03-14 13:01:53 UTC", "AssertTimestampMonotonic": "4715900", "Before": "sysinit.target run-user-1000.mount", "CanIsolate": "no", "CanReload": "no", "CanStart": "no", "CanStop": "yes", "CollectMode": "inactive", "ConditionResult": "yes", "ConditionTimestamp": "Thu 2024-03-14 13:01:53 UTC", "ConditionTimestampMonotonic": "4715900", "DefaultDependencies": "yes", "Description": "swap.target", "FailureAction": "none", "FragmentPath": "/etc/systemd/system/swap.target", "Id": "swap.target", "IgnoreOnIsolate": "no", "InactiveEnterTimestampMonotonic": "0", "InactiveExitTimestamp": "Thu 2024-03-14 13:01:53 UTC", "InactiveExitTimestampMonotonic": "4715901", "InvocationID": "79a4585a543e4240aa5a0d6051f9d885", "JobRunningTimeoutUSec": "infinity", "JobTimeoutAction": "none", "JobTimeoutUSec": "infinity", "LoadError": "org.freedesktop.systemd1.UnitMasked \"Unit swap.target is masked.\"", "LoadState": "masked", "Names": "swap.target", "NeedDaemonReload": "no", "OnFailureJobMode": "replace", "Perpetual": "no", "RefuseManualStart": "no", "RefuseManualStop": "no", "StartLimitAction": "none", "StartLimitBurst": "5", "StartLimitIntervalUSec": "10s", "StateChangeTimestamp": "Thu 2024-03-14 13:01:53 UTC", "StateChangeTimestampMonotonic": "4715901", "StopWhenUnneeded": "no", "SubState": "active", "SuccessAction": "none", "Transient": "no", "UnitFilePreset": "enabled", "UnitFileState": "masked", "WantedBy": "sysinit.target"}}
+Четверг 14 марта 2024  17:41:29 +0300 (0:00:01.424)       0:00:28.466 ********* 
+
+TASK [kubernetes/preinstall : Disable swap] ******************************************************************************************************************
+changed: [worker4] => {"changed": true, "cmd": ["/sbin/swapoff", "-a"], "delta": "0:00:00.004205", "end": "2024-03-14 14:41:30.503503", "msg": "", "rc": 0, "start": "2024-03-14 14:41:30.499298", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+changed: [masterk8s] => {"changed": true, "cmd": ["/sbin/swapoff", "-a"], "delta": "0:00:00.003876", "end": "2024-03-14 14:41:30.492430", "msg": "", "rc": 0, "start": "2024-03-14 14:41:30.488554", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+changed: [worker3] => {"changed": true, "cmd": ["/sbin/swapoff", "-a"], "delta": "0:00:00.004029", "end": "2024-03-14 14:41:30.533248", "msg": "", "rc": 0, "start": "2024-03-14 14:41:30.529219", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+changed: [worker1] => {"changed": true, "cmd": ["/sbin/swapoff", "-a"], "delta": "0:00:00.003926", "end": "2024-03-14 14:41:30.573795", "msg": "", "rc": 0, "start": "2024-03-14 14:41:30.569869", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+changed: [worker2] => {"changed": true, "cmd": ["/sbin/swapoff", "-a"], "delta": "0:00:00.003866", "end": "2024-03-14 14:41:30.618964", "msg": "", "rc": 0, "start": "2024-03-14 14:41:30.615098", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+Четверг 14 марта 2024  17:41:30 +0300 (0:00:01.026)       0:00:29.493 ********* 
+Четверг 14 марта 2024  17:41:30 +0300 (0:00:00.183)       0:00:29.677 ********* 
+Четверг 14 марта 2024  17:41:31 +0300 (0:00:00.301)       0:00:29.979 ********* 
+Четверг 14 марта 2024  17:41:31 +0300 (0:00:00.462)       0:00:30.442 ********* 
+
+TASK [kubernetes/preinstall : Check if booted with ostree] ***************************************************************************************************
+ok: [masterk8s] => {"changed": false, "stat": {"exists": false}}
+ok: [worker1] => {"changed": false, "stat": {"exists": false}}
+ok: [worker3] => {"changed": false, "stat": {"exists": false}}
+ok: [worker4] => {"changed": false, "stat": {"exists": false}}
+ok: [worker2] => {"changed": false, "stat": {"exists": false}}
+Четверг 14 марта 2024  17:41:32 +0300 (0:00:00.703)       0:00:31.145 ********* 
+
+TASK [kubernetes/preinstall : Set is_fedora_coreos] **********************************************************************************************************
+ok: [worker4] => {"backup": "", "changed": false, "msg": "line added"}
+ok: [masterk8s] => {"backup": "", "changed": false, "msg": "line added"}
+ok: [worker3] => {"backup": "", "changed": false, "msg": "line added"}
+ok: [worker1] => {"backup": "", "changed": false, "msg": "line added"}
+ok: [worker2] => {"backup": "", "changed": false, "msg": "line added"}
+Четверг 14 марта 2024  17:41:33 +0300 (0:00:00.909)       0:00:32.055 ********* 
+
+TASK [kubernetes/preinstall : Set is_fedora_coreos] **********************************************************************************************************
+ok: [masterk8s] => {"ansible_facts": {"is_fedora_coreos": false}, "changed": false}
+ok: [worker1] => {"ansible_facts": {"is_fedora_coreos": false}, "changed": false}
+ok: [worker2] => {"ansible_facts": {"is_fedora_coreos": false}, "changed": false}
+ok: [worker3] => {"ansible_facts": {"is_fedora_coreos": false}, "changed": false}
+ok: [worker4] => {"ansible_facts": {"is_fedora_coreos": false}, "changed": false}
+Четверг 14 марта 2024  17:41:33 +0300 (0:00:00.420)       0:00:32.476 ********* 
+
+TASK [kubernetes/preinstall : Check resolvconf] **************************************************************************************************************
+ok: [masterk8s] => {"changed": false, "cmd": ["which", "resolvconf"], "delta": "0:00:00.003285", "end": "2024-03-14 14:41:34.059721", "failed_when_result": false, "msg": "non-zero return code", "rc": 1, "start": "2024-03-14 14:41:34.056436", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+ok: [worker4] => {"changed": false, "cmd": ["which", "resolvconf"], "delta": "0:00:00.003697", "end": "2024-03-14 14:41:34.184781", "failed_when_result": false, "msg": "non-zero return code", "rc": 1, "start": "2024-03-14 14:41:34.181084", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+ok: [worker3] => {"changed": false, "cmd": ["which", "resolvconf"], "delta": "0:00:00.003497", "end": "2024-03-14 14:41:34.186870", "failed_when_result": false, "msg": "non-zero return code", "rc": 1, "start": "2024-03-14 14:41:34.183373", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+ok: [worker2] => {"changed": false, "cmd": ["which", "resolvconf"], "delta": "0:00:00.003432", "end": "2024-03-14 14:41:34.300484", "failed_when_result": false, "msg": "non-zero return code", "rc": 1, "start": "2024-03-14 14:41:34.297052", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+ok: [worker1] => {"changed": false, "cmd": ["which", "resolvconf"], "delta": "0:00:00.003419", "end": "2024-03-14 14:41:34.312024", "failed_when_result": false, "msg": "non-zero return code", "rc": 1, "start": "2024-03-14 14:41:34.308605", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+Четверг 14 марта 2024  17:41:34 +0300 (0:00:00.699)       0:00:33.175 ********* 
+
+TASK [kubernetes/preinstall : Check existence of /etc/resolvconf/resolv.conf.d] ******************************************************************************
+ok: [masterk8s] => {"changed": false, "failed_when_result": false, "stat": {"exists": false}}
+ok: [worker1] => {"changed": false, "failed_when_result": false, "stat": {"exists": false}}
+ok: [worker2] => {"changed": false, "failed_when_result": false, "stat": {"exists": false}}
+ok: [worker3] => {"changed": false, "failed_when_result": false, "stat": {"exists": false}}
+ok: [worker4] => {"changed": false, "failed_when_result": false, "stat": {"exists": false}}
+Четверг 14 марта 2024  17:41:35 +0300 (0:00:00.836)       0:00:34.012 ********* 
+
+TASK [kubernetes/preinstall : Check status of /etc/resolv.conf] **********************************************************************************************
+ok: [masterk8s] => {"changed": false, "failed_when_result": false, "stat": {"atime": 1710421244.8119998, "block_size": 4096, "blocks": 0, "ctime": 1671011749.425064, "dev": 64514, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 135986, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": true, "isreg": false, "issock": false, "isuid": false, "lnk_source": "/run/systemd/resolve/stub-resolv.conf", "lnk_target": "../run/systemd/resolve/stub-resolv.conf", "mode": "0777", "mtime": 1671011749.425064, "nlink": 1, "path": "/etc/resolv.conf", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 39, "uid": 0, "wgrp": true, "woth": true, "writeable": true, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+ok: [worker3] => {"changed": false, "failed_when_result": false, "stat": {"atime": 1710421360.0919998, "block_size": 4096, "blocks": 0, "ctime": 1671011749.425064, "dev": 64514, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 135986, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": true, "isreg": false, "issock": false, "isuid": false, "lnk_source": "/run/systemd/resolve/stub-resolv.conf", "lnk_target": "../run/systemd/resolve/stub-resolv.conf", "mode": "0777", "mtime": 1671011749.425064, "nlink": 1, "path": "/etc/resolv.conf", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 39, "uid": 0, "wgrp": true, "woth": true, "writeable": true, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+ok: [worker4] => {"changed": false, "failed_when_result": false, "stat": {"atime": 1710421400.8359997, "block_size": 4096, "blocks": 0, "ctime": 1671011749.425064, "dev": 64514, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 135986, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": true, "isreg": false, "issock": false, "isuid": false, "lnk_source": "/run/systemd/resolve/stub-resolv.conf", "lnk_target": "../run/systemd/resolve/stub-resolv.conf", "mode": "0777", "mtime": 1671011749.425064, "nlink": 1, "path": "/etc/resolv.conf", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 39, "uid": 0, "wgrp": true, "woth": true, "writeable": true, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+ok: [worker2] => {"changed": false, "failed_when_result": false, "stat": {"atime": 1710421318.6599996, "block_size": 4096, "blocks": 0, "ctime": 1671011749.425064, "dev": 64514, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 135986, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": true, "isreg": false, "issock": false, "isuid": false, "lnk_source": "/run/systemd/resolve/stub-resolv.conf", "lnk_target": "../run/systemd/resolve/stub-resolv.conf", "mode": "0777", "mtime": 1671011749.425064, "nlink": 1, "path": "/etc/resolv.conf", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 39, "uid": 0, "wgrp": true, "woth": true, "writeable": true, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+ok: [worker1] => {"changed": false, "failed_when_result": false, "stat": {"atime": 1710421290.1399994, "block_size": 4096, "blocks": 0, "ctime": 1671011749.425064, "dev": 64514, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 135986, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": true, "isreg": false, "issock": false, "isuid": false, "lnk_source": "/run/systemd/resolve/stub-resolv.conf", "lnk_target": "../run/systemd/resolve/stub-resolv.conf", "mode": "0777", "mtime": 1671011749.425064, "nlink": 1, "path": "/etc/resolv.conf", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 39, "uid": 0, "wgrp": true, "woth": true, "writeable": true, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+Четверг 14 марта 2024  17:41:35 +0300 (0:00:00.766)       0:00:34.779 ********* 
+
+TASK [kubernetes/preinstall : Get content of /etc/resolv.conf] ***********************************************************************************************
+ok: [worker4] => {"changed": false, "content": "IyBUaGlzIGZpbGUgaXMgbWFuYWdlZCBieSBtYW46c3lzdGVtZC1yZXNvbHZlZCg4KS4gRG8gbm90IGVkaXQuCiMKIyBUaGlzIGlzIGEgZHluYW1pYyByZXNvbHYuY29uZiBmaWxlIGZvciBjb25uZWN0aW5nIGxvY2FsIGNsaWVudHMgdG8gdGhlCiMgaW50ZXJuYWwgRE5TIHN0dWIgcmVzb2x2ZXIgb2Ygc3lzdGVtZC1yZXNvbHZlZC4gVGhpcyBmaWxlIGxpc3RzIGFsbAojIGNvbmZpZ3VyZWQgc2VhcmNoIGRvbWFpbnMuCiMKIyBSdW4gInJlc29sdmVjdGwgc3RhdHVzIiB0byBzZWUgZGV0YWlscyBhYm91dCB0aGUgdXBsaW5rIEROUyBzZXJ2ZXJzCiMgY3VycmVudGx5IGluIHVzZS4KIwojIFRoaXJkIHBhcnR5IHByb2dyYW1zIG11c3Qgbm90IGFjY2VzcyB0aGlzIGZpbGUgZGlyZWN0bHksIGJ1dCBvbmx5IHRocm91Z2ggdGhlCiMgc3ltbGluayBhdCAvZXRjL3Jlc29sdi5jb25mLiBUbyBtYW5hZ2UgbWFuOnJlc29sdi5jb25mKDUpIGluIGEgZGlmZmVyZW50IHdheSwKIyByZXBsYWNlIHRoaXMgc3ltbGluayBieSBhIHN0YXRpYyBmaWxlIG9yIGEgZGlmZmVyZW50IHN5bWxpbmsuCiMKIyBTZWUgbWFuOnN5c3RlbWQtcmVzb2x2ZWQuc2VydmljZSg4KSBmb3IgZGV0YWlscyBhYm91dCB0aGUgc3VwcG9ydGVkIG1vZGVzIG9mCiMgb3BlcmF0aW9uIGZvciAvZXRjL3Jlc29sdi5jb25mLgoKbmFtZXNlcnZlciAxMjcuMC4wLjUzCm9wdGlvbnMgZWRuczAgdHJ1c3QtYWQKc2VhcmNoIHJ1LWNlbnRyYWwxLmludGVybmFsIGF1dG8uaW50ZXJuYWwK", "encoding": "base64", "source": "/etc/resolv.conf"}
+ok: [masterk8s] => {"changed": false, "content": "IyBUaGlzIGZpbGUgaXMgbWFuYWdlZCBieSBtYW46c3lzdGVtZC1yZXNvbHZlZCg4KS4gRG8gbm90IGVkaXQuCiMKIyBUaGlzIGlzIGEgZHluYW1pYyByZXNvbHYuY29uZiBmaWxlIGZvciBjb25uZWN0aW5nIGxvY2FsIGNsaWVudHMgdG8gdGhlCiMgaW50ZXJuYWwgRE5TIHN0dWIgcmVzb2x2ZXIgb2Ygc3lzdGVtZC1yZXNvbHZlZC4gVGhpcyBmaWxlIGxpc3RzIGFsbAojIGNvbmZpZ3VyZWQgc2VhcmNoIGRvbWFpbnMuCiMKIyBSdW4gInJlc29sdmVjdGwgc3RhdHVzIiB0byBzZWUgZGV0YWlscyBhYm91dCB0aGUgdXBsaW5rIEROUyBzZXJ2ZXJzCiMgY3VycmVudGx5IGluIHVzZS4KIwojIFRoaXJkIHBhcnR5IHByb2dyYW1zIG11c3Qgbm90IGFjY2VzcyB0aGlzIGZpbGUgZGlyZWN0bHksIGJ1dCBvbmx5IHRocm91Z2ggdGhlCiMgc3ltbGluayBhdCAvZXRjL3Jlc29sdi5jb25mLiBUbyBtYW5hZ2UgbWFuOnJlc29sdi5jb25mKDUpIGluIGEgZGlmZmVyZW50IHdheSwKIyByZXBsYWNlIHRoaXMgc3ltbGluayBieSBhIHN0YXRpYyBmaWxlIG9yIGEgZGlmZmVyZW50IHN5bWxpbmsuCiMKIyBTZWUgbWFuOnN5c3RlbWQtcmVzb2x2ZWQuc2VydmljZSg4KSBmb3IgZGV0YWlscyBhYm91dCB0aGUgc3VwcG9ydGVkIG1vZGVzIG9mCiMgb3BlcmF0aW9uIGZvciAvZXRjL3Jlc29sdi5jb25mLgoKbmFtZXNlcnZlciAxMjcuMC4wLjUzCm9wdGlvbnMgZWRuczAgdHJ1c3QtYWQKc2VhcmNoIHJ1LWNlbnRyYWwxLmludGVybmFsIGF1dG8uaW50ZXJuYWwK", "encoding": "base64", "source": "/etc/resolv.conf"}
+ok: [worker3] => {"changed": false, "content": "IyBUaGlzIGZpbGUgaXMgbWFuYWdlZCBieSBtYW46c3lzdGVtZC1yZXNvbHZlZCg4KS4gRG8gbm90IGVkaXQuCiMKIyBUaGlzIGlzIGEgZHluYW1pYyByZXNvbHYuY29uZiBmaWxlIGZvciBjb25uZWN0aW5nIGxvY2FsIGNsaWVudHMgdG8gdGhlCiMgaW50ZXJuYWwgRE5TIHN0dWIgcmVzb2x2ZXIgb2Ygc3lzdGVtZC1yZXNvbHZlZC4gVGhpcyBmaWxlIGxpc3RzIGFsbAojIGNvbmZpZ3VyZWQgc2VhcmNoIGRvbWFpbnMuCiMKIyBSdW4gInJlc29sdmVjdGwgc3RhdHVzIiB0byBzZWUgZGV0YWlscyBhYm91dCB0aGUgdXBsaW5rIEROUyBzZXJ2ZXJzCiMgY3VycmVudGx5IGluIHVzZS4KIwojIFRoaXJkIHBhcnR5IHByb2dyYW1zIG11c3Qgbm90IGFjY2VzcyB0aGlzIGZpbGUgZGlyZWN0bHksIGJ1dCBvbmx5IHRocm91Z2ggdGhlCiMgc3ltbGluayBhdCAvZXRjL3Jlc29sdi5jb25mLiBUbyBtYW5hZ2UgbWFuOnJlc29sdi5jb25mKDUpIGluIGEgZGlmZmVyZW50IHdheSwKIyByZXBsYWNlIHRoaXMgc3ltbGluayBieSBhIHN0YXRpYyBmaWxlIG9yIGEgZGlmZmVyZW50IHN5bWxpbmsuCiMKIyBTZWUgbWFuOnN5c3RlbWQtcmVzb2x2ZWQuc2VydmljZSg4KSBmb3IgZGV0YWlscyBhYm91dCB0aGUgc3VwcG9ydGVkIG1vZGVzIG9mCiMgb3BlcmF0aW9uIGZvciAvZXRjL3Jlc29sdi5jb25mLgoKbmFtZXNlcnZlciAxMjcuMC4wLjUzCm9wdGlvbnMgZWRuczAgdHJ1c3QtYWQKc2VhcmNoIHJ1LWNlbnRyYWwxLmludGVybmFsIGF1dG8uaW50ZXJuYWwK", "encoding": "base64", "source": "/etc/resolv.conf"}
+ok: [worker2] => {"changed": false, "content": "IyBUaGlzIGZpbGUgaXMgbWFuYWdlZCBieSBtYW46c3lzdGVtZC1yZXNvbHZlZCg4KS4gRG8gbm90IGVkaXQuCiMKIyBUaGlzIGlzIGEgZHluYW1pYyByZXNvbHYuY29uZiBmaWxlIGZvciBjb25uZWN0aW5nIGxvY2FsIGNsaWVudHMgdG8gdGhlCiMgaW50ZXJuYWwgRE5TIHN0dWIgcmVzb2x2ZXIgb2Ygc3lzdGVtZC1yZXNvbHZlZC4gVGhpcyBmaWxlIGxpc3RzIGFsbAojIGNvbmZpZ3VyZWQgc2VhcmNoIGRvbWFpbnMuCiMKIyBSdW4gInJlc29sdmVjdGwgc3RhdHVzIiB0byBzZWUgZGV0YWlscyBhYm91dCB0aGUgdXBsaW5rIEROUyBzZXJ2ZXJzCiMgY3VycmVudGx5IGluIHVzZS4KIwojIFRoaXJkIHBhcnR5IHByb2dyYW1zIG11c3Qgbm90IGFjY2VzcyB0aGlzIGZpbGUgZGlyZWN0bHksIGJ1dCBvbmx5IHRocm91Z2ggdGhlCiMgc3ltbGluayBhdCAvZXRjL3Jlc29sdi5jb25mLiBUbyBtYW5hZ2UgbWFuOnJlc29sdi5jb25mKDUpIGluIGEgZGlmZmVyZW50IHdheSwKIyByZXBsYWNlIHRoaXMgc3ltbGluayBieSBhIHN0YXRpYyBmaWxlIG9yIGEgZGlmZmVyZW50IHN5bWxpbmsuCiMKIyBTZWUgbWFuOnN5c3RlbWQtcmVzb2x2ZWQuc2VydmljZSg4KSBmb3IgZGV0YWlscyBhYm91dCB0aGUgc3VwcG9ydGVkIG1vZGVzIG9mCiMgb3BlcmF0aW9uIGZvciAvZXRjL3Jlc29sdi5jb25mLgoKbmFtZXNlcnZlciAxMjcuMC4wLjUzCm9wdGlvbnMgZWRuczAgdHJ1c3QtYWQKc2VhcmNoIHJ1LWNlbnRyYWwxLmludGVybmFsIGF1dG8uaW50ZXJuYWwK", "encoding": "base64", "source": "/etc/resolv.conf"}
+ok: [worker1] => {"changed": false, "content": "IyBUaGlzIGZpbGUgaXMgbWFuYWdlZCBieSBtYW46c3lzdGVtZC1yZXNvbHZlZCg4KS4gRG8gbm90IGVkaXQuCiMKIyBUaGlzIGlzIGEgZHluYW1pYyByZXNvbHYuY29uZiBmaWxlIGZvciBjb25uZWN0aW5nIGxvY2FsIGNsaWVudHMgdG8gdGhlCiMgaW50ZXJuYWwgRE5TIHN0dWIgcmVzb2x2ZXIgb2Ygc3lzdGVtZC1yZXNvbHZlZC4gVGhpcyBmaWxlIGxpc3RzIGFsbAojIGNvbmZpZ3VyZWQgc2VhcmNoIGRvbWFpbnMuCiMKIyBSdW4gInJlc29sdmVjdGwgc3RhdHVzIiB0byBzZWUgZGV0YWlscyBhYm91dCB0aGUgdXBsaW5rIEROUyBzZXJ2ZXJzCiMgY3VycmVudGx5IGluIHVzZS4KIwojIFRoaXJkIHBhcnR5IHByb2dyYW1zIG11c3Qgbm90IGFjY2VzcyB0aGlzIGZpbGUgZGlyZWN0bHksIGJ1dCBvbmx5IHRocm91Z2ggdGhlCiMgc3ltbGluayBhdCAvZXRjL3Jlc29sdi5jb25mLiBUbyBtYW5hZ2UgbWFuOnJlc29sdi5jb25mKDUpIGluIGEgZGlmZmVyZW50IHdheSwKIyByZXBsYWNlIHRoaXMgc3ltbGluayBieSBhIHN0YXRpYyBmaWxlIG9yIGEgZGlmZmVyZW50IHN5bWxpbmsuCiMKIyBTZWUgbWFuOnN5c3RlbWQtcmVzb2x2ZWQuc2VydmljZSg4KSBmb3IgZGV0YWlscyBhYm91dCB0aGUgc3VwcG9ydGVkIG1vZGVzIG9mCiMgb3BlcmF0aW9uIGZvciAvZXRjL3Jlc29sdi5jb25mLgoKbmFtZXNlcnZlciAxMjcuMC4wLjUzCm9wdGlvbnMgZWRuczAgdHJ1c3QtYWQKc2VhcmNoIHJ1LWNlbnRyYWwxLmludGVybmFsIGF1dG8uaW50ZXJuYWwK", "encoding": "base64", "source": "/etc/resolv.conf"}
+Четверг 14 марта 2024  17:41:37 +0300 (0:00:01.583)       0:00:36.362 ********* 
+
+TASK [kubernetes/preinstall : Get currently configured nameservers] ******************************************************************************************
+ok: [masterk8s] => {"ansible_facts": {"configured_nameservers": ["127.0.0.53"]}, "changed": false}
+ok: [worker1] => {"ansible_facts": {"configured_nameservers": ["127.0.0.53"]}, "changed": false}
+ok: [worker2] => {"ansible_facts": {"configured_nameservers": ["127.0.0.53"]}, "changed": false}
+ok: [worker3] => {"ansible_facts": {"configured_nameservers": ["127.0.0.53"]}, "changed": false}
+ok: [worker4] => {"ansible_facts": {"configured_nameservers": ["127.0.0.53"]}, "changed": false}
+Четверг 14 марта 2024  17:41:38 +0300 (0:00:00.685)       0:00:37.048 ********* 
+
+TASK [kubernetes/preinstall : Stop if /etc/resolv.conf not configured nameservers] ***************************************************************************
+ok: [masterk8s] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker2] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker1] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker3] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker4] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+Четверг 14 марта 2024  17:41:38 +0300 (0:00:00.678)       0:00:37.727 ********* 
+
+TASK [kubernetes/preinstall : NetworkManager | Check if host has NetworkManager] *****************************************************************************
+ok: [masterk8s] => {"changed": false, "cmd": ["systemctl", "is-active", "--quiet", "NetworkManager.service"], "delta": "0:00:00.006064", "end": "2024-03-14 14:41:39.321239", "failed_when_result": false, "msg": "non-zero return code", "rc": 3, "start": "2024-03-14 14:41:39.315175", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+ok: [worker4] => {"changed": false, "cmd": ["systemctl", "is-active", "--quiet", "NetworkManager.service"], "delta": "0:00:00.006389", "end": "2024-03-14 14:41:39.432019", "failed_when_result": false, "msg": "non-zero return code", "rc": 3, "start": "2024-03-14 14:41:39.425630", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+ok: [worker3] => {"changed": false, "cmd": ["systemctl", "is-active", "--quiet", "NetworkManager.service"], "delta": "0:00:00.005924", "end": "2024-03-14 14:41:39.441764", "failed_when_result": false, "msg": "non-zero return code", "rc": 3, "start": "2024-03-14 14:41:39.435840", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+ok: [worker1] => {"changed": false, "cmd": ["systemctl", "is-active", "--quiet", "NetworkManager.service"], "delta": "0:00:00.005654", "end": "2024-03-14 14:41:39.611352", "failed_when_result": false, "msg": "non-zero return code", "rc": 3, "start": "2024-03-14 14:41:39.605698", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+ok: [worker2] => {"changed": false, "cmd": ["systemctl", "is-active", "--quiet", "NetworkManager.service"], "delta": "0:00:00.005914", "end": "2024-03-14 14:41:39.644708", "failed_when_result": false, "msg": "non-zero return code", "rc": 3, "start": "2024-03-14 14:41:39.638794", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+Четверг 14 марта 2024  17:41:39 +0300 (0:00:00.793)       0:00:38.520 ********* 
+
+TASK [kubernetes/preinstall : Check systemd-resolved] ********************************************************************************************************
+ok: [masterk8s] => {"changed": false, "cmd": ["systemctl", "is-active", "systemd-resolved"], "delta": "0:00:00.006020", "end": "2024-03-14 14:41:40.092783", "failed_when_result": false, "msg": "", "rc": 0, "start": "2024-03-14 14:41:40.086763", "stderr": "", "stderr_lines": [], "stdout": "active", "stdout_lines": ["active"]}
+ok: [worker4] => {"changed": false, "cmd": ["systemctl", "is-active", "systemd-resolved"], "delta": "0:00:00.006412", "end": "2024-03-14 14:41:40.207730", "failed_when_result": false, "msg": "", "rc": 0, "start": "2024-03-14 14:41:40.201318", "stderr": "", "stderr_lines": [], "stdout": "active", "stdout_lines": ["active"]}
+ok: [worker3] => {"changed": false, "cmd": ["systemctl", "is-active", "systemd-resolved"], "delta": "0:00:00.006008", "end": "2024-03-14 14:41:40.208515", "failed_when_result": false, "msg": "", "rc": 0, "start": "2024-03-14 14:41:40.202507", "stderr": "", "stderr_lines": [], "stdout": "active", "stdout_lines": ["active"]}
+ok: [worker1] => {"changed": false, "cmd": ["systemctl", "is-active", "systemd-resolved"], "delta": "0:00:00.006083", "end": "2024-03-14 14:41:40.322670", "failed_when_result": false, "msg": "", "rc": 0, "start": "2024-03-14 14:41:40.316587", "stderr": "", "stderr_lines": [], "stdout": "active", "stdout_lines": ["active"]}
+ok: [worker2] => {"changed": false, "cmd": ["systemctl", "is-active", "systemd-resolved"], "delta": "0:00:00.005784", "end": "2024-03-14 14:41:40.322503", "failed_when_result": false, "msg": "", "rc": 0, "start": "2024-03-14 14:41:40.316719", "stderr": "", "stderr_lines": [], "stdout": "active", "stdout_lines": ["active"]}
+Четверг 14 марта 2024  17:41:40 +0300 (0:00:00.678)       0:00:39.198 ********* 
+
+TASK [kubernetes/preinstall : Set default dns if remove_default_searchdomains is false] **********************************************************************
+ok: [masterk8s] => {"ansible_facts": {"default_searchdomains": ["default.svc.cluster.local", "svc.cluster.local"]}, "changed": false}
+ok: [worker1] => {"ansible_facts": {"default_searchdomains": ["default.svc.cluster.local", "svc.cluster.local"]}, "changed": false}
+ok: [worker2] => {"ansible_facts": {"default_searchdomains": ["default.svc.cluster.local", "svc.cluster.local"]}, "changed": false}
+ok: [worker3] => {"ansible_facts": {"default_searchdomains": ["default.svc.cluster.local", "svc.cluster.local"]}, "changed": false}
+ok: [worker4] => {"ansible_facts": {"default_searchdomains": ["default.svc.cluster.local", "svc.cluster.local"]}, "changed": false}
+Четверг 14 марта 2024  17:41:40 +0300 (0:00:00.534)       0:00:39.732 ********* 
+
+TASK [kubernetes/preinstall : Set dns facts] *****************************************************************************************************************
+ok: [masterk8s] => {"ansible_facts": {"bogus_domains": "cluster.local.default.svc.cluster.local./default.svc.cluster.local.default.svc.cluster.local./com.default.svc.cluster.local./cluster.local.svc.cluster.local./svc.cluster.local.svc.cluster.local./com.svc.cluster.local./", "cloud_resolver": [], "resolvconf": false}, "changed": false}
+ok: [worker1] => {"ansible_facts": {"bogus_domains": "cluster.local.default.svc.cluster.local./default.svc.cluster.local.default.svc.cluster.local./com.default.svc.cluster.local./cluster.local.svc.cluster.local./svc.cluster.local.svc.cluster.local./com.svc.cluster.local./", "cloud_resolver": [], "resolvconf": false}, "changed": false}
+ok: [worker2] => {"ansible_facts": {"bogus_domains": "cluster.local.default.svc.cluster.local./default.svc.cluster.local.default.svc.cluster.local./com.default.svc.cluster.local./cluster.local.svc.cluster.local./svc.cluster.local.svc.cluster.local./com.svc.cluster.local./", "cloud_resolver": [], "resolvconf": false}, "changed": false}
+ok: [worker3] => {"ansible_facts": {"bogus_domains": "cluster.local.default.svc.cluster.local./default.svc.cluster.local.default.svc.cluster.local./com.default.svc.cluster.local./cluster.local.svc.cluster.local./svc.cluster.local.svc.cluster.local./com.svc.cluster.local./", "cloud_resolver": [], "resolvconf": false}, "changed": false}
+ok: [worker4] => {"ansible_facts": {"bogus_domains": "cluster.local.default.svc.cluster.local./default.svc.cluster.local.default.svc.cluster.local./com.default.svc.cluster.local./cluster.local.svc.cluster.local./svc.cluster.local.svc.cluster.local./com.svc.cluster.local./", "cloud_resolver": [], "resolvconf": false}, "changed": false}
+Четверг 14 марта 2024  17:41:41 +0300 (0:00:00.672)       0:00:40.404 ********* 
+
+TASK [kubernetes/preinstall : Check if kubelet is configured] ************************************************************************************************
+ok: [masterk8s] => {"changed": false, "stat": {"exists": false}}
+ok: [worker3] => {"changed": false, "stat": {"exists": false}}
+ok: [worker1] => {"changed": false, "stat": {"exists": false}}
+ok: [worker4] => {"changed": false, "stat": {"exists": false}}
+ok: [worker2] => {"changed": false, "stat": {"exists": false}}
+Четверг 14 марта 2024  17:41:42 +0300 (0:00:00.957)       0:00:41.362 ********* 
+
+TASK [kubernetes/preinstall : Check if early DNS configuration stage] ****************************************************************************************
+ok: [masterk8s] => {"ansible_facts": {"dns_early": true}, "changed": false}
+ok: [worker1] => {"ansible_facts": {"dns_early": true}, "changed": false}
+ok: [worker2] => {"ansible_facts": {"dns_early": true}, "changed": false}
+ok: [worker3] => {"ansible_facts": {"dns_early": true}, "changed": false}
+ok: [worker4] => {"ansible_facts": {"dns_early": true}, "changed": false}
+Четверг 14 марта 2024  17:41:43 +0300 (0:00:00.714)       0:00:42.076 ********* 
+
+TASK [kubernetes/preinstall : Target resolv.conf files] ******************************************************************************************************
+ok: [masterk8s] => {"ansible_facts": {"base": "", "head": "", "resolvconffile": "/etc/resolv.conf"}, "changed": false}
+ok: [worker1] => {"ansible_facts": {"base": "", "head": "", "resolvconffile": "/etc/resolv.conf"}, "changed": false}
+ok: [worker2] => {"ansible_facts": {"base": "", "head": "", "resolvconffile": "/etc/resolv.conf"}, "changed": false}
+ok: [worker3] => {"ansible_facts": {"base": "", "head": "", "resolvconffile": "/etc/resolv.conf"}, "changed": false}
+ok: [worker4] => {"ansible_facts": {"base": "", "head": "", "resolvconffile": "/etc/resolv.conf"}, "changed": false}
+Четверг 14 марта 2024  17:41:43 +0300 (0:00:00.511)       0:00:42.588 ********* 
+Четверг 14 марта 2024  17:41:43 +0300 (0:00:00.144)       0:00:42.732 ********* 
+
+TASK [kubernetes/preinstall : Check if /etc/dhclient.conf exists] ********************************************************************************************
+ok: [masterk8s] => {"changed": false, "stat": {"exists": false}}
+ok: [worker4] => {"changed": false, "stat": {"exists": false}}
+ok: [worker3] => {"changed": false, "stat": {"exists": false}}
+ok: [worker1] => {"changed": false, "stat": {"exists": false}}
+ok: [worker2] => {"changed": false, "stat": {"exists": false}}
+Четверг 14 марта 2024  17:41:44 +0300 (0:00:00.697)       0:00:43.430 ********* 
+Четверг 14 марта 2024  17:41:44 +0300 (0:00:00.117)       0:00:43.547 ********* 
+
+TASK [kubernetes/preinstall : Check if /etc/dhcp/dhclient.conf exists] ***************************************************************************************
+ok: [masterk8s] => {"changed": false, "stat": {"atime": 1709912659.4989083, "block_size": 4096, "blocks": 8, "ctime": 1671011737.917064, "dev": 64514, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 131195, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mode": "0644", "mtime": 1582663018.0, "nlink": 1, "path": "/etc/dhcp/dhclient.conf", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 1735, "uid": 0, "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [worker4] => {"changed": false, "stat": {"atime": 1709912659.4989083, "block_size": 4096, "blocks": 8, "ctime": 1671011737.917064, "dev": 64514, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 131195, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mode": "0644", "mtime": 1582663018.0, "nlink": 1, "path": "/etc/dhcp/dhclient.conf", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 1735, "uid": 0, "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [worker3] => {"changed": false, "stat": {"atime": 1709912659.4989083, "block_size": 4096, "blocks": 8, "ctime": 1671011737.917064, "dev": 64514, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 131195, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mode": "0644", "mtime": 1582663018.0, "nlink": 1, "path": "/etc/dhcp/dhclient.conf", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 1735, "uid": 0, "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [worker1] => {"changed": false, "stat": {"atime": 1709912659.4989083, "block_size": 4096, "blocks": 8, "ctime": 1671011737.917064, "dev": 64514, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 131195, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mode": "0644", "mtime": 1582663018.0, "nlink": 1, "path": "/etc/dhcp/dhclient.conf", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 1735, "uid": 0, "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+ok: [worker2] => {"changed": false, "stat": {"atime": 1709912659.4989083, "block_size": 4096, "blocks": 8, "ctime": 1671011737.917064, "dev": 64514, "device_type": 0, "executable": false, "exists": true, "gid": 0, "gr_name": "root", "inode": 131195, "isblk": false, "ischr": false, "isdir": false, "isfifo": false, "isgid": false, "islnk": false, "isreg": true, "issock": false, "isuid": false, "mode": "0644", "mtime": 1582663018.0, "nlink": 1, "path": "/etc/dhcp/dhclient.conf", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 1735, "uid": 0, "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": false, "xoth": false, "xusr": false}}
+Четверг 14 марта 2024  17:41:45 +0300 (0:00:00.859)       0:00:44.406 ********* 
+
+TASK [kubernetes/preinstall : Target dhclient conf file for /etc/dhcp/dhclient.conf] *************************************************************************
+ok: [masterk8s] => {"ansible_facts": {"dhclientconffile": "/etc/dhcp/dhclient.conf"}, "changed": false}
+ok: [worker1] => {"ansible_facts": {"dhclientconffile": "/etc/dhcp/dhclient.conf"}, "changed": false}
+ok: [worker2] => {"ansible_facts": {"dhclientconffile": "/etc/dhcp/dhclient.conf"}, "changed": false}
+ok: [worker3] => {"ansible_facts": {"dhclientconffile": "/etc/dhcp/dhclient.conf"}, "changed": false}
+ok: [worker4] => {"ansible_facts": {"dhclientconffile": "/etc/dhcp/dhclient.conf"}, "changed": false}
+Четверг 14 марта 2024  17:41:45 +0300 (0:00:00.398)       0:00:44.805 ********* 
+Четверг 14 марта 2024  17:41:46 +0300 (0:00:00.162)       0:00:44.968 ********* 
+
+TASK [kubernetes/preinstall : Target dhclient hook file for Debian family] ***********************************************************************************
+ok: [masterk8s] => {"ansible_facts": {"dhclienthookfile": "/etc/dhcp/dhclient-exit-hooks.d/zdnsupdate"}, "changed": false}
+ok: [worker1] => {"ansible_facts": {"dhclienthookfile": "/etc/dhcp/dhclient-exit-hooks.d/zdnsupdate"}, "changed": false}
+ok: [worker2] => {"ansible_facts": {"dhclienthookfile": "/etc/dhcp/dhclient-exit-hooks.d/zdnsupdate"}, "changed": false}
+ok: [worker3] => {"ansible_facts": {"dhclienthookfile": "/etc/dhcp/dhclient-exit-hooks.d/zdnsupdate"}, "changed": false}
+ok: [worker4] => {"ansible_facts": {"dhclienthookfile": "/etc/dhcp/dhclient-exit-hooks.d/zdnsupdate"}, "changed": false}
+Четверг 14 марта 2024  17:41:46 +0300 (0:00:00.513)       0:00:45.481 ********* 
+
+TASK [kubernetes/preinstall : Generate search domains to resolvconf] *****************************************************************************************
+ok: [masterk8s] => {"ansible_facts": {"domainentry": "domain cluster.local", "searchentries": "search default.svc.cluster.local svc.cluster.local", "supersede_domain": "supersede domain-name \"cluster.local\";", "supersede_search": "supersede domain-search \"default.svc.cluster.local\", \"svc.cluster.local\";"}, "changed": false}
+ok: [worker1] => {"ansible_facts": {"domainentry": "domain cluster.local", "searchentries": "search default.svc.cluster.local svc.cluster.local", "supersede_domain": "supersede domain-name \"cluster.local\";", "supersede_search": "supersede domain-search \"default.svc.cluster.local\", \"svc.cluster.local\";"}, "changed": false}
+ok: [worker2] => {"ansible_facts": {"domainentry": "domain cluster.local", "searchentries": "search default.svc.cluster.local svc.cluster.local", "supersede_domain": "supersede domain-name \"cluster.local\";", "supersede_search": "supersede domain-search \"default.svc.cluster.local\", \"svc.cluster.local\";"}, "changed": false}
+ok: [worker3] => {"ansible_facts": {"domainentry": "domain cluster.local", "searchentries": "search default.svc.cluster.local svc.cluster.local", "supersede_domain": "supersede domain-name \"cluster.local\";", "supersede_search": "supersede domain-search \"default.svc.cluster.local\", \"svc.cluster.local\";"}, "changed": false}
+ok: [worker4] => {"ansible_facts": {"domainentry": "domain cluster.local", "searchentries": "search default.svc.cluster.local svc.cluster.local", "supersede_domain": "supersede domain-name \"cluster.local\";", "supersede_search": "supersede domain-search \"default.svc.cluster.local\", \"svc.cluster.local\";"}, "changed": false}
+Четверг 14 марта 2024  17:41:47 +0300 (0:00:00.448)       0:00:45.929 ********* 
+
+TASK [kubernetes/preinstall : Pick coredns cluster IP or default resolver] ***********************************************************************************
+ok: [masterk8s] => {"ansible_facts": {"coredns_server": []}, "changed": false}
+ok: [worker1] => {"ansible_facts": {"coredns_server": []}, "changed": false}
+ok: [worker2] => {"ansible_facts": {"coredns_server": []}, "changed": false}
+ok: [worker3] => {"ansible_facts": {"coredns_server": []}, "changed": false}
+ok: [worker4] => {"ansible_facts": {"coredns_server": []}, "changed": false}
+Четверг 14 марта 2024  17:41:48 +0300 (0:00:00.947)       0:00:46.877 ********* 
+Четверг 14 марта 2024  17:41:48 +0300 (0:00:00.117)       0:00:46.995 ********* 
+
+TASK [kubernetes/preinstall : Generate nameservers for resolvconf, not including cluster DNS] ****************************************************************
+ok: [masterk8s] => {"ansible_facts": {"nameserverentries": "127.0.0.53", "supersede_nameserver": "supersede domain-name-servers ;"}, "changed": false}
+ok: [worker1] => {"ansible_facts": {"nameserverentries": "127.0.0.53", "supersede_nameserver": "supersede domain-name-servers ;"}, "changed": false}
+ok: [worker2] => {"ansible_facts": {"nameserverentries": "127.0.0.53", "supersede_nameserver": "supersede domain-name-servers ;"}, "changed": false}
+ok: [worker3] => {"ansible_facts": {"nameserverentries": "127.0.0.53", "supersede_nameserver": "supersede domain-name-servers ;"}, "changed": false}
+ok: [worker4] => {"ansible_facts": {"nameserverentries": "127.0.0.53", "supersede_nameserver": "supersede domain-name-servers ;"}, "changed": false}
+Четверг 14 марта 2024  17:41:48 +0300 (0:00:00.422)       0:00:47.417 ********* 
+
+TASK [kubernetes/preinstall : Gather os specific variables] **************************************************************************************************
+ok: [masterk8s] => (item=/root/kubespray/roles/kubernetes/preinstall/vars/../vars/ubuntu.yml) => {"ansible_facts": {"required_pkgs": ["python3-apt", "apt-transport-https", "software-properties-common", "conntrack", "apparmor", "libseccomp2"]}, "ansible_included_var_files": ["/root/kubespray/roles/kubernetes/preinstall/vars/ubuntu.yml"], "ansible_loop_var": "item", "changed": false, "item": "/root/kubespray/roles/kubernetes/preinstall/vars/../vars/ubuntu.yml"}
+ok: [worker1] => (item=/root/kubespray/roles/kubernetes/preinstall/vars/../vars/ubuntu.yml) => {"ansible_facts": {"required_pkgs": ["python3-apt", "apt-transport-https", "software-properties-common", "conntrack", "apparmor", "libseccomp2"]}, "ansible_included_var_files": ["/root/kubespray/roles/kubernetes/preinstall/vars/ubuntu.yml"], "ansible_loop_var": "item", "changed": false, "item": "/root/kubespray/roles/kubernetes/preinstall/vars/../vars/ubuntu.yml"}
+ok: [worker2] => (item=/root/kubespray/roles/kubernetes/preinstall/vars/../vars/ubuntu.yml) => {"ansible_facts": {"required_pkgs": ["python3-apt", "apt-transport-https", "software-properties-common", "conntrack", "apparmor", "libseccomp2"]}, "ansible_included_var_files": ["/root/kubespray/roles/kubernetes/preinstall/vars/ubuntu.yml"], "ansible_loop_var": "item", "changed": false, "item": "/root/kubespray/roles/kubernetes/preinstall/vars/../vars/ubuntu.yml"}
+ok: [worker3] => (item=/root/kubespray/roles/kubernetes/preinstall/vars/../vars/ubuntu.yml) => {"ansible_facts": {"required_pkgs": ["python3-apt", "apt-transport-https", "software-properties-common", "conntrack", "apparmor", "libseccomp2"]}, "ansible_included_var_files": ["/root/kubespray/roles/kubernetes/preinstall/vars/ubuntu.yml"], "ansible_loop_var": "item", "changed": false, "item": "/root/kubespray/roles/kubernetes/preinstall/vars/../vars/ubuntu.yml"}
+ok: [worker4] => (item=/root/kubespray/roles/kubernetes/preinstall/vars/../vars/ubuntu.yml) => {"ansible_facts": {"required_pkgs": ["python3-apt", "apt-transport-https", "software-properties-common", "conntrack", "apparmor", "libseccomp2"]}, "ansible_included_var_files": ["/root/kubespray/roles/kubernetes/preinstall/vars/ubuntu.yml"], "ansible_loop_var": "item", "changed": false, "item": "/root/kubespray/roles/kubernetes/preinstall/vars/../vars/ubuntu.yml"}
+Четверг 14 марта 2024  17:41:49 +0300 (0:00:00.513)       0:00:47.930 ********* 
+Четверг 14 марта 2024  17:41:49 +0300 (0:00:00.197)       0:00:48.127 ********* 
+
+TASK [kubernetes/preinstall : Check /usr readonly] ***********************************************************************************************************
+ok: [masterk8s] => {"changed": false, "stat": {"atime": 1710421928.8082721, "block_size": 4096, "blocks": 8, "ctime": 1671012218.0802448, "dev": 64514, "device_type": 0, "executable": true, "exists": true, "gid": 0, "gr_name": "root", "inode": 62, "isblk": false, "ischr": false, "isdir": true, "isfifo": false, "isgid": false, "islnk": false, "isreg": false, "issock": false, "isuid": false, "mode": "0755", "mtime": 1671012218.0802448, "nlink": 14, "path": "/usr", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 4096, "uid": 0, "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+ok: [worker4] => {"changed": false, "stat": {"atime": 1710423098.2818415, "block_size": 4096, "blocks": 8, "ctime": 1671012218.0802448, "dev": 64514, "device_type": 0, "executable": true, "exists": true, "gid": 0, "gr_name": "root", "inode": 62, "isblk": false, "ischr": false, "isdir": true, "isfifo": false, "isgid": false, "islnk": false, "isreg": false, "issock": false, "isuid": false, "mode": "0755", "mtime": 1671012218.0802448, "nlink": 14, "path": "/usr", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 4096, "uid": 0, "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+ok: [worker3] => {"changed": false, "stat": {"atime": 1710423098.2159035, "block_size": 4096, "blocks": 8, "ctime": 1671012218.0802448, "dev": 64514, "device_type": 0, "executable": true, "exists": true, "gid": 0, "gr_name": "root", "inode": 62, "isblk": false, "ischr": false, "isdir": true, "isfifo": false, "isgid": false, "islnk": false, "isreg": false, "issock": false, "isuid": false, "mode": "0755", "mtime": 1671012218.0802448, "nlink": 14, "path": "/usr", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 4096, "uid": 0, "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+ok: [worker1] => {"changed": false, "stat": {"atime": 1710423066.1543071, "block_size": 4096, "blocks": 8, "ctime": 1671012218.0802448, "dev": 64514, "device_type": 0, "executable": true, "exists": true, "gid": 0, "gr_name": "root", "inode": 62, "isblk": false, "ischr": false, "isdir": true, "isfifo": false, "isgid": false, "islnk": false, "isreg": false, "issock": false, "isuid": false, "mode": "0755", "mtime": 1671012218.0802448, "nlink": 14, "path": "/usr", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 4096, "uid": 0, "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+ok: [worker2] => {"changed": false, "stat": {"atime": 1710422623.2435365, "block_size": 4096, "blocks": 8, "ctime": 1671012218.0802448, "dev": 64514, "device_type": 0, "executable": true, "exists": true, "gid": 0, "gr_name": "root", "inode": 62, "isblk": false, "ischr": false, "isdir": true, "isfifo": false, "isgid": false, "islnk": false, "isreg": false, "issock": false, "isuid": false, "mode": "0755", "mtime": 1671012218.0802448, "nlink": 14, "path": "/usr", "pw_name": "root", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 4096, "uid": 0, "wgrp": false, "woth": false, "writeable": true, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}
+Четверг 14 марта 2024  17:41:50 +0300 (0:00:00.833)       0:00:48.960 ********* 
+Четверг 14 марта 2024  17:41:50 +0300 (0:00:00.135)       0:00:49.096 ********* 
+
+TASK [kubernetes/preinstall : Stop if either kube_control_plane or kube_node group is empty] *****************************************************************
+ok: [masterk8s] => (item=kube_control_plane) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": "kube_control_plane",
+    "msg": "All assertions passed"
+}
+ok: [masterk8s] => (item=kube_node) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": "kube_node",
+    "msg": "All assertions passed"
+}
+Четверг 14 марта 2024  17:41:50 +0300 (0:00:00.148)       0:00:49.244 ********* 
+
+TASK [kubernetes/preinstall : Stop if etcd group is empty in external etcd mode] *****************************************************************************
+ok: [masterk8s] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+Четверг 14 марта 2024  17:41:50 +0300 (0:00:00.103)       0:00:49.348 ********* 
+
+TASK [kubernetes/preinstall : Stop if non systemd OS type] ***************************************************************************************************
+ok: [masterk8s] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker1] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker2] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker3] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker4] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+Четверг 14 марта 2024  17:41:50 +0300 (0:00:00.397)       0:00:49.745 ********* 
+
+TASK [kubernetes/preinstall : Stop if the os does not support] ***********************************************************************************************
+ok: [masterk8s] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker1] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker2] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker3] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker4] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+Четверг 14 марта 2024  17:41:52 +0300 (0:00:01.125)       0:00:50.870 ********* 
+
+TASK [kubernetes/preinstall : Stop if unknown network plugin] ************************************************************************************************
+ok: [masterk8s] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker2] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker1] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker3] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker4] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+Четверг 14 марта 2024  17:41:53 +0300 (0:00:00.980)       0:00:51.850 ********* 
+
+TASK [kubernetes/preinstall : Stop if unsupported version of Kubernetes] *************************************************************************************
+ok: [masterk8s] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker1] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker2] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker3] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker4] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+Четверг 14 марта 2024  17:41:53 +0300 (0:00:00.500)       0:00:52.350 ********* 
+
+TASK [kubernetes/preinstall : Stop if known booleans are set as strings (Use JSON format on CLI: -e "{'key': true }")] ***************************************
+ok: [masterk8s] => (item={'name': 'download_run_once', 'value': False}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "name": "download_run_once",
+        "value": false
+    },
+    "msg": "All assertions passed"
+}
+ok: [masterk8s] => (item={'name': 'deploy_netchecker', 'value': False}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "name": "deploy_netchecker",
+        "value": false
+    },
+    "msg": "All assertions passed"
+}
+ok: [masterk8s] => (item={'name': 'download_always_pull', 'value': False}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "name": "download_always_pull",
+        "value": false
+    },
+    "msg": "All assertions passed"
+}
+ok: [masterk8s] => (item={'name': 'helm_enabled', 'value': False}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "name": "helm_enabled",
+        "value": false
+    },
+    "msg": "All assertions passed"
+}
+ok: [masterk8s] => (item={'name': 'openstack_lbaas_enabled', 'value': False}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "name": "openstack_lbaas_enabled",
+        "value": false
+    },
+    "msg": "All assertions passed"
+}
+Четверг 14 марта 2024  17:41:53 +0300 (0:00:00.231)       0:00:52.582 ********* 
+
+TASK [kubernetes/preinstall : Stop if even number of etcd hosts] *********************************************************************************************
+ok: [masterk8s] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+Четверг 14 марта 2024  17:41:54 +0300 (0:00:00.282)       0:00:52.864 ********* 
+
+TASK [kubernetes/preinstall : Stop if memory is too small for masters] ***************************************************************************************
+ok: [masterk8s] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+Четверг 14 марта 2024  17:41:54 +0300 (0:00:00.187)       0:00:53.052 ********* 
+
+TASK [kubernetes/preinstall : Stop if memory is too small for nodes] *****************************************************************************************
+ok: [worker1] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker2] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker3] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [worker4] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+Четверг 14 марта 2024  17:41:54 +0300 (0:00:00.354)       0:00:53.406 ********* 
+Четверг 14 марта 2024  17:41:54 +0300 (0:00:00.195)       0:00:53.601 ********* 
+
+TASK [kubernetes/preinstall : Stop if ip var does not match local ips] ***************************************************************************************
+fatal: [masterk8s]: FAILED! => {
+    "assertion": "(ip in ansible_all_ipv4_addresses) or (ip in ansible_all_ipv6_addresses)",
+    "changed": false,
+    "evaluated_to": false,
+    "msg": "IPv4: '['192.168.10.34']' and IPv6: '['fe80::d20d:ffff:fecf:8d6b']' do not contain '158.160.125.11'"
+}
+fatal: [worker1]: FAILED! => {
+    "assertion": "(ip in ansible_all_ipv4_addresses) or (ip in ansible_all_ipv6_addresses)",
+    "changed": false,
+    "evaluated_to": false,
+    "msg": "IPv4: '['192.168.10.23']' and IPv6: '['fe80::d20d:1dff:fe0e:54fd']' do not contain '158.160.52.54'"
+}
+fatal: [worker2]: FAILED! => {
+    "assertion": "(ip in ansible_all_ipv4_addresses) or (ip in ansible_all_ipv6_addresses)",
+    "changed": false,
+    "evaluated_to": false,
+    "msg": "IPv4: '['192.168.10.5']' and IPv6: '['fe80::d20d:11ff:fe35:bf3b']' do not contain '178.154.202.182'"
+}
+fatal: [worker3]: FAILED! => {
+    "assertion": "(ip in ansible_all_ipv4_addresses) or (ip in ansible_all_ipv6_addresses)",
+    "changed": false,
+    "evaluated_to": false,
+    "msg": "IPv4: '['192.168.10.25']' and IPv6: '['fe80::d20d:c7ff:fe2c:8870']' do not contain '178.154.222.118'"
+}
+fatal: [worker4]: FAILED! => {
+    "assertion": "(ip in ansible_all_ipv4_addresses) or (ip in ansible_all_ipv6_addresses)",
+    "changed": false,
+    "evaluated_to": false,
+    "msg": "IPv4: '['192.168.10.8']' and IPv6: '['fe80::d20d:1aff:fe3b:90e9']' do not contain '178.154.222.30'"
+}
+
+NO MORE HOSTS LEFT *******************************************************************************************************************************************
+
+PLAY RECAP ***************************************************************************************************************************************************
+masterk8s                  : ok=59   changed=1    unreachable=0    failed=1    skipped=36   rescued=0    ignored=0   
+worker1                    : ok=51   changed=1    unreachable=0    failed=1    skipped=32   rescued=0    ignored=0   
+worker2                    : ok=51   changed=1    unreachable=0    failed=1    skipped=32   rescued=0    ignored=0   
+worker3                    : ok=51   changed=1    unreachable=0    failed=1    skipped=32   rescued=0    ignored=0   
+worker4                    : ok=51   changed=1    unreachable=0    failed=1    skipped=32   rescued=0    ignored=0   
+
+Четверг 14 марта 2024  17:41:55 +0300 (0:00:00.560)       0:00:54.162 ********* 
+=============================================================================== 
+bootstrap-os : Install dbus for the hostname module --------------------------------------------------------------------------------------------------- 2.69s
+bootstrap-os : Assign inventory name to unconfigured hostnames (non-CoreOS, non-Flatcar, Suse and ClearLinux, non-Fedora) ----------------------------- 2.26s
+bootstrap-os : Gather host facts to get ansible_os_family --------------------------------------------------------------------------------------------- 2.06s
+bootstrap-os : Create remote_tmp for it is used by another module ------------------------------------------------------------------------------------- 2.06s
+kubernetes/preinstall : Remove swapfile from /etc/fstab ----------------------------------------------------------------------------------------------- 1.65s
+Gather necessary facts (hardware) --------------------------------------------------------------------------------------------------------------------- 1.59s
+kubernetes/preinstall : Get content of /etc/resolv.conf ----------------------------------------------------------------------------------------------- 1.58s
+bootstrap-os : Ensure bash_completion.d folder exists ------------------------------------------------------------------------------------------------- 1.54s
+kubernetes/preinstall : Mask swap.target (persist swapoff) -------------------------------------------------------------------------------------------- 1.42s
+adduser : User | Create User Group -------------------------------------------------------------------------------------------------------------------- 1.19s
+adduser : User | Create User -------------------------------------------------------------------------------------------------------------------------- 1.18s
+kubernetes/preinstall : Check if /etc/fstab exists ---------------------------------------------------------------------------------------------------- 1.16s
+kubernetes/preinstall : Stop if the os does not support ----------------------------------------------------------------------------------------------- 1.11s
+kubernetes/preinstall : Disable swap ------------------------------------------------------------------------------------------------------------------ 1.03s
+Gather necessary facts (network) ---------------------------------------------------------------------------------------------------------------------- 1.00s
+kubernetes/preinstall : Stop if unknown network plugin ------------------------------------------------------------------------------------------------ 0.98s
+Gather minimal facts ---------------------------------------------------------------------------------------------------------------------------------- 0.97s
+kubernetes/preinstall : Check if kubelet is configured ------------------------------------------------------------------------------------------------ 0.95s
+kubernetes/preinstall : Pick coredns cluster IP or default resolver ----------------------------------------------------------------------------------- 0.94s
+kubernetes/preinstall : Set is_fedora_coreos ---------------------------------------------------------------------------------------------------------- 0.91s
+root@debian:~/kubespray# 
+
