@@ -1,1 +1,6 @@
-node1 ansible_hots=  ip= 
+node1 ansible_hots= ip=158.160.125.11 ansible_ssh_private_key_file: ~/.ssh/id_rsa ansible_user: yc-user
+node2 ansible_hots=158.160.52.54  ip=158.160.52.54 ansible_ssh_private_key_file: ~/.ssh/id_rsa ansible_user: yc-user
+node3 ansible_hots=178.154.202.182  ip=178.154.202.182 ansible_ssh_private_key_file: ~/.ssh/id_rsa ansible_user: yc-user
+node4 ansible_hots=178.154.222.118  ip=178.154.222.118 ansible_ssh_private_key_file: ~/.ssh/id_rsa ansible_user: yc-user
+node5 ansible_hots=178.154.222.30  ip=178.154.222.30 ansible_ssh_private_key_file: ~/.ssh/id_rsa ansible_user: yc-user
+      
