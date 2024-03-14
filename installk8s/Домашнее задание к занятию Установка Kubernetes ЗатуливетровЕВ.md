@@ -56,7 +56,7 @@ root@debianz:~/vms_yc# yc compute instance list
 
 
 ~~~
-root@debian:~# git clone https://github.com/kubernetes-sigs/kubespray
+root@debianz:~# git clone https://github.com/kubernetes-sigs/kubespray
 Клонирование в «kubespray»...
 remote: Enumerating objects: 73424, done.
 remote: Counting objects: 100% (38/38), done.
@@ -73,7 +73,7 @@ remote: Total 73424 (delta 12), reused 22 (delta 7), pack-reused 73386
 
 ~~~
 
-root@debian:~/kubespray# sudo pip3.11 install -r requirements.txt
+root@debianz:~/kubespray# sudo pip3.10 install -r requirements.txt
 Collecting ansible==9.3.0
   Downloading ansible-9.3.0-py3-none-any.whl (46.3 MB)
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 46.3/46.3 MB 9.0 MB/s eta 0:00:00
@@ -126,7 +126,7 @@ yc-user@masterk8s:~/kubespray$ sudo cp -rfp inventory/sample inventory/mycluster
 
 ~~~
 
-root@debian:~/kubespray# declare -a IPS=(158.160.125.11 158.160.52.54 178.154.202.182 178.154.222.118 178.154.222.30)
+root@debianz:~/kubespray# declare -a IPS=(158.160.125.11 158.160.52.54 178.154.202.182 178.154.222.118 178.154.222.30)
 root@debian:~/kubespray# CONFIG_FILE=inventory/mycluster/hosts.yaml python3.11 contrib/inventory_builder/inventory.py ${IPS[@]}
 DEBUG: Adding group all
 DEBUG: Adding group kube_control_plane
