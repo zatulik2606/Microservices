@@ -64,9 +64,6 @@ Receiving objects: 100% (73402/73402), 23.26 MiB | 15.12 MiB/s, done.
 Resolving deltas: 100% (41356/41356), done.
 
 
-
-
-
 ~~~
 
 
@@ -132,7 +129,7 @@ Installing collected packages: pycparser, cffi, cryptography, resolvelib, packag
     Can't uninstall 'Jinja2'. No files were found to uninstall.
 Successfully installed MarkupSafe-2.1.3 ansible-8.5.0 ansible-core-2.15.9 cffi-1.16.0 cryptography-41.0.4 importlib-resources-5.0.7 jinja2-3.1.2 jmespath-1.0.1 netaddr-0.9.0 packaging-24.0 pbr-5.11.1 pycparser-2.21 resolvelib-1.0.1 ruamel.yaml-0.17.35 ruamel.yaml.clib-0.2.8
 
-
+~~~
 Скачиваем инвенторку.
 
 ~~~
