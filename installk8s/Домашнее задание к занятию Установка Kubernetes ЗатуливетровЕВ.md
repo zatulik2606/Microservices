@@ -190,29 +190,29 @@ yc-user@masterk8s:~/kubespray$ cat inventory/mycluster/hosts.yaml
 all:
   hosts:
     masterk8s:
-      ansible_host: 158.160.124.90
-      ip: 158.160.124.90
-      access_ip: 158.160.124.90
+      ansible_host: 158.160.99.192
+      ip: 158.160.99.192
+      access_ip: 158.160.99.192
       ansible_user: yc-user
     worker1:
-      ansible_host: 158.160.104.64
-      ip: 158.160.104.64
-      access_ip: 158.160.104.64
-      ansible-user: yc-user
+      ansible_host: 158.160.117.134
+      ip: 158.160.117.134
+      access_ip: 158.160.117.134
+      ansible_user: yc-user
     worker2:
-      ansible_host: 158.160.57.131
-      ip: 158.160.57.131
-      access_ip: 158.160.57.131
+      ansible_host: 158.160.117.149
+      ip: 158.160.117.149
+      access_ip: 158.160.117.149
       ansible_user: yc-user
     worker3:
-      ansible_host: 158.160.102.163
-      ip: 158.160.102.163
-      access_ip: 158.160.102.163
+      ansible_host: 158.160.50.160
+      ip: 158.160.50.160
+      access_ip: 158.160.50.160
       ansible_user: yc-user
     worker4:
-      ansible_host: 158.160.126.206
-      ip: 158.160.126.206
-      access_ip: 158.160.126.206
+      ansible_host: 130.193.39.91
+      ip: 130.193.39.91
+      access_ip: 130.193.39.91
       ansible_user: yc-user
   children:
     kube_control_plane:
