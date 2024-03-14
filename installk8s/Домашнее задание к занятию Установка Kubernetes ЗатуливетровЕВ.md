@@ -177,30 +177,35 @@ yc-user@masterk8s:~/kubespray$ cat inventory/mycluster/hosts.yaml
 all:
   hosts:
     masterk8s:
-      ansible_host: 158.160.99.192
-      ip: 158.160.99.192
-      access_ip: 158.160.99.192
+      ansible_host: 158.160.122.255
+      ip: 158.160.122.255
+      access_ip: 158.160.122.255
       ansible_user: yc-user
-    worker1:
-      ansible_host: 158.160.117.134
-      ip: 158.160.117.134
-      access_ip: 158.160.117.134
+      ansible_ssh_private_key_file: ~/.ssh/id_rsa
+    wokker1:
+      ansible_host: 158.160.44.189
+      ip: 158.160.44.189
+      access_ip: 158.160.44.189
       ansible_user: yc-user
+      ansible_ssh_private_key_file: ~/.ssh/id_rsa
     worker2:
-      ansible_host: 158.160.117.149
-      ip: 158.160.117.149
-      access_ip: 158.160.117.149
+      ansible_host: 51.250.13.73
+      ip: 51.250.13.73
+      access_ip: 51.250.13.73
       ansible_user: yc-user
+      ansible_ssh_private_key_file: ~/.ssh/id_rsa
     worker3:
-      ansible_host: 158.160.50.160
-      ip: 158.160.50.160
-      access_ip: 158.160.50.160
+      ansible_host: 178.154.205.143
+      ip: 178.154.205.143
+      access_ip: 178.154.205.143
       ansible_user: yc-user
+      ansible_ssh_private_key_file: ~/.ssh/id_rsa
     worker4:
-      ansible_host: 130.193.39.91
-      ip: 130.193.39.91
-      access_ip: 130.193.39.91
+      ansible_host: 178.154.206.96
+      ip: 178.154.206.96
+      access_ip: 178.154.206.96
       ansible_user: yc-user
+      ansible_ssh_private_key_file: ~/.ssh/id_rsa
   children:
     kube_control_plane:
       hosts:
@@ -220,6 +225,7 @@ all:
         kube_node:
     calico_rr:
       hosts: {}
+
 ~~~
 
 
