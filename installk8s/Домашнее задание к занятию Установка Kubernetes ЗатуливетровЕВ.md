@@ -142,7 +142,7 @@ yc-user@masterk8s:~/kubespray$ sudo cp -rfp inventory/sample inventory/mycluster
 
 ~~~
 
-yc-user@masterk8s:~/kubespray$ declare -a IPS=(158.160.124.90 158.160.104.64 158.160.57.131 158.160.102.163 158.160.126.206)
+yc-user@masterk8s:~/kubespray$ declare -a IPS=(158.160.122.255 158.160.44.189 51.250.13.73 178.154.205.143 178.154.206.96)
 yc-user@masterk8s:~/kubespray$ sudo CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
 DEBUG: Adding group all
 DEBUG: Adding group kube_control_plane
@@ -165,6 +165,7 @@ DEBUG: adding host node2 to group kube_node
 DEBUG: adding host node3 to group kube_node
 DEBUG: adding host node4 to group kube_node
 DEBUG: adding host node5 to group kube_node
+
 
 ~~~
 
