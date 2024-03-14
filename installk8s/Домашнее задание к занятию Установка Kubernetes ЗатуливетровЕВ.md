@@ -126,8 +126,8 @@ yc-user@masterk8s:~/kubespray$ sudo cp -rfp inventory/sample inventory/mycluster
 
 ~~~
 
-root@debianz:~/kubespray# declare -a IPS=(158.160.125.11 158.160.52.54 178.154.202.182 178.154.222.118 178.154.222.30)
-root@debian:~/kubespray# CONFIG_FILE=inventory/mycluster/hosts.yaml python3.11 contrib/inventory_builder/inventory.py ${IPS[@]}
+root@debianz:~/kubespray# declare -a IPS=(158.160.56.205 62.84.119.38 158.160.55.140 51.250.64.182 51.250.77.2050
+root@debianZ:~/kubespray# CONFIG_FILE=inventory/mycluster/hosts.yaml python3.10 contrib/inventory_builder/inventory.py ${IPS[@]}
 DEBUG: Adding group all
 DEBUG: Adding group kube_control_plane
 DEBUG: Adding group kube_node
@@ -158,52 +158,52 @@ DEBUG: adding host node5 to group kube_node
 Смотрим файл.
 
 ~~~
-yc-user@masterk8s:~/kubespray$ cat inventory/mycluster/hosts.yaml
+root@debianz:~/kubespray# cat inventory/mycluster/hosts.yaml
 all:
   hosts:
-    masterk8s:
-      ansible_host: 158.160.122.255
-      ip: 158.160.122.255
-      access_ip: 158.160.122.255
-      ansible_user: yc-user
+    node1:
+      ansible_host: 158.160.56.205
+      ip: 192.168.10.27
+      access_ip: 158.160.56.205
+      ansible_ssh_private_key_file: ~/.ssh/id_rsa.pub
+      ansible_user: yc-user  
+    node2:
+      ansible_host: 62.84.119.38
+      ip: 192.168.10.39
+      access_ip: 62.84.119.38
       ansible_ssh_private_key_file: ~/.ssh/id_rsa
-    wokker1:
-      ansible_host: 158.160.44.189
-      ip: 158.160.44.189
-      access_ip: 158.160.44.189
       ansible_user: yc-user
+    node3:
+      ansible_host: 158.160.55.140
+      ip: 192.168.10.12
+      access_ip: 158.160.55.140
       ansible_ssh_private_key_file: ~/.ssh/id_rsa
-    worker2:
-      ansible_host: 51.250.13.73
-      ip: 51.250.13.73
-      access_ip: 51.250.13.73
-      ansible_user: yc-user
+      ansible_user: yc-user  
+    node4:
+      ansible_host: 51.250.64.182
+      ip: 192.168.10.10
+      access_ip: 51.250.64.182
       ansible_ssh_private_key_file: ~/.ssh/id_rsa
-    worker3:
-      ansible_host: 178.154.205.143
-      ip: 178.154.205.143
-      access_ip: 178.154.205.143
-      ansible_user: yc-user
+      ansible_user: yc-user  
+    node5:
+      ansible_host: 51.250.77.205
+      ip: 192.168.10.20
+      access_ip: 51.250.77.205
       ansible_ssh_private_key_file: ~/.ssh/id_rsa
-    worker4:
-      ansible_host: 178.154.206.96
-      ip: 178.154.206.96
-      access_ip: 178.154.206.96
-      ansible_user: yc-user
-      ansible_ssh_private_key_file: ~/.ssh/id_rsa
+      ansible_user: yc-user  
   children:
     kube_control_plane:
       hosts:
-        masterk8s:
+        node1:
     kube_node:
       hosts:
-        worker1:
-        worker2:
-        worker3:
-        worker4:
+        node2:
+        node3:
+        node4:
+        node5:
     etcd:
       hosts:
-        masterk8s:
+        node1:
     k8s_cluster:
       children:
         kube_control_plane:
