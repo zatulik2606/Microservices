@@ -33,16 +33,16 @@ VM создались в YC.
 
 ~~~
 
-root@debianz:~/vms_yc# yc compute instance list
+root@debianz:~# yc compute instance list
 +----------------------+-----------+---------------+---------+-----------------+---------------+
 |          ID          |   NAME    |    ZONE ID    | STATUS  |   EXTERNAL IP   |  INTERNAL IP  |
 +----------------------+-----------+---------------+---------+-----------------+---------------+
 | fhm5b5mo85fvntmk5rrg | ubuntu-hw | ru-central1-a | RUNNING | 158.160.38.134  | 192.168.10.7  |
-| fhmd28pcq4n8lb7hlnq0 | masterk8s | ru-central1-a | RUNNING | 158.160.99.192  | 192.168.10.14 |
-| fhmiv9o1e5qiv8bbtm5c | worker4   | ru-central1-a | RUNNING | 130.193.39.91   | 192.168.10.21 |
-| fhmno9bl145ku3ejve7p | worker2   | ru-central1-a | RUNNING | 158.160.117.149 | 192.168.10.23 |
-| fhmo70itqlq9pqi7jinn | worker1   | ru-central1-a | RUNNING | 158.160.117.134 | 192.168.10.6  |
-| fhmu1u40m7hpbjldbcko | worker3   | ru-central1-a | RUNNING | 158.160.50.160  | 192.168.10.18 |
+| fhmabtn8bb1q1r7j20r8 | masterk8s | ru-central1-a | RUNNING | 158.160.122.255 | 192.168.10.23 |
+| fhmcfti9cbu9n3llms52 | worker1   | ru-central1-a | RUNNING | 158.160.44.189  | 192.168.10.28 |
+| fhmgc21io4506cfgvgs9 | worker3   | ru-central1-a | RUNNING | 178.154.205.143 | 192.168.10.26 |
+| fhmsoeeju0ka703amt51 | worker2   | ru-central1-a | RUNNING | 51.250.13.73    | 192.168.10.5  |
+| fhmtarvhjkio8u4u1scv | worker4   | ru-central1-a | RUNNING | 178.154.206.96  | 192.168.10.37 |
 +----------------------+-----------+---------------+---------+-----------------+---------------+
 
 
