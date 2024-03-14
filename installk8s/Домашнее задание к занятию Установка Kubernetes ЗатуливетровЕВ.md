@@ -54,14 +54,14 @@ root@debian:~/mvs# yc compute instance list
 
 
 ~~~
-yc-user@masterk8s:~$ sudo git clone https://github.com/kubernetes-sigs/kubespray
-Cloning into 'kubespray'...
-remote: Enumerating objects: 73402, done.
-remote: Counting objects: 100% (30/30), done.
-remote: Compressing objects: 100% (26/26), done.
-remote: Total 73402 (delta 8), reused 16 (delta 3), pack-reused 73372
-Receiving objects: 100% (73402/73402), 23.26 MiB | 15.12 MiB/s, done.
-Resolving deltas: 100% (41356/41356), done.
+root@debian:~# git clone https://github.com/kubernetes-sigs/kubespray
+Клонирование в «kubespray»...
+remote: Enumerating objects: 73424, done.
+remote: Counting objects: 100% (38/38), done.
+remote: Compressing objects: 100% (30/30), done.
+remote: Total 73424 (delta 12), reused 22 (delta 7), pack-reused 73386
+Получение объектов: 100% (73424/73424), 23.27 МиБ | 7.92 МиБ/с, готово.
+Определение изменений: 100% (41372/41372), готово.
 
 
 ~~~
