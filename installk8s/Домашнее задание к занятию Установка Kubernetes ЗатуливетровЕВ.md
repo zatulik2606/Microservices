@@ -71,63 +71,45 @@ remote: Total 73424 (delta 12), reused 22 (delta 7), pack-reused 73386
 
 ~~~
 
-yc-user@masterk8s:~/kubespray$ sudo pip3 install -r requirements.txt
-Collecting ansible==8.5.0
-  Downloading ansible-8.5.0-py3-none-any.whl (47.5 MB)
-     |████████████████████████████████| 47.5 MB 25 kB/s 
-Collecting cryptography==41.0.4
-  Downloading cryptography-41.0.4-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.4 MB)
-     |████████████████████████████████| 4.4 MB 100 kB/s 
-Collecting jinja2==3.1.2
-  Downloading Jinja2-3.1.2-py3-none-any.whl (133 kB)
-     |████████████████████████████████| 133 kB 58.4 MB/s 
-Collecting jmespath==1.0.1
-  Downloading jmespath-1.0.1-py3-none-any.whl (20 kB)
-Collecting MarkupSafe==2.1.3
-  Downloading MarkupSafe-2.1.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
-Collecting netaddr==0.9.0
-  Downloading netaddr-0.9.0-py3-none-any.whl (2.2 MB)
-     |████████████████████████████████| 2.2 MB 28.6 MB/s 
-Collecting pbr==5.11.1
-  Downloading pbr-5.11.1-py2.py3-none-any.whl (112 kB)
-     |████████████████████████████████| 112 kB 57.4 MB/s 
-Collecting ruamel.yaml==0.17.35
-  Downloading ruamel.yaml-0.17.35-py3-none-any.whl (112 kB)
-     |████████████████████████████████| 112 kB 1.2 kB/s 
-Collecting ruamel.yaml.clib==0.2.8
-  Downloading ruamel.yaml.clib-0.2.8-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.whl (562 kB)
-     |████████████████████████████████| 562 kB 67 kB/s 
-Collecting ansible-core~=2.15.5
-  Downloading ansible_core-2.15.9-py3-none-any.whl (2.2 MB)
-     |████████████████████████████████| 2.2 MB 60 kB/s 
-Collecting cffi>=1.12
-  Downloading cffi-1.16.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (443 kB)
-     |████████████████████████████████| 443 kB 53.5 MB/s 
-Collecting resolvelib<1.1.0,>=0.5.3
-  Downloading resolvelib-1.0.1-py2.py3-none-any.whl (17 kB)
-Collecting packaging
-  Downloading packaging-24.0-py3-none-any.whl (53 kB)
-     |████████████████████████████████| 53 kB 3.1 kB/s 
-Requirement already satisfied: PyYAML>=5.1 in /usr/lib/python3/dist-packages (from ansible-core~=2.15.5->ansible==8.5.0->-r requirements.txt (line 1)) (5.3.1)
-Collecting importlib-resources<5.1,>=5.0; python_version < "3.10"
-  Downloading importlib_resources-5.0.7-py3-none-any.whl (24 kB)
-Collecting pycparser
-  Downloading pycparser-2.21-py2.py3-none-any.whl (118 kB)
-     |████████████████████████████████| 118 kB 58.2 MB/s 
-Installing collected packages: pycparser, cffi, cryptography, resolvelib, packaging, MarkupSafe, jinja2, importlib-resources, ansible-core, ansible, jmespath, netaddr, pbr, ruamel.yaml.clib, ruamel.yaml
-  Attempting uninstall: cryptography
-    Found existing installation: cryptography 2.8
-    Not uninstalling cryptography at /usr/lib/python3/dist-packages, outside environment /usr
-    Can't uninstall 'cryptography'. No files were found to uninstall.
-  Attempting uninstall: MarkupSafe
-    Found existing installation: MarkupSafe 1.1.0
-    Not uninstalling markupsafe at /usr/lib/python3/dist-packages, outside environment /usr
-    Can't uninstall 'MarkupSafe'. No files were found to uninstall.
-  Attempting uninstall: jinja2
-    Found existing installation: Jinja2 2.10.1
-    Not uninstalling jinja2 at /usr/lib/python3/dist-packages, outside environment /usr
-    Can't uninstall 'Jinja2'. No files were found to uninstall.
-Successfully installed MarkupSafe-2.1.3 ansible-8.5.0 ansible-core-2.15.9 cffi-1.16.0 cryptography-41.0.4 importlib-resources-5.0.7 jinja2-3.1.2 jmespath-1.0.1 netaddr-0.9.0 packaging-24.0 pbr-5.11.1 pycparser-2.21 resolvelib-1.0.1 ruamel.yaml-0.17.35 ruamel.yaml.clib-0.2.8
+root@debian:~/kubespray# sudo pip3.11 install -r requirements.txt
+Collecting ansible==9.3.0
+  Downloading ansible-9.3.0-py3-none-any.whl (46.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 46.3/46.3 MB 9.0 MB/s eta 0:00:00
+Requirement already satisfied: cryptography==41.0.4 in /usr/local/lib/python3.11/dist-packages (from -r requirements.txt (line 2)) (41.0.4)
+Requirement already satisfied: jinja2==3.1.2 in /usr/lib/python3/dist-packages (from -r requirements.txt (line 3)) (3.1.2)
+Requirement already satisfied: jmespath==1.0.1 in /usr/lib/python3/dist-packages (from -r requirements.txt (line 4)) (1.0.1)
+Requirement already satisfied: MarkupSafe==2.1.3 in /usr/local/lib/python3.11/dist-packages (from -r requirements.txt (line 5)) (2.1.3)
+Requirement already satisfied: netaddr==0.9.0 in /usr/local/lib/python3.11/dist-packages (from -r requirements.txt (line 6)) (0.9.0)
+Requirement already satisfied: pbr==5.11.1 in /usr/local/lib/python3.11/dist-packages (from -r requirements.txt (line 7)) (5.11.1)
+Collecting ruamel.yaml==0.18.5
+  Downloading ruamel.yaml-0.18.5-py3-none-any.whl (116 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 116.4/116.4 kB 16.7 MB/s eta 0:00:00
+Requirement already satisfied: ruamel.yaml.clib==0.2.8 in /usr/local/lib/python3.11/dist-packages (from -r requirements.txt (line 9)) (0.2.8)
+Collecting ansible-core~=2.16.4
+  Downloading ansible_core-2.16.4-py3-none-any.whl (2.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 12.3 MB/s eta 0:00:00
+Requirement already satisfied: cffi>=1.12 in /usr/local/lib/python3.11/dist-packages (from cryptography==41.0.4->-r requirements.txt (line 2)) (1.16.0)
+Requirement already satisfied: PyYAML>=5.1 in /usr/lib/python3/dist-packages (from ansible-core~=2.16.4->ansible==9.3.0->-r requirements.txt (line 1)) (6.0)
+Requirement already satisfied: packaging in /usr/lib/python3/dist-packages (from ansible-core~=2.16.4->ansible==9.3.0->-r requirements.txt (line 1)) (23.0)
+Requirement already satisfied: resolvelib<1.1.0,>=0.5.3 in /usr/lib/python3/dist-packages (from ansible-core~=2.16.4->ansible==9.3.0->-r requirements.txt (line 1)) (0.9.0)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.11/dist-packages (from cffi>=1.12->cryptography==41.0.4->-r requirements.txt (line 2)) (2.21)
+Installing collected packages: ruamel.yaml, ansible-core, ansible
+  Attempting uninstall: ruamel.yaml
+    Found existing installation: ruamel.yaml 0.17.35
+    Uninstalling ruamel.yaml-0.17.35:
+      Successfully uninstalled ruamel.yaml-0.17.35
+  Attempting uninstall: ansible-core
+    Found existing installation: ansible-core 2.15.5
+    Uninstalling ansible-core-2.15.5:
+      Successfully uninstalled ansible-core-2.15.5
+  Attempting uninstall: ansible
+    Found existing installation: ansible 8.5.0
+    Uninstalling ansible-8.5.0:
+      Successfully uninstalled ansible-8.5.0
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+ansible-lint 6.21.1 requires ruamel.yaml!=0.17.29,!=0.17.30,<0.18,>=0.17.0, but you have ruamel-yaml 0.18.5 which is incompatible.
+Successfully installed ansible-9.3.0 ansible-core-2.16.4 ruamel.yaml-0.18.5
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
 
 ~~~
 Скачиваем инвенторку.
