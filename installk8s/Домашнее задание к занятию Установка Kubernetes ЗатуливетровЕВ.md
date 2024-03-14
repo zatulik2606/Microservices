@@ -33,17 +33,19 @@ VM создались в YC.
 
 ~~~
 
-root@debian:~/mvs# yc compute instance list
-+----------------------+-----------+---------------+---------+-----------------+---------------+
-|          ID          |   NAME    |    ZONE ID    | STATUS  |   EXTERNAL IP   |  INTERNAL IP  |
-+----------------------+-----------+---------------+---------+-----------------+---------------+
-| fhm12ddv7d0l83o4kq3n | worker2   | ru-central1-a | RUNNING | 178.154.202.182 | 192.168.10.5  |
-| fhm5b5mo85fvntmk5rrg | ubuntu-hw | ru-central1-a | RUNNING | 158.160.38.134  | 192.168.10.7  |
-| fhmceb48e286afks8j7a | worker3   | ru-central1-a | RUNNING | 178.154.222.118 | 192.168.10.25 |
-| fhmfvjsddde9es6uqjm9 | masterk8s | ru-central1-a | RUNNING | 158.160.125.11  | 192.168.10.34 |
-| fhmq7e8ei6j5ss6h52oq | worker4   | ru-central1-a | RUNNING | 178.154.222.30  | 192.168.10.8  |
-| fhmt1pafqkl1vn64nvbe | worker1   | ru-central1-a | RUNNING | 158.160.52.54   | 192.168.10.23 |
-+----------------------+-----------+---------------+---------+-----------------+---------------+
+root@debianz:~/vms_yc# yc compute instance list
++----------------------+-----------+---------------+---------+----------------+---------------+
+|          ID          |   NAME    |    ZONE ID    | STATUS  |  EXTERNAL IP   |  INTERNAL IP  |
++----------------------+-----------+---------------+---------+----------------+---------------+
+| fhm0pcde9f7sdgp66ned | node1     | ru-central1-a | RUNNING | 158.160.56.205 | 192.168.10.27 |
+| fhm5b5mo85fvntmk5rrg | ubuntu-hw | ru-central1-a | RUNNING | 158.160.38.134 | 192.168.10.7  |
+| fhm9chqc4g2uc2eu2euo | node4     | ru-central1-a | RUNNING | 51.250.64.182  | 192.168.10.10 |
+| fhmgboisi2nlu45lmfbd | node5     | ru-central1-a | RUNNING | 51.250.77.205  | 192.168.10.20 |
+| fhmnd43mb5gtce8jgp9s | node3     | ru-central1-a | RUNNING | 158.160.55.140 | 192.168.10.12 |
+| fhmqu887vdd8b1luj4n3 | node2     | ru-central1-a | RUNNING | 62.84.119.38   | 192.168.10.39 |
+| fhmt1pafqkl1vn64nvbe | worker1   | ru-central1-a | RUNNING | 158.160.52.54  | 192.168.10.23 |
++----------------------+-----------+---------------+---------+----------------+---------------+
+
 
 
 
