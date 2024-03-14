@@ -165,7 +165,7 @@ all:
       ansible_host: 158.160.56.205
       ip: 192.168.10.27
       access_ip: 158.160.56.205
-      ansible_ssh_private_key_file: ~/.ssh/id_rsa.pub
+      ansible_ssh_private_key_file: ~/.ssh/id_rsa
       ansible_user: yc-user  
     node2:
       ansible_host: 62.84.119.38
