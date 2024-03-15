@@ -56,7 +56,7 @@ root@debianz:~/vms_yc# yc compute instance list
 
 
 ~~~
-root@debianz:~# git clone https://github.com/kubernetes-sigs/kubespray
+root@debian:~# git clone https://github.com/kubernetes-sigs/kubespray
 Клонирование в «kubespray»...
 remote: Enumerating objects: 73424, done.
 remote: Counting objects: 100% (38/38), done.
@@ -73,7 +73,7 @@ remote: Total 73424 (delta 12), reused 22 (delta 7), pack-reused 73386
 
 ~~~
 
-root@debianz:~/kubespray# sudo pip3.10 install -r requirements.txt
+root@debian:~/kubespray# sudo pip3.10 install -r requirements.txt
 Collecting ansible==9.3.0
   Downloading ansible-9.3.0-py3-none-any.whl (46.3 MB)
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 46.3/46.3 MB 9.0 MB/s eta 0:00:00
@@ -117,100 +117,80 @@ WARNING: Running pip as the 'root' user can result in broken permissions and con
 Скачиваем инвенторку.
 
 ~~~
-root@debianz:~/kubespray$ sudo cp -rfp inventory/sample inventory/mycluster
+root@debian:~/kubespray$ sudo cp -rfp inventory/sample inventory/mycluster
 
 ~~~
 
 
-Сделал конфиги hosts
+
+Создал и заполнил вручную файл инвентори.
+
+~~~
+  root@debian:~# cat kubespray/inventory/inventory.ini
+cat: kubespray/inventory/inventory.ini: Нет такого файла или каталога
+root@debian:~# cat kubespray/inventory/mycluster/inventory.ini
+# ## Configure 'ip' variable to bind kubernetes services on a
+# ## different ip than the default iface
+# ## We should set etcd_member_name for etcd cluster. The node that is not a etcd member do not need to set the value, or can set the empty string value.
+[all]
+
+node1 ansible_host=158.160.97.147 ansible_user=yc-user
+node2 ansible_host=178.154.202.124 ansible_user=yc-user
+node3 ansible_host=178.154.207.17 ansible_user=yc-user
+node4 ansible_host=158.160.99.62 ansible_user=yc-user
+node5 ansible_host=51.250.75.152 ansible_user=yc-user
+ 
+
+# [bastion]
+# bastion ansible_host=x.x.x.x ansible_user=some_user
+
+[kube_control_plane]
+node1
+
+[etcd]
+node1
+
+[kube_node]
+node2
+node3
+node4
+node5
+
+
+[calico_rr]
+
+[k8s_cluster:children]
+kube_control_plane
+kube_node
+calico_rr
+
 
 ~~~
 
-root@debianz:~/kubespray# declare -a IPS=(158.160.56.205 62.84.119.38 158.160.55.140 51.250.64.182 51.250.77.2050
-root@debianZ:~/kubespray# CONFIG_FILE=inventory/mycluster/hosts.yaml python3.10 contrib/inventory_builder/inventory.py ${IPS[@]}
-DEBUG: Adding group all
-DEBUG: Adding group kube_control_plane
-DEBUG: Adding group kube_node
-DEBUG: Adding group etcd
-DEBUG: Adding group k8s_cluster
-DEBUG: Adding group calico_rr
-DEBUG: adding host node1 to group all
-DEBUG: adding host node2 to group all
-DEBUG: adding host node3 to group all
-DEBUG: adding host node4 to group all
-DEBUG: adding host node5 to group all
-DEBUG: adding host node1 to group etcd
-DEBUG: adding host node2 to group etcd
-DEBUG: adding host node3 to group etcd
-DEBUG: adding host node1 to group kube_control_plane
-DEBUG: adding host node2 to group kube_control_plane
-DEBUG: adding host node1 to group kube_node
-DEBUG: adding host node2 to group kube_node
-DEBUG: adding host node3 to group kube_node
-DEBUG: adding host node4 to group kube_node
-DEBUG: adding host node5 to group kube_node
-
-
+Установил.
 
 ~~~
+Пятница 15 марта 2024  10:08:12 +0300 (0:00:00.423)       0:23:25.558 ********* 
 
+TASK [network_plugin/calico : Set calico_pool_conf] **********************************************************************************************************
+ok: [node1] => {"ansible_facts": {"calico_pool_conf": {"apiVersion": "projectcalico.org/v3", "kind": "IPPool", "metadata": {"creationTimestamp": "2024-03-15T07:05:07Z", "name": "default-pool", "resourceVersion": "848", "uid": "ded5e869-e6d8-4341-9c66-a196c8493adf"}, "spec": {"allowedUses": ["Workload", "Tunnel"], "blockSize": 26, "cidr": "10.233.64.0/18", "ipipMode": "Never", "natOutgoing": true, "nodeSelector": "all()", "vxlanMode": "Always"}}}, "changed": false}
+Пятница 15 марта 2024  10:08:12 +0300 (0:00:00.063)       0:23:25.621 ********* 
 
-Смотрим файл.
+TASK [network_plugin/calico : Check if inventory match current cluster configuration] ************************************************************************
+ok: [node1] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+Пятница 15 марта 2024  10:08:12 +0300 (0:00:00.070)       0:23:25.691 ********* 
+Пятница 15 марта 2024  10:08:12 +0300 (0:00:00.055)       0:23:25.747 ********* 
+Пятница 15 марта 2024  10:08:13 +0300 (0:00:00.047)       0:23:25.794 ********* 
 
-~~~
-root@debianz:~/kubespray# cat inventory/mycluster/hosts.yaml
-all:
-  hosts:
-    node1:
-      ansible_host: 158.160.56.205
-      ip: 192.168.10.27
-      access_ip: 158.160.56.205
-      ansible_ssh_private_key_file: ~/.ssh/id_rsa
-      ansible_user: yc-user  
-    node2:
-      ansible_host: 62.84.119.38
-      ip: 192.168.10.39
-      access_ip: 62.84.119.38
-      ansible_ssh_private_key_file: ~/.ssh/id_rsa
-      ansible_user: yc-user
-    node3:
-      ansible_host: 158.160.55.140
-      ip: 192.168.10.12
-      access_ip: 158.160.55.140
-      ansible_ssh_private_key_file: ~/.ssh/id_rsa
-      ansible_user: yc-user  
-    node4:
-      ansible_host: 51.250.64.182
-      ip: 192.168.10.10
-      access_ip: 51.250.64.182
-      ansible_ssh_private_key_file: ~/.ssh/id_rsa
-      ansible_user: yc-user  
-    node5:
-      ansible_host: 51.250.77.205
-      ip: 192.168.10.20
-      access_ip: 51.250.77.205
-      ansible_ssh_private_key_file: ~/.ssh/id_rsa
-      ansible_user: yc-user  
-  children:
-    kube_control_plane:
-      hosts:
-        node1:
-    kube_node:
-      hosts:
-        node2:
-        node3:
-        node4:
-        node5:
-    etcd:
-      hosts:
-        node1:
-    k8s_cluster:
-      children:
-        kube_control_plane:
-        kube_node:
-    calico_rr:
-      hosts: {}
-
+PLAY RECAP ***************************************************************************************************************************************************
+node1                      : ok=697  changed=144  unreachable=0    failed=0    skipped=1170 rescued=0    ignored=6   
+node2                      : ok=438  changed=88   unreachable=0    failed=0    skipped=697  rescued=0    ignored=1   
+node3                      : ok=438  changed=88   unreachable=0    failed=0    skipped=693  rescued=0    ignored=1   
+node4                      : ok=438  changed=88   unreachable=0    failed=0    skipped=693  rescued=0    ignored=1   
+node5                      : ok=438  changed=88   unreachable=0    failed=0    skipped=693  rescued=0    ignored=1   
 ~~~
 
 
