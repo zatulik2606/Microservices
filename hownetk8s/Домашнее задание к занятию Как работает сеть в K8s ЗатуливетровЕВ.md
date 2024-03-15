@@ -70,6 +70,19 @@ frontend   1/1     1            1           6m19s
 
 [cache](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/networkpolicy/network-policy-cache.yaml)
 
+Проверяю.
 
+~~~
+root@debian:~/Microservices/hownetk8s/networkpolicy# kubectl -n app exec frontend-7c96b4cbfb-cmjpb -- curl backend
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+1Praqma Network MultiTool (with NGINX) - backend-6478c64696-4nlbf - 10.1.169.100
+00    80  100    80    0     0     42      0  0:00:01  0:00:01 --:--:--    42
+root@debian:~/Microservices/hownetk8s/networkpolicy# kubectl -n app exec backend-6478c64696-4nlbf -- curl backend
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:--  0:00:29 --:--:--     0
+
+~~~
 
 
