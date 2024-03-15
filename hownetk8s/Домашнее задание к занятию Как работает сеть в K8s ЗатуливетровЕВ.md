@@ -27,7 +27,7 @@
 
 ## Решение 
 
-Подготовил конфиги
+## Подготовил конфиги
 
 [front](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/create/frontend.yaml)
 
@@ -62,4 +62,10 @@ cache      1/1     1            1           5m56s
 frontend   1/1     1            1           6m19s
 
 ~~~
+
+## Подготовил конфги для траффика
+[deaault](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/networkpolicy/network-policy-default.yaml)
+[back](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/networkpolicy/network-policy-backend.yaml)
+[cache](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/networkpolicy/network-policy-cache.yaml)
+
 
