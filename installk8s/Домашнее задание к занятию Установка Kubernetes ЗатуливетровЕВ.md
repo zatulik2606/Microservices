@@ -33,18 +33,17 @@ VM создались в YC.
 
 ~~~
 
-root@debianz:~/vms_yc# yc compute instance list
-+----------------------+-----------+---------------+---------+----------------+---------------+
-|          ID          |   NAME    |    ZONE ID    | STATUS  |  EXTERNAL IP   |  INTERNAL IP  |
-+----------------------+-----------+---------------+---------+----------------+---------------+
-| fhm0pcde9f7sdgp66ned | node1     | ru-central1-a | RUNNING | 158.160.56.205 | 192.168.10.27 |
-| fhm5b5mo85fvntmk5rrg | ubuntu-hw | ru-central1-a | RUNNING | 158.160.38.134 | 192.168.10.7  |
-| fhm9chqc4g2uc2eu2euo | node4     | ru-central1-a | RUNNING | 51.250.64.182  | 192.168.10.10 |
-| fhmgboisi2nlu45lmfbd | node5     | ru-central1-a | RUNNING | 51.250.77.205  | 192.168.10.20 |
-| fhmnd43mb5gtce8jgp9s | node3     | ru-central1-a | RUNNING | 158.160.55.140 | 192.168.10.12 |
-| fhmqu887vdd8b1luj4n3 | node2     | ru-central1-a | RUNNING | 62.84.119.38   | 192.168.10.39 |
-| fhmt1pafqkl1vn64nvbe | worker1   | ru-central1-a | RUNNING | 158.160.52.54  | 192.168.10.23 |
-+----------------------+-----------+---------------+---------+----------------+---------------+
+root@debian:~# yc compute instance list
++----------------------+-----------+---------------+---------+-----------------+---------------+
+|          ID          |   NAME    |    ZONE ID    | STATUS  |   EXTERNAL IP   |  INTERNAL IP  |
++----------------------+-----------+---------------+---------+-----------------+---------------+
+| fhm47q0tbb734maa9q2s | node1     | ru-central1-a | RUNNING | 158.160.97.147  | 192.168.10.32 |
+| fhm5b5mo85fvntmk5rrg | ubuntu-hw | ru-central1-a | RUNNING | 158.160.38.134  | 192.168.10.7  |
+| fhm5ighrlepud7o3ta1g | node4     | ru-central1-a | RUNNING | 158.160.99.62   | 192.168.10.7  |
+| fhmcgvvtimqt5lbrio05 | node3     | ru-central1-a | RUNNING | 178.154.207.17  | 192.168.10.27 |
+| fhmlkiat7cvl3of8c3vc | node2     | ru-central1-a | RUNNING | 178.154.202.124 | 192.168.10.30 |
+| fhmv61ne9uflserg7i8d | node5     | ru-central1-a | RUNNING | 51.250.75.152   | 192.168.10.37 |
++----------------------+-----------+---------------+---------+-----------------+---------------+
 
 
 
