@@ -190,6 +190,14 @@ node4                      : ok=438  changed=88   unreachable=0    failed=0    s
 node5                      : ok=438  changed=88   unreachable=0    failed=0    skipped=693  rescued=0    ignored=1   
 ~~~
 
+Проверяем версию
+
+~~~
+yc-user@node1:~$ sudo kubectl version
+Client Version: v1.29.2
+Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
+
+~~~
 
 ## Дополнительные задания (со звёздочкой)
 
