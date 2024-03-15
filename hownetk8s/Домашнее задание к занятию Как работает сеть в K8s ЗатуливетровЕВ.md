@@ -40,3 +40,26 @@
 [svc-back](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/create/svc-backend.yaml)
 
 [svc-cache](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/create/svc-cache.yaml)
+
+
+Запустили и проверли , что создалось.
+
+~~~
+root@debian:~/Microservices/hownetk8s/create# kubectl get svc -n app
+NAME       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+frontend   ClusterIP   10.152.183.63    <none>        80/TCP    3m22s
+backend    ClusterIP   10.152.183.131   <none>        80/TCP    3m9s
+cache      ClusterIP   10.152.183.143   <none>        80/TCP    2m57s
+root@debian:~/Microservices/hownetk8s/create# kubectl get pods -n app -o wide
+NAME                        READY   STATUS    RESTARTS   AGE     IP             NODE        NOMINATED NODE   READINESS GATES
+backend-6478c64696-4nlbf    1/1     Running   0          5m45s   10.1.169.100   ubuntu-hw   <none>           <none>
+cache-575bd6d866-lpvzj      1/1     Running   0          5m36s   10.1.169.124   ubuntu-hw   <none>           <none>
+frontend-7c96b4cbfb-cmjpb   1/1     Running   0          5m58s   10.1.169.127   ubuntu-hw   <none>           <none>
+root@debian:~/Microservices/hownetk8s/create# kubectl get -n app deployments
+NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+backend    1/1     1            1           6m5s
+cache      1/1     1            1           5m56s
+frontend   1/1     1            1           6m19s
+
+~~~
+
