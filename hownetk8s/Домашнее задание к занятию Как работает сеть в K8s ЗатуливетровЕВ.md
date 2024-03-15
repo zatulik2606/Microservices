@@ -50,7 +50,7 @@
 ~~~
 
 ## Подготовил конфги для траффика
-[deaault](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/networkpolicy/network-policy-default.yaml)
+[default](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/networkpolicy/network-policy-default.yaml)
 
 [back](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/networkpolicy/network-policy-backend.yaml)
 
