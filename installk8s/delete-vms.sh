@@ -7,8 +7,8 @@ function delete_vm {
   $(yc compute instance delete --name="$NAME")
 }
 
-delete_vm "masterk8s"
-delete_vm "worker1"
-delete_vm "worker2"
-delete_vm "worker3"
-delete_vm "worker4"
+delete_vm "node1"
+delete_vm "node2"
+delete_vm "node3"
+delete_vm "node4"
+delete_vm "node5"
