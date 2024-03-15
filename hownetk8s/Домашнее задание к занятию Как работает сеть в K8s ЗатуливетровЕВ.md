@@ -111,14 +111,75 @@ cache-575bd6d866-tqcf8      1/1     Running   0          2m45s   10.1.169.68   u
 
 [cache](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/networkpolicy/network-policy-cache.yaml)
 
-Проверяю.
+
+Запустил файлы , проверяю
+
+Сначала разрешающие
+
+front>>back
 
 ~~~
 
-  Policy Types: Ingress
+ root@debian:~/Microservices/hownetk8s/networkpolicy# kubectl -n app exec frontend-7c96b4cbfb-rgmcx -- curl backend
+Praqma Network MultiTool (with NGINX) - backend-6478c64696-l54dh - 10.1.169.66
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    79  100    79    0     0  69420      0 --:--:-- --:--:-- --:--:-- 79000
+
 
 
 
 ~~~
 
+back>>cahe
 
+~~~
+root@debian:~/Microservices/hownetk8s/networkpolicy# kubectl -n app exec backend-6478c64696-l54dh -- curl cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    77  100    77    0     0  73403      0 --:--:-- --:--:-- --:--:-- 77000
+Praqma Network MultiTool (with NGINX) - cache-575bd6d866-tqcf8 - 10.1.169.68
+
+~~~
+
+Теперь с запретом 
+
+
+front>> cache
+
+~~~
+root@debian:~/Microservices/hownetk8s/networkpolicy# kubectl -n app exec frontend-7c96b4cbfb-rgmcx -- curl --max-time 10 cache
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:--  0:00:10 --:--:--     0
+curl: (28) Connection timed out after 10001 milliseconds
+command terminated with exit code 28
+
+
+~~~
+
+back>>front
+
+~~~
+root@debian:~/Microservices/hownetk8s/networkpolicy# kubectl -n app exec backend-6478c64696-l54dh -- curl --max-time 10 frontend
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:--  0:00:10 --:--:--     0
+curl: (28) Connection timed out after 10000 milliseconds
+command terminated with exit code 28
+
+
+~~~
+
+
+cache>>front 
+
+~~~
+root@debian:~/Microservices/hownetk8s/networkpolicy# kubectl -n app exec cache-575bd6d866-tqcf8 -- curl --max-time 10 frontend
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:--  0:00:10 --:--:--     0
+curl: (28) Connection timed out after 10001 milliseconds
+command terminated with exit code 28
+
+~~~
