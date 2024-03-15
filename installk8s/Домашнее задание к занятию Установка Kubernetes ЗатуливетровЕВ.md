@@ -212,6 +212,19 @@ node5   Ready    <none>          17m   v1.29.2
 ~~~
 
 
+Все работает.
+
+~~~
+yc-user@node1:~$ sudo kubectl create deploy nginx --image=nginx:latest --replicas=2
+deployment.apps/nginx created
+yc-user@node1:~$ kubectl get pod -o wide
+NAME                     READY   STATUS              RESTARTS   AGE   IP       NODE    NOMINATED NODE   READINESS GATES
+nginx-56fcf95486-hml29   0/1     ContainerCreating   0          14s   <none>   node4   <none>           <none>
+nginx-56fcf95486-zks55   0/1     ContainerCreating   0          14s   <none>   node2   <none>           <none>
+
+~~~
+
+
 ## Дополнительные задания (со звёздочкой)
 
 **Настоятельно рекомендуем выполнять все задания под звёздочкой.** Их выполнение поможет глубже разобраться в материале.   
