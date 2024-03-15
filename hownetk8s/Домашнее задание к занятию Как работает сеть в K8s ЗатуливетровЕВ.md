@@ -42,7 +42,7 @@
 [svc-cache](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/create/svc-cache.yaml)
 
 
-Запустили и проверли , что создалось.
+Запустил и проверил , что создалось.
 
 ~~~
 root@debian:~/Microservices/hownetk8s/create# kubectl get svc -n app
