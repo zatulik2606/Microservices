@@ -23,3 +23,20 @@
 3. Разместить поды в namespace App.
 4. Создать политики, чтобы обеспечить доступ frontend -> backend -> cache. Другие виды подключений должны быть запрещены.
 5. Продемонстрировать, что трафик разрешён и запрещён.
+
+
+## Решение 
+
+Подготовил конфиги
+
+[front](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/create/frontend.yaml)
+
+[back](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/create/backend.yaml)
+
+[cache](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/create/cache.yaml)
+
+[svc-front](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/create/svc-frontend.yaml)
+
+[svc-back](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/create/svc-backend.yaml)
+
+[svc-cache](https://github.com/zatulik2606/Microservices/blob/main/hownetk8s/create/svc-cache.yaml)
