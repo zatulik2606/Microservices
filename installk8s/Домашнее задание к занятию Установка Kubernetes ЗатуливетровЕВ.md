@@ -198,6 +198,19 @@ Client Version: v1.29.2
 Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
 
 ~~~
+Проверяю nodes.
+
+~~~
+yc-user@node1:~$ kubectl get nodes
+NAME    STATUS   ROLES           AGE   VERSION
+node1   Ready    control-plane   17m   v1.29.2
+node2   Ready    <none>          17m   v1.29.2
+node3   Ready    <none>          17m   v1.29.2
+node4   Ready    <none>          17m   v1.29.2
+node5   Ready    <none>          17m   v1.29.2
+
+~~~
+
 
 ## Дополнительные задания (со звёздочкой)
 
