@@ -125,8 +125,6 @@ root@debian:~/kubespray$ sudo cp -rfp inventory/sample inventory/mycluster
 Создал и заполнил вручную файл инвентори.
 
 ~~~
-  root@debian:~# cat kubespray/inventory/inventory.ini
-cat: kubespray/inventory/inventory.ini: Нет такого файла или каталога
 root@debian:~# cat kubespray/inventory/mycluster/inventory.ini
 # ## Configure 'ip' variable to bind kubernetes services on a
 # ## different ip than the default iface
